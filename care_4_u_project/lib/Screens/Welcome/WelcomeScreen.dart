@@ -26,20 +26,6 @@ class WelcomeScreen extends StatelessWidget {
         child: Stack(
           alignment: Alignment.topLeft,
           children: [
-            Positioned(
-              top: size.height * 0.01,
-              left: size.width * 0.025,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.keyboard_backspace,
-                  size: size.height * 0.035,
-                  color: Colors.white,
-                ),
-              ),
-            ),
             Align(
               alignment: Alignment.topCenter,
               child: Lottie.asset(

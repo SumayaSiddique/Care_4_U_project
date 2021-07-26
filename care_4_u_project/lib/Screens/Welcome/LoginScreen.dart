@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:care_4_u_project/FirebaseAuth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,6 +15,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+
+  String email = "", password = "";
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -103,45 +108,49 @@ class _LoginScreenState extends State<LoginScreen> {
                         bottom: size.height * 0.025,
                       ),
                       child: TextFormField(
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20.0,
-                            vertical: 20.0,
-                          ),
-                          hintText: 'Email Address',
-                          fillColor: Color.fromRGBO(
-                            230,
-                            230,
-                            230,
-                            1.0,
-                          ),
-                          filled: true,
-                          prefixIcon: Icon(Icons.mail),
-                          disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20.0,
+                              vertical: 20.0,
+                            ),
+                            hintText: 'Email Address',
+                            fillColor: Color.fromRGBO(
+                              230,
+                              230,
+                              230,
+                              1.0,
+                            ),
+                            filled: true,
+                            prefixIcon: Icon(Icons.mail),
+                            disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                  style: BorderStyle.none, width: 0.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                            borderSide:
-                                BorderSide(style: BorderStyle.none, width: 0.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              email = value;
+                            });
+                          }),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -149,48 +158,52 @@ class _LoginScreenState extends State<LoginScreen> {
                           left: size.width * 0.075,
                           bottom: size.height * 0.055),
                       child: TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20.0,
-                            vertical: 20.0,
-                          ),
-                          hintText: 'Password',
-                          fillColor: Color.fromRGBO(
-                            230,
-                            230,
-                            230,
-                            1.0,
-                          ),
-                          filled: true,
-                          prefixIcon: Icon(Icons.vpn_key),
-                          disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20.0,
+                              vertical: 20.0,
+                            ),
+                            hintText: 'Password',
+                            fillColor: Color.fromRGBO(
+                              230,
+                              230,
+                              230,
+                              1.0,
+                            ),
+                            filled: true,
+                            prefixIcon: Icon(Icons.vpn_key),
+                            disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                style: BorderStyle.none,
+                                width: 0.0,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20.0),
+                              ),
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                            borderSide: BorderSide(
-                              style: BorderStyle.none,
-                              width: 0.0,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              password = value;
+                            });
+                          }),
                     ),
                     Center(
                       child: ElevatedButton(
@@ -208,8 +221,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontFamily: 'SF Pro Rounded',
                           ),
                         ),
-                        onPressed: () {
-                          // Navigator.pushNamed(context, 'login');
+                        onPressed: () async {
+                          print(email + password);
+                          await context
+                              .read<AuthService>()
+                              .signIn(email.trim(), password.trim());
                         },
                         child: Text(
                           'Login',
