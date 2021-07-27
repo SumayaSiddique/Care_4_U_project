@@ -194,8 +194,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                            if (value == null ||
+                                value.isEmpty ||
+                                value.length < 8) {
+                              return 'Please enter a proper password';
                             }
                             return null;
                           },
@@ -222,10 +224,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onPressed: () async {
-                          print(email + password);
-                          await context
-                              .read<AuthService>()
-                              .signIn(email.trim(), password.trim());
+                          if (_formKey.currentState!.validate()) {
+                            await Provider.of<AuthService>(context,
+                                    listen: false)
+                                .signIn(email.trim(), password.trim());
+                          }
+                          setState(() {
+                            Navigator.pop(context);
+                          });
+                          // print(email + password);
                         },
                         child: Text(
                           'Login',

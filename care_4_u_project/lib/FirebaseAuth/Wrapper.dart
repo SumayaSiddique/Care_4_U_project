@@ -16,7 +16,6 @@ class AuthenticationWrapper extends StatelessWidget {
       return WelcomeScreen();
     } else {
       print('User logged in');
-
       return HomeView();
     }
   }
