@@ -1,7 +1,6 @@
 import 'dart:ui';
-
-import 'package:care_4_u_project/FirebaseAuth/auth_service.dart';
-import 'package:care_4_u_project/FirestoreManager/UserSignUp/UserSignUp.dart';
+import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
+import 'package:care_4_u_project/Services/FirestoreManager/UserSignUp/UserSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';

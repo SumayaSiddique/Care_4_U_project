@@ -1,4 +1,4 @@
-import 'package:care_4_u_project/FirebaseAuth/auth_service.dart';
+import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -69,33 +69,30 @@ class HomeView extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () => {
-                        Navigator.pushNamed(context, 'diabetes-details'),
-                      },
-                      child: HomeMediumCard(
-                        size: size,
-                        theme: theme,
-                        title: "110",
-                        subtitle: "Diabetes",
-                        icon: RotatedBox(
-                          quarterTurns: 3,
-                          child: Icon(
-                            FontAwesomeIcons.syringe,
-                            color: Colors.white,
-                          ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () => {
+                      Navigator.pushNamed(context, 'diabetes-details'),
+                    },
+                    child: HomeMediumCard(
+                      size: size,
+                      theme: theme,
+                      title: "110",
+                      subtitle: "Diabetes",
+                      icon: RotatedBox(
+                        quarterTurns: 3,
+                        child: Icon(
+                          FontAwesomeIcons.syringe,
+                          color: Colors.white,
                         ),
-                        caption: 'mg/dL',
                       ),
+                      caption: 'mg/dL',
                     ),
-                  ],
-                ),
-              )
+                  ),
+                ],
+              ),
             ],
           ),
         ),
