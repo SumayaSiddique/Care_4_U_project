@@ -1,7 +1,6 @@
 import 'package:care_4_u_project/Screens/Home/HomeView.dart';
 import 'package:care_4_u_project/Screens/Welcome/LoginScreen.dart';
 import 'package:care_4_u_project/Screens/Welcome/SignUpScreen.dart';
-
 import 'package:care_4_u_project/Screens/Welcome/WelcomeScreen.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/Wrapper.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
@@ -9,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'Screens/DetailedViews/DiabetesDetailsView.dart';
 
 void main() async {
