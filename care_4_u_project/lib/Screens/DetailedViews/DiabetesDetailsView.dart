@@ -38,10 +38,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
             padding:
                 const EdgeInsets.symmetric(vertical: 50.0, horizontal: 25.0),
             child: SfCartesianChart(
+              plotAreaBorderColor: Colors.transparent,
               legend: Legend(
-                  isVisible: true,
-                  alignment: ChartAlignment.center,
-                  position: LegendPosition.bottom),
+                isVisible: true,
+                alignment: ChartAlignment.center,
+                position: LegendPosition.bottom,
+              ),
               tooltipBehavior: _tooltipBehavior,
               enableAxisAnimation: true,
               series: <ChartSeries>[
@@ -61,8 +63,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               ],
               primaryXAxis: NumericAxis(
                 edgeLabelPlacement: EdgeLabelPlacement.shift,
+                majorGridLines: const MajorGridLines(width: 0),
               ),
-              primaryYAxis: NumericAxis(labelFormat: '{value}'),
+              primaryYAxis: NumericAxis(
+                labelFormat: '{value}',
+                majorGridLines: const MajorGridLines(width: 0),
+              ),
             ),
           ),
           Container(
