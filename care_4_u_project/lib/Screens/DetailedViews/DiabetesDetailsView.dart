@@ -1,3 +1,4 @@
+import 'package:care_4_u_project/Datamodel/DiabetesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -26,7 +27,6 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
       appBar: AppBar(
         title: Text(
           'Blood Glucose',
-          style: TextStyle(fontFamily: 'SF Pro Rounded', fontSize: 20.0),
         ),
         backgroundColor: Color.fromRGBO(155, 229, 224, 0.5),
       ),
@@ -46,22 +46,23 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               enableAxisAnimation: true,
               series: <ChartSeries>[
                 SplineSeries<DiabetesData, double>(
-                    name: 'Blood glucose chart',
-                    dataSource: _chartData,
-                    yValueMapper: (DiabetesData diabetesData, _) =>
-                        diabetesData.value,
-                    xValueMapper: (DiabetesData diabetesData, _) =>
-                        diabetesData.time,
-                    dataLabelSettings: DataLabelSettings(isVisible: true),
-                    enableTooltip: true,
-                    onRendererCreated: (ChartSeriesController controller) {
-                      _chartSeriesController = controller;
-                    }),
+                  name: 'Diabetes chart',
+                  dataSource: _chartData,
+                  yValueMapper: (DiabetesData diabetesData, _) =>
+                      diabetesData.value,
+                  xValueMapper: (DiabetesData diabetesData, _) =>
+                      diabetesData.time,
+                  dataLabelSettings: DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                  onRendererCreated: (ChartSeriesController controller) {
+                    _chartSeriesController = controller;
+                  },
+                ),
               ],
               primaryXAxis: NumericAxis(
                 edgeLabelPlacement: EdgeLabelPlacement.shift,
               ),
-              primaryYAxis: NumericAxis(labelFormat: '{value} mg/dL'),
+              primaryYAxis: NumericAxis(labelFormat: '{value}'),
             ),
           ),
           Container(
@@ -88,11 +89,4 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
     ];
     return chartData;
   }
-}
-
-class DiabetesData {
-  DiabetesData(this.time, this.day, this.value);
-  final double time;
-  final String day;
-  final int value;
 }
