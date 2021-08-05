@@ -46,7 +46,10 @@ class HomeView extends StatelessWidget {
                   HomeMediumCard(
                     size: size,
                     theme: theme,
-                    title: "7390",
+                    title: Text(
+                      "7390",
+                      style: theme.headline3!.apply(color: Colors.white),
+                    ),
                     subtitle: "Steps",
                     icon: RotatedBox(
                       quarterTurns: 3,
@@ -60,7 +63,10 @@ class HomeView extends StatelessWidget {
                   HomeMediumCard(
                     size: size,
                     theme: theme,
-                    title: "2",
+                    title: Text(
+                      "2",
+                      style: theme.headline3!.apply(color: Colors.white),
+                    ),
                     subtitle: "Distance",
                     icon: Icon(
                       FontAwesomeIcons.walking,
@@ -97,6 +103,39 @@ class HomeView extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  HomeMediumCard(
+                    size: size,
+                    theme: theme,
+                    title: Text(
+                      "2",
+                      style: theme.headline3!.apply(color: Colors.white),
+                    ),
+                    subtitle: "Water",
+                    icon: Icon(
+                      FontAwesomeIcons.glassWhiskey,
+                      color: Colors.white,
+                    ),
+                    caption: "Cups",
+                  ),
+                  HomeMediumCard(
+                    size: size,
+                    theme: theme,
+                    title: Text(
+                      "120/80",
+                      style: theme.headline4!.apply(color: Colors.white),
+                    ),
+                    subtitle: "Pressure",
+                    icon: Icon(
+                      FontAwesomeIcons.heartbeat,
+                      color: Colors.white,
+                    ),
+                    color: Colors.redAccent,
+                  ),
+                ],
               ),
             ],
           ),
@@ -234,16 +273,18 @@ class HomeMediumCard extends StatelessWidget {
     required this.theme,
     required this.title,
     required this.subtitle,
-    required this.caption,
+    this.caption,
     required this.icon,
+    this.color,
   }) : super(key: key);
 
   final Size size;
   final TextTheme theme;
-  final String title;
+  final Widget title;
   final String subtitle;
   final String? caption;
   final Widget icon;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -251,7 +292,7 @@ class HomeMediumCard extends StatelessWidget {
       height: 190,
       width: size.width / 2.25,
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: color ?? Colors.blue,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
@@ -291,10 +332,7 @@ class HomeMediumCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Flexible(
-                  child: Text(
-                    title,
-                    style: theme.headline3!.apply(color: Colors.white),
-                  ),
+                  child: title,
                 ),
                 if (caption != null)
                   Padding(
