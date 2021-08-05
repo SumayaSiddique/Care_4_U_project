@@ -69,6 +69,33 @@ class HomeView extends StatelessWidget {
                   ),
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () => {
+                        Navigator.pushNamed(context, 'diabetes-details'),
+                      },
+                      child: HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: "110",
+                        subtitle: "Diabetes",
+                        icon: RotatedBox(
+                          quarterTurns: 3,
+                          child: Icon(
+                            FontAwesomeIcons.syringe,
+                            color: Colors.white,
+                          ),
+                        ),
+                        caption: 'mg/dL',
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -99,7 +126,7 @@ class HomeMediumCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 190,
-      width: size.width / 2.3,
+      width: size.width / 2.25,
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(30),
@@ -151,7 +178,7 @@ class HomeMediumCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
                       caption!,
-                      style: theme.headline5!.apply(
+                      style: theme.headline6!.apply(
                         color: Colors.white.withOpacity(0.5),
                       ),
                     ),
