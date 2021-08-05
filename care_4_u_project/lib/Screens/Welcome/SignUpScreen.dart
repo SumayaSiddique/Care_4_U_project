@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:care_4_u_project/FirebaseAuth/auth_service.dart';
+import 'package:care_4_u_project/FirestoreManager/UserSignUp/UserSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -12,6 +15,8 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  String email = "", password = "", name = "";
+  double height = 0, weight = 0;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -110,7 +115,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: TextFormField(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 20.0),
+                            horizontal: 10.0,
+                            vertical: 10.0,
+                          ),
                           hintText: 'Enter your email',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                           filled: true,
@@ -139,6 +146,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
+                        onChanged: (value) {
+                          email = value;
+                        },
                       ),
                     ),
                     Padding(
@@ -151,8 +161,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscureText: true,
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20.0,
-                            vertical: 20.0,
+                            horizontal: 10.0,
+                            vertical: 10.0,
                           ),
                           hintText: 'Enter your password',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
@@ -184,47 +194,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: size.width * 0.075,
-                          left: size.width * 0.075,
-                          bottom: size.height * 0.055),
-                      child: TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 20.0,
-                            vertical: 20.0,
-                          ),
-                          hintText: 'Confirm your password',
-                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
-                          filled: true,
-                          prefixIcon: Icon(Icons.lock),
-                          disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                            borderSide:
-                                BorderSide(style: BorderStyle.none, width: 0.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
+                        onChanged: (value) {
+                          password = value;
                         },
                       ),
                     ),
@@ -248,7 +219,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontFamily: 'SF Pro Rounded',
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            await Provider.of<AuthService>(context,
+                                    listen: false)
+                                .signUp(
+                              email.trim(),
+                              password.trim(),
+                            );
+                            await UserSignUp().addUserData(
+                              'Imran Sefat',
+                              69,
+                              185,
+                            );
+                            Navigator.pop(context);
+                          }
                           // Navigator.pushNamed(context, 'login');
                         },
                         child: Text(
