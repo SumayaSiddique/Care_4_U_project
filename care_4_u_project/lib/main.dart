@@ -10,6 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'Screens/DetailedViews/DiabetesDetailsView.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(App());
@@ -67,6 +69,7 @@ class _MyAppState extends State<MyApp> {
           'login': (context) => LoginScreen(),
           'sign-up': (context) => SignUpScreen(),
           'home': (context) => HomeView(),
+          'diabetes-details': (context) => DiabetesDetailsView(),
         },
       ),
     );

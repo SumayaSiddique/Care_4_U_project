@@ -1,4 +1,3 @@
-import 'package:care_4_u_project/FirebaseAuth/Wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
