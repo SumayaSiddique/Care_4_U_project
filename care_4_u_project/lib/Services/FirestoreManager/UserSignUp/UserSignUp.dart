@@ -9,7 +9,7 @@ class UserSignUp {
       'name': name,
       'weight': weight,
       'height': height,
-      'cretedOn': Timestamp.now(),
+      'createdOn': Timestamp.now(),
     });
   }
 }

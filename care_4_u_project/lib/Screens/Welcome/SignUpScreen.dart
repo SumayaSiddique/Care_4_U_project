@@ -107,15 +107,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(
-                          top: size.height * 0.465,
+                          top: size.height * 0.365,
                           right: size.width * 0.075,
                           left: size.width * 0.075,
                           bottom: size.height * 0.025),
                       child: TextFormField(
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10.0,
-                            vertical: 10.0,
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
                           ),
                           hintText: 'Enter your email',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
@@ -158,10 +158,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       child: TextFormField(
                         obscureText: true,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10.0,
-                            vertical: 10.0,
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
                           ),
                           hintText: 'Enter your password',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
@@ -198,7 +198,149 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
-                    Center(
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.075,
+                        left: size.width * 0.075,
+                        bottom: size.height * 0.025,
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
+                          ),
+                          hintText: 'Enter your name',
+                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                          filled: true,
+                          prefixIcon: Icon(Icons.person),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                            borderSide: BorderSide(
+                              style: BorderStyle.none,
+                              width: 0.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          name = value;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.075,
+                        left: size.width * 0.075,
+                        bottom: size.height * 0.025,
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
+                          ),
+                          hintText: 'Enter your weight in kg',
+                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                          filled: true,
+                          prefixIcon: (Icon(Icons.monitor_weight)),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                            borderSide: BorderSide(
+                              style: BorderStyle.none,
+                              width: 0.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your weight';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          weight = double.parse(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.075,
+                        left: size.width * 0.075,
+                        bottom: size.height * 0.025,
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
+                          ),
+                          hintText: 'Enter your height in cm',
+                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                          filled: true,
+                          prefixIcon: (Icon(Icons.height_sharp)),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                            borderSide: BorderSide(
+                              style: BorderStyle.none,
+                              width: 0.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your height';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          height = double.parse(value);
+                        },
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(219, 120, 140, 1.0),
@@ -227,9 +369,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               password.trim(),
                             );
                             await UserSignUp().addUserData(
-                              'Imran Sefat',
-                              69,
-                              185,
+                              name,
+                              weight,
+                              height,
                             );
                             Navigator.pop(context);
                           }

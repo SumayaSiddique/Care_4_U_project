@@ -243,6 +243,34 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.0125),
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            fixedSize:
+                                Size(size.width * 0.75, size.height * 0.065),
+                            textStyle: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'SF Pro Rounded',
+                            ),
+                          ),
+                          onPressed: () async {
+                            setState(() {
+                              Navigator.pushNamed(context, 'forgot-password');
+                            });
+                          },
+                          child: Text(
+                            'Forgot Password?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'SF Pro Rounded',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

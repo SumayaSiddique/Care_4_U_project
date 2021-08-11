@@ -1,10 +1,7 @@
 import 'dart:ui';
-
-import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -25,16 +22,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       backgroundColor: Color.fromRGBO(99, 112, 176, 1.0),
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
           child: Stack(
             alignment: Alignment.topLeft,
             children: [
-              Positioned(
+              Align(
                 child: SvgPicture.asset(
-                  'images/login.svg',
+                  'images/forgot_password.svg',
                   fit: BoxFit.contain,
                 ),
-                left: size.width * 0.01,
-                top: size.height * 0.125,
               ),
               ClipRRect(
                 // Clip it cleanly.
@@ -45,44 +41,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.only(
-                          top: size.height * 0.15, bottom: size.height * 0.225),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Let's sign you in.",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 40,
-                              color: Colors.white,
-                              fontFamily: 'SF Pro Rounded',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.01,
-                                right: size.height * 0.015),
-                            child: Text(
-                              "Welcome back. \nYou've been missed",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 32,
-                                color: Colors.white,
-                                fontFamily: 'SF Pro Rounded',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
+                          top: size.height * 0.175, bottom: size.height * 0.75),
+                      child: Text(
+                        "Forgot your password?",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white,
+                          fontFamily: 'SF Pro Rounded',
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-              Positioned(
-                top: size.height * 0.01,
-                left: size.width * 0.025,
+              Align(
+                alignment: Alignment.topLeft,
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -102,10 +77,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(
-                        top: size.height * 0.575,
+                        top: size.height * 0.5,
                         right: size.width * 0.075,
                         left: size.width * 0.075,
-                        bottom: size.height * 0.025,
+                        bottom: size.height * 0.0625,
                       ),
                       child: TextFormField(
                           decoration: const InputDecoration(
@@ -152,7 +127,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             });
                           }),
                     ),
-                    Center(
+                    Align(
+                      alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(219, 120, 140, 1.0),

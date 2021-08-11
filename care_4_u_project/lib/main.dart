@@ -1,4 +1,5 @@
 import 'package:care_4_u_project/Screens/Home/HomeView.dart';
+import 'package:care_4_u_project/Screens/Welcome/ForgotPassword.dart';
 import 'package:care_4_u_project/Screens/Welcome/LoginScreen.dart';
 import 'package:care_4_u_project/Screens/Welcome/SignUpScreen.dart';
 import 'package:care_4_u_project/Screens/Welcome/WelcomeScreen.dart';
@@ -68,6 +69,7 @@ class _MyAppState extends State<MyApp> {
           'sign-up': (context) => SignUpScreen(),
           'home': (context) => HomeView(),
           'diabetes-details': (context) => DiabetesDetailsView(),
+          'forgot-password': (context) => ForgotPassword(),
         },
       ),
     );
