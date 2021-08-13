@@ -31,50 +31,53 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(
+              //     vertical: 12,
+              //   ),
+              //   child: Text(
+              //     "Welcome Back!",
+              //     style: theme.headline4,
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                ),
-                child: Text(
-                  "Welcome Back!",
-                  style: theme.headline4,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  HomeMediumCard(
-                    size: size,
-                    theme: theme,
-                    title: Text(
-                      "7390",
-                      style: theme.headline3!.apply(color: Colors.white),
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    HomeMediumCard(
+                      size: size,
+                      theme: theme,
+                      title: Text(
+                        "7390",
+                        style: theme.headline3!.apply(color: Colors.white),
+                      ),
+                      subtitle: "Steps",
+                      icon: RotatedBox(
+                        quarterTurns: 3,
+                        child: Icon(
+                          FontAwesomeIcons.shoePrints,
+                          color: Colors.white,
+                        ),
+                      ),
+                      caption: null,
                     ),
-                    subtitle: "Steps",
-                    icon: RotatedBox(
-                      quarterTurns: 3,
-                      child: Icon(
-                        FontAwesomeIcons.shoePrints,
+                    HomeMediumCard(
+                      size: size,
+                      theme: theme,
+                      title: Text(
+                        "2",
+                        style: theme.headline3!.apply(color: Colors.white),
+                      ),
+                      subtitle: "Distance",
+                      icon: Icon(
+                        FontAwesomeIcons.walking,
                         color: Colors.white,
                       ),
+                      caption: 'Km',
                     ),
-                    caption: null,
-                  ),
-                  HomeMediumCard(
-                    size: size,
-                    theme: theme,
-                    title: Text(
-                      "2",
-                      style: theme.headline3!.apply(color: Colors.white),
-                    ),
-                    subtitle: "Distance",
-                    icon: Icon(
-                      FontAwesomeIcons.walking,
-                      color: Colors.white,
-                    ),
-                    caption: 'Km',
-                  ),
-                ],
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -136,6 +139,37 @@ class HomeView extends StatelessWidget {
                     color: Colors.redAccent,
                   ),
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 6,
+                ),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/corona-status');
+                      },
+                      child: HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: Text(
+                          "8465",
+                          style: theme.headline3!.apply(color: Colors.white),
+                        ),
+                        subtitle: "Covid-19",
+                        icon: Icon(
+                          FontAwesomeIcons.virus,
+                          color: Colors.white,
+                        ),
+                        // caption: "Today's Cases",
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

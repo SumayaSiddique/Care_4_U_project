@@ -1,3 +1,4 @@
+import 'package:care_4_u_project/Screens/CoronaStatus/CoronaStatusPage.dart';
 import 'package:care_4_u_project/Screens/Home/HomeView.dart';
 import 'package:care_4_u_project/Screens/Welcome/ForgotPassword.dart';
 import 'package:care_4_u_project/Screens/Welcome/LoginScreen.dart';
@@ -70,6 +71,7 @@ class _MyAppState extends State<MyApp> {
           'home': (context) => HomeView(),
           'diabetes-details': (context) => DiabetesDetailsView(),
           'forgot-password': (context) => ForgotPassword(),
+          '/corona-status': (_) => CoronaStatusPage(),
         },
       ),
     );
