@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:care_4_u_project/Datamodel/CoronaStatus/CoronaStatusCountryInfoModel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 
 class CoronaStatusPage extends StatefulWidget {
   const CoronaStatusPage({Key? key}) : super(key: key);
@@ -75,6 +74,7 @@ class ResultView extends StatelessWidget {
         GridView.count(
           crossAxisCount: 2,
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           children: [
             MediumCard(
               textTheme: textTheme,
@@ -122,6 +122,7 @@ class ResultView extends StatelessWidget {
         GridView.count(
           crossAxisCount: 2,
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           children: [
             MediumCard(
               textTheme: textTheme,

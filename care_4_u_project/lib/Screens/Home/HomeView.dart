@@ -1,5 +1,4 @@
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -31,15 +30,6 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(
-              //     vertical: 12,
-              //   ),
-              //   child: Text(
-              //     "Welcome Back!",
-              //     style: theme.headline4,
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: Row(
@@ -80,27 +70,73 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                padding: const EdgeInsets.only(bottom: 12.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
-                      child: GestureDetector(
-                        onTap: () => {
-                          Navigator.pushNamed(context, 'diabetes-details'),
-                        },
-                        child: HomeLargeCard(
-                          size: size,
-                          theme: theme,
-                          title: "110 mg/dL",
-                          subtitle: "Diabetes",
-                          icon: RotatedBox(
-                            quarterTurns: 3,
-                            child: Icon(
-                              FontAwesomeIcons.syringe,
-                              // color: Colors.white,
+                      child: HomeLargeCard(
+                        size: size,
+                        theme: theme,
+                        title: "Medicine Reminder",
+                        subtitle: 'Today',
+                        icon: Icon(Icons.medication),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FaIcon(FontAwesomeIcons.pills),
+                                Text(
+                                  'Ebasten 10mg',
+                                  style: theme.headline5!
+                                      .apply(color: Colors.black),
+                                ),
+                                Text(
+                                  '9:00PM',
+                                  style: theme.headline6!
+                                      .apply(color: Colors.black),
+                                ),
+                              ],
                             ),
-                          ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FaIcon(FontAwesomeIcons.pills),
+                                Text(
+                                  'Reversair 10mg',
+                                  style: theme.headline5!
+                                      .apply(color: Colors.black),
+                                ),
+                                Text(
+                                  '9:00PM',
+                                  style: theme.headline6!
+                                      .apply(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FaIcon(FontAwesomeIcons.pills),
+                                Text(
+                                  'Esonix 20mg',
+                                  style: theme.headline5!
+                                      .apply(color: Colors.black),
+                                ),
+                                Text(
+                                  '9:00PM',
+                                  style: theme.headline6!
+                                      .apply(color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -146,7 +182,7 @@ class HomeView extends StatelessWidget {
                   horizontal: 6,
                 ),
                 child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -168,6 +204,35 @@ class HomeView extends StatelessWidget {
                         color: Colors.redAccent,
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              Navigator.pushNamed(context, 'diabetes-details'),
+                            },
+                            child: HomeMediumCard(
+                              size: size,
+                              theme: theme,
+                              title: Text("110",
+                                  style: theme.headline3!
+                                      .apply(color: Colors.white)),
+                              subtitle: "Diabetes",
+                              caption: "mg/dL",
+                              icon: RotatedBox(
+                                quarterTurns: 3,
+                                child: Icon(
+                                  FontAwesomeIcons.syringe,
+                                  // color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -186,6 +251,7 @@ class HomeLargeCard extends StatelessWidget {
     required this.theme,
     required this.title,
     required this.subtitle,
+    required this.child,
     required this.icon,
   }) : super(key: key);
 
@@ -193,14 +259,14 @@ class HomeLargeCard extends StatelessWidget {
   final TextTheme theme;
   final String title;
   final String subtitle;
-
+  final Widget child;
   final Widget icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 190,
-      width: size.width / 2.25,
+      width: size.width * 0.25,
       decoration: BoxDecoration(
         color: Colors.white,
         // gradient: LinearGradient(
@@ -257,42 +323,7 @@ class HomeLargeCard extends StatelessWidget {
                 ),
               ],
             ),
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: LineChart(
-                  LineChartData(
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: [
-                            FlSpot(4, 10),
-                            FlSpot(14, 61),
-                            FlSpot(40, 100),
-                            FlSpot(50, 300),
-                            FlSpot(60, 200),
-                          ],
-                          isCurved: true,
-                          colors: [
-                            Colors.blue,
-                          ],
-                          barWidth: 2,
-                          dotData: FlDotData(
-                            show: false,
-                          ),
-                        ),
-                      ],
-                      titlesData: FlTitlesData(
-                        show: false,
-                      ),
-                      borderData: FlBorderData(
-                        show: false,
-                      ),
-                      gridData: FlGridData(
-                        show: false,
-                      )),
-                ),
-              ),
-            )
+            child
           ],
         ),
       ),

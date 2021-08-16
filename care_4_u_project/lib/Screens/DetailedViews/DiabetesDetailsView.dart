@@ -53,7 +53,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                   yValueMapper: (DiabetesData diabetesData, _) =>
                       diabetesData.value,
                   xValueMapper: (DiabetesData diabetesData, _) =>
-                      diabetesData.time,
+                      diabetesData.hour,
                   dataLabelSettings: DataLabelSettings(isVisible: true),
                   enableTooltip: true,
                   onRendererCreated: (ChartSeriesController controller) {
@@ -74,7 +74,13 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
           Container(
               child: ElevatedButton(
             onPressed: () {
-              _chartData.add(DiabetesData(19.25, 'Monday', 110));
+              _chartData.add(DiabetesData(
+                  DateTime.now().hour.toDouble() - 1.0,
+                  DateTime.now().minute.toDouble(),
+                  DateTime.now().day,
+                  DateTime.now().month,
+                  DateTime.now().year,
+                  70));
               _chartSeriesController!.updateDataSource(
                 addedDataIndexes: <int>[_chartData.length - 1],
               );
@@ -88,10 +94,27 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
 
   List<DiabetesData> getChartData() {
     final List<DiabetesData> chartData = [
-      DiabetesData(4.25, 'Sunday', 110),
-      DiabetesData(7.25, 'Sunday', 250),
-      DiabetesData(10.25, 'Sunday', 120),
-      DiabetesData(13.25, 'Sunday', 300)
+      DiabetesData(
+          DateTime.now().hour.toDouble(),
+          DateTime.now().minute.toDouble(),
+          DateTime.now().day,
+          DateTime.now().month,
+          DateTime.now().year,
+          110),
+      DiabetesData(
+          DateTime.now().hour.toDouble() + 1.0,
+          DateTime.now().minute.toDouble() + 35,
+          DateTime.now().day,
+          DateTime.now().month,
+          DateTime.now().year,
+          150),
+      DiabetesData(
+          DateTime.now().hour.toDouble() + 2.0,
+          DateTime.now().minute.toDouble() + 15,
+          DateTime.now().day,
+          DateTime.now().month,
+          DateTime.now().year,
+          120),
     ];
     return chartData;
   }
