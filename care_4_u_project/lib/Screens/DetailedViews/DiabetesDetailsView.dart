@@ -1,4 +1,5 @@
 import 'package:care_4_u_project/Datamodel/DiabetesModel.dart';
+// import 'package:care_4_u_project/forms/input_form.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -12,6 +13,28 @@ class DiabetesDetailsView extends StatefulWidget {
 class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
   late List<DiabetesData> _chartData;
   late TooltipBehavior _tooltipBehavior;
+
+  // void _addDiabetesPanel() {
+  //   showModalBottomSheet(
+  //     shape: RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.only(
+  //           topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
+  //     ),
+  //     isScrollControlled: true,
+  //     context: context,
+  //     builder: (context) {
+  //       return Padding(
+  //         padding:
+  //             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+  //         child: Container(
+  //           child: InputForm(
+  //             title: 'Diabetes',
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   void initState() {
@@ -56,9 +79,9 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                       diabetesData.hour,
                   dataLabelSettings: DataLabelSettings(isVisible: true),
                   enableTooltip: true,
-                  onRendererCreated: (ChartSeriesController controller) {
-                    _chartSeriesController = controller;
-                  },
+                  // onRendererCreated: (ChartSeriesController controller) {
+                  //   _chartSeriesController = controller;
+                  // },
                 ),
               ],
               primaryXAxis: NumericAxis(
@@ -84,6 +107,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               _chartSeriesController!.updateDataSource(
                 addedDataIndexes: <int>[_chartData.length - 1],
               );
+              // _addDiabetesPanel();
             },
             child: Text('Add Data'),
           ))
