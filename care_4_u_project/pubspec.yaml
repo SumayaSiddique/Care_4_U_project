@@ -53,6 +53,7 @@ flutter:
   assets:
     - images/
     - lottie/
+    - img/
 
   fonts:
     - family: SF Pro Rounded
