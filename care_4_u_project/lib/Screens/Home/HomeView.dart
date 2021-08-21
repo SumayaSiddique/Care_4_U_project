@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
@@ -72,42 +73,46 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               MedicineView(size: size, theme: theme),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  HomeMediumCard(
-                    size: size,
-                    theme: theme,
-                    title: Text(
-                      "2",
-                      style: theme.headline3!.apply(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    HomeMediumCard(
+                      size: size,
+                      theme: theme,
+                      title: Text(
+                        "2",
+                        style: theme.headline3!.apply(color: Colors.white),
+                      ),
+                      subtitle: "Water",
+                      icon: Icon(
+                        FontAwesomeIcons.glassWhiskey,
+                        color: Colors.white,
+                      ),
+                      caption: "Cups",
                     ),
-                    subtitle: "Water",
-                    icon: Icon(
-                      FontAwesomeIcons.glassWhiskey,
-                      color: Colors.white,
+                    HomeMediumCard(
+                      size: size,
+                      theme: theme,
+                      title: Text(
+                        "120/80",
+                        style: theme.headline4!.apply(color: Colors.white),
+                      ),
+                      subtitle: "Pressure",
+                      icon: Icon(
+                        FontAwesomeIcons.heartbeat,
+                        color: Colors.white,
+                      ),
+                      color: Colors.redAccent,
                     ),
-                    caption: "Cups",
-                  ),
-                  HomeMediumCard(
-                    size: size,
-                    theme: theme,
-                    title: Text(
-                      "120/80",
-                      style: theme.headline4!.apply(color: Colors.white),
-                    ),
-                    subtitle: "Pressure",
-                    icon: Icon(
-                      FontAwesomeIcons.heartbeat,
-                      color: Colors.white,
-                    ),
-                    color: Colors.redAccent,
-                  ),
-                ],
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 12.0,
                   horizontal: 6,
                 ),
                 child: Row(
@@ -165,6 +170,49 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 6,
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/workouts');
+                  },
+                  child: Container(
+                    height: 200,
+                    width: double.infinity,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(18),
+                          child: Image(
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            image: AssetImage(
+                              'images/workout.jpg',
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 20,
+                          left: 10,
+                          child: Text(
+                            "Workout",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: theme.headline4!.fontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),

@@ -26,6 +26,14 @@ class HomeMediumCard extends StatelessWidget {
       height: 190,
       width: size.width / 2.25,
       decoration: BoxDecoration(
+        // gradient: LinearGradient(
+        //   colors: [
+        //     Color(0xff0093E9),
+        //     Color(0xff80D0C7),
+        //   ],
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        // ),
         color: color ?? Colors.blue,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
@@ -38,7 +46,7 @@ class HomeMediumCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 20.0,
+          vertical: 12.0,
           horizontal: 18,
         ),
         child: Column(

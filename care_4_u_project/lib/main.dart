@@ -4,6 +4,8 @@ import 'package:care_4_u_project/Screens/Welcome/ForgotPassword.dart';
 import 'package:care_4_u_project/Screens/Welcome/LoginScreen.dart';
 import 'package:care_4_u_project/Screens/Welcome/SignUpScreen.dart';
 import 'package:care_4_u_project/Screens/Welcome/WelcomeScreen.dart';
+import 'package:care_4_u_project/Screens/WorkoutScreens/WorkoutLevel.dart';
+import 'package:care_4_u_project/Screens/WorkoutScreens/WorkoutScreen.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/Wrapper.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -60,6 +62,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Care 4 U',
         home: AuthenticationWrapper(),
+        // theme: ThemeData.dark(),
         theme: ThemeData(
           fontFamily: 'SF Pro Rounded',
         ),
@@ -72,6 +75,8 @@ class _MyAppState extends State<MyApp> {
           'diabetes-details': (context) => DiabetesDetailsView(),
           'forgot-password': (context) => ForgotPassword(),
           '/corona-status': (_) => CoronaStatusPage(),
+          '/workouts': (_) => WorkoutScreen(),
+          // '/workouts/Men': (_) => WorkOutLevel(category: category),
         },
       ),
     );

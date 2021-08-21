@@ -31,12 +31,12 @@ dependencies:
     sdk: flutter
   flutter_svg: ^0.22.0
   font_awesome_flutter: ^9.1.0
+  get: ^4.3.8
   http: ^0.13.3
   lottie: ^1.1.0
   provider: ^5.0.0
   staggered_grid_view_flutter: ^0.0.4
   syncfusion_flutter_charts: ^19.2.49
-  get: ^4.3.8
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +55,8 @@ flutter:
     - images/
     - lottie/
     - img/
+    - img/Section/
+    - img/Level/
 
   fonts:
     - family: SF Pro Rounded

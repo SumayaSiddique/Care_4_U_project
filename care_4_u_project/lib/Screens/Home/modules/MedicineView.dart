@@ -15,7 +15,10 @@ class MedicineView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 8,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -29,14 +32,23 @@ class MedicineView extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FaIcon(FontAwesomeIcons.pills),
-                      Text(
-                        'Ebasten 10mg',
-                        style: theme.headline5!.apply(color: Colors.black),
+                      Row(
+                        children: [
+                          FaIcon(FontAwesomeIcons.pills),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Ebasten',
+                            style: TextStyle(
+                              fontSize: theme.headline6!.fontSize,
+                            ),
+                            // style: theme.headline6!.apply(color: Colors.black),
+                          ),
+                        ],
                       ),
                       Text(
                         '9:00PM',
@@ -45,29 +57,20 @@ class MedicineView extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FaIcon(FontAwesomeIcons.pills),
-                      Text(
-                        'Reversair 10mg',
-                        style: theme.headline5!.apply(color: Colors.black),
-                      ),
-                      Text(
-                        '9:00PM',
-                        style: theme.headline6!.apply(color: Colors.black),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FaIcon(FontAwesomeIcons.pills),
-                      Text(
-                        'Esonix 20mg',
-                        style: theme.headline5!.apply(color: Colors.black),
+                      Row(
+                        children: [
+                          FaIcon(FontAwesomeIcons.pills),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Reversair',
+                            style: theme.headline6!.apply(color: Colors.black),
+                          ),
+                        ],
                       ),
                       Text(
                         '9:00PM',
