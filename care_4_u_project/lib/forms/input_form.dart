@@ -54,9 +54,6 @@ class _InputFormState extends State<InputForm> {
               });
             },
           ),
-          SizedBox(
-            height: size.height * 0.015,
-          ),
           ElevatedButton(
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
