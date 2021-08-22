@@ -119,9 +119,13 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                 bottom: size.height * 0.075,
               ),
               child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateColor.resolveWith(
-                      (states) => Colors.lightGreen),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.lightGreenAccent[700],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.0),
+                    ),
+                  ),
                 ),
                 onPressed: () {
                   Get.bottomSheet(
@@ -257,7 +261,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                   'Add Blood Pressure Value',
                   style: TextStyle(
                     fontFamily: "SF Pro Rounded",
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                   ),
                 ),
               ),

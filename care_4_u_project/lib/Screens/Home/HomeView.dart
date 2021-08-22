@@ -117,7 +117,7 @@ class HomeView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 6,
+                  horizontal: 4,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,16 +154,16 @@ class HomeView extends StatelessWidget {
                             child: HomeMediumCard(
                               size: size,
                               theme: theme,
-                              title: Text("110",
+                              title: Text("7.5",
                                   style: theme.headline3!
                                       .apply(color: Colors.white)),
                               subtitle: "Diabetes",
-                              caption: "mg/dL",
+                              // caption: "mg/dL",
                               icon: RotatedBox(
                                 quarterTurns: 3,
                                 child: Icon(
                                   FontAwesomeIcons.syringe,
-                                  // color: Colors.white,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),

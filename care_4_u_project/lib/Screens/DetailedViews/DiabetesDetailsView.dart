@@ -96,9 +96,13 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                 bottom: size.height * 0.075,
               ),
               child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateColor.resolveWith(
-                      (states) => Colors.lightGreen),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.lightGreenAccent[700],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.0),
+                    ),
+                  ),
                 ),
                 onPressed: () {
                   Get.bottomSheet(
