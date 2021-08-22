@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
         ),
         backgroundColor: Color.fromRGBO(255, 101, 132, 1.0),
         onPressed: () {
-          Navigator.pushNamed(context, 'sign-up');
+          Navigator.pushNamed(context, '/sign-up');
         },
       ),
       body: SafeArea(

@@ -258,7 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           onPressed: () async {
                             setState(() {
-                              Navigator.pushNamed(context, 'forgot-password');
+                              Navigator.pushNamed(context, '/forgot-password');
                             });
                           },
                           child: Text(

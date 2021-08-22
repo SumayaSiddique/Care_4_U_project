@@ -94,19 +94,23 @@ class HomeView extends StatelessWidget {
                       ),
                       caption: "Cups",
                     ),
-                    HomeMediumCard(
-                      size: size,
-                      theme: theme,
-                      title: Text(
-                        "120/80",
-                        style: theme.headline4!.apply(color: Colors.white),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(
+                          context, '/blood-pressure-details'),
+                      child: HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: Text(
+                          "120/80",
+                          style: theme.headline4!.apply(color: Colors.white),
+                        ),
+                        subtitle: "Pressure",
+                        icon: Icon(
+                          FontAwesomeIcons.heartbeat,
+                          color: Colors.white,
+                        ),
+                        color: Colors.redAccent,
                       ),
-                      subtitle: "Pressure",
-                      icon: Icon(
-                        FontAwesomeIcons.heartbeat,
-                        color: Colors.white,
-                      ),
-                      color: Colors.redAccent,
                     ),
                   ],
                 ),
@@ -145,7 +149,7 @@ class HomeView extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () => {
-                              Navigator.pushNamed(context, 'diabetes-details'),
+                              Navigator.pushNamed(context, '/diabetes-details'),
                             },
                             child: HomeMediumCard(
                               size: size,

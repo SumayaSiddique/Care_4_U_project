@@ -1,7 +1,8 @@
-import 'package:care_4_u_project/Datamodel/DiabetesModel.dart';
+import 'package:care_4_u_project/Datamodel/DiabetesModel/DiabetesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class DiabetesDetailsView extends StatefulWidget {
   const DiabetesDetailsView({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    ChartSeriesController? _chartSeriesController;
+    // ChartSeriesController? _chartSeriesController;
     final _formKey = GlobalKey<FormState>();
     double? inputValue;
     return GetMaterialApp(
@@ -45,28 +46,28 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
         backgroundColor: Color.fromRGBO(210, 246, 254, 1),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
+            Expanded(
               child: SfCartesianChart(
                 plotAreaBorderColor: Colors.transparent,
                 legend: Legend(
                   isVisible: true,
                   alignment: ChartAlignment.center,
-                  position: LegendPosition.bottom,
+                  position: LegendPosition.top,
                 ),
                 tooltipBehavior: _tooltipBehavior,
                 enableAxisAnimation: true,
                 series: <ChartSeries>[
-                  SplineSeries<DiabetesData, double>(
+                  SplineSeries<DiabetesData, DateTime>(
                     name: 'Diabetes chart',
+                    width: 5.0,
+                    color: Colors.red,
                     dataSource: _chartData,
                     yValueMapper: (DiabetesData diabetesData, _) =>
                         diabetesData.value,
                     xValueMapper: (DiabetesData diabetesData, _) =>
-                        diabetesData.hour,
+                        diabetesData.date,
                     dataLabelSettings: DataLabelSettings(isVisible: true),
                     enableTooltip: true,
                     // onRendererCreated: (ChartSeriesController controller) {
@@ -74,9 +75,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                     // },
                   ),
                 ],
-                primaryXAxis: NumericAxis(
+                primaryXAxis: DateTimeAxis(
                   edgeLabelPlacement: EdgeLabelPlacement.shift,
+                  dateFormat: DateFormat.Hm(),
+                  intervalType: DateTimeIntervalType.hours,
                   majorGridLines: const MajorGridLines(width: 0),
+                  desiredIntervals: 24,
                 ),
                 primaryYAxis: NumericAxis(
                   labelFormat: '{value}',
@@ -85,7 +89,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width / 5),
+              padding: EdgeInsets.only(
+                right: size.width / 5,
+                left: size.width / 5,
+                top: size.height * 0.075,
+                bottom: size.height * 0.075,
+              ),
               child: ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateColor.resolveWith(
@@ -208,27 +217,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
 
   List<DiabetesData> getChartData() {
     final List<DiabetesData> chartData = [
-      DiabetesData(
-          DateTime.now().hour.toDouble(),
-          DateTime.now().minute.toDouble(),
-          DateTime.now().day,
-          DateTime.now().month,
-          DateTime.now().year,
-          110),
-      DiabetesData(
-          DateTime.now().hour.toDouble() + 1.0,
-          DateTime.now().minute.toDouble() + 35,
-          DateTime.now().day,
-          DateTime.now().month,
-          DateTime.now().year,
-          150),
-      DiabetesData(
-          DateTime.now().hour.toDouble() + 2.0,
-          DateTime.now().minute.toDouble() + 15,
-          DateTime.now().day,
-          DateTime.now().month,
-          DateTime.now().year,
-          120),
+      DiabetesData(DateTime(2021, 1, 1, 7, 30), 7.5),
+      DiabetesData(DateTime(2021, 1, 1, 10, 30), 7.2),
+      DiabetesData(DateTime(2021, 1, 1, 13, 30), 6.2),
+      DiabetesData(DateTime(2021, 1, 1, 16, 30), 6.5),
+      DiabetesData(DateTime(2021, 1, 1, 19, 30), 5.5),
+      DiabetesData(DateTime(2021, 1, 1, 22, 30), 9.5),
     ];
     return chartData;
   }
