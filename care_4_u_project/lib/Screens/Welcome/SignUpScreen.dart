@@ -252,6 +252,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         bottom: size.height * 0.025,
                       ),
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                             horizontal: size.width * 0.05,
@@ -299,6 +300,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         bottom: size.height * 0.025,
                       ),
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                             horizontal: size.width * 0.05,
