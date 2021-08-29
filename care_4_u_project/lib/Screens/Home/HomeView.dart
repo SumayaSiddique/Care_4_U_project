@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
+import 'package:care_4_u_project/Screens/Water%20Intake/WaterIntake.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -80,46 +81,51 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               MedicineView(size: size, theme: theme),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    HomeMediumCard(
-                      size: size,
-                      theme: theme,
-                      title: Text(
-                        "2",
-                        style: theme.headline3!.apply(color: Colors.white),
-                      ),
-                      subtitle: "Water",
-                      icon: Icon(
-                        FontAwesomeIcons.glassWhiskey,
-                        color: Colors.white,
-                      ),
-                      caption: "Cups",
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                          context, '/blood-pressure-details'),
-                      child: HomeMediumCard(
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => WaterIntake());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      HomeMediumCard(
                         size: size,
                         theme: theme,
                         title: Text(
-                          "120/80",
-                          style: theme.headline4!.apply(color: Colors.white),
+                          "2",
+                          style: theme.headline3!.apply(color: Colors.white),
                         ),
-                        subtitle: "Pressure",
+                        subtitle: "Water",
                         icon: Icon(
-                          FontAwesomeIcons.heartbeat,
+                          FontAwesomeIcons.glassWhiskey,
                           color: Colors.white,
                         ),
-                        color: Colors.redAccent,
+                        caption: "Cups",
                       ),
-                    ),
-                  ],
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                            context, '/blood-pressure-details'),
+                        child: HomeMediumCard(
+                          size: size,
+                          theme: theme,
+                          title: Text(
+                            "120/80",
+                            style: theme.headline4!.apply(color: Colors.white),
+                          ),
+                          subtitle: "Pressure",
+                          icon: Icon(
+                            FontAwesomeIcons.heartbeat,
+                            color: Colors.white,
+                          ),
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(
