@@ -1,10 +1,12 @@
 import 'dart:ui';
+import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -33,43 +35,48 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    HomeMediumCard(
-                      size: size,
-                      theme: theme,
-                      title: Text(
-                        "7390",
-                        style: theme.headline3!.apply(color: Colors.white),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => ExerciseScreen());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: Text(
+                          "7390",
+                          style: theme.headline3!.apply(color: Colors.white),
+                        ),
+                        subtitle: "Steps",
+                        icon: RotatedBox(
+                          quarterTurns: 3,
+                          child: Icon(
+                            FontAwesomeIcons.shoePrints,
+                            color: Colors.white,
+                          ),
+                        ),
+                        caption: null,
                       ),
-                      subtitle: "Steps",
-                      icon: RotatedBox(
-                        quarterTurns: 3,
-                        child: Icon(
-                          FontAwesomeIcons.shoePrints,
+                      HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: Text(
+                          "2",
+                          style: theme.headline3!.apply(color: Colors.white),
+                        ),
+                        subtitle: "Distance",
+                        icon: Icon(
+                          FontAwesomeIcons.walking,
                           color: Colors.white,
                         ),
+                        caption: 'Km',
                       ),
-                      caption: null,
-                    ),
-                    HomeMediumCard(
-                      size: size,
-                      theme: theme,
-                      title: Text(
-                        "2",
-                        style: theme.headline3!.apply(color: Colors.white),
-                      ),
-                      subtitle: "Distance",
-                      icon: Icon(
-                        FontAwesomeIcons.walking,
-                        color: Colors.white,
-                      ),
-                      caption: 'Km',
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               MedicineView(size: size, theme: theme),
