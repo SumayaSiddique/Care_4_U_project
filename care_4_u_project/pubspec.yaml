@@ -59,6 +59,8 @@ flutter:
     - img/
     - img/Section/
     - img/Level/
+    - img/AllImageData/yoga/
+    - img/AllImageData/
 
   fonts:
     - family: SF Pro Rounded

@@ -43,7 +43,7 @@ List<Level> yogaLevels = [
     imgUrl: 'img/Level/beginnerYoga.jpg',
   ),
   Level(
-    name: 'Advanced',
+    name: 'Intermediate',
     imgUrl: 'img/Level/advancedYoga.jpg',
   )
 ];

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 import 'package:pedometer/pedometer.dart';
 
 String formatDate(DateTime d) {
@@ -72,7 +71,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pedometer example app'),
+        title: const Text('Pedometer'),
       ),
       body: Center(
         child: Column(

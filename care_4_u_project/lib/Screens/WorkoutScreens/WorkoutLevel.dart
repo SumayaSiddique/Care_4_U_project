@@ -1,7 +1,9 @@
 import 'package:care_4_u_project/Datamodel/WorkoutModels/Category.dart';
 import 'package:care_4_u_project/Datamodel/WorkoutModels/Level.dart';
-import 'package:care_4_u_project/Screens/WorkoutScreens/WorkoutList.dart';
+import 'package:care_4_u_project/Screens/WorkoutScreens/MensWorkoutList.dart';
+import 'package:care_4_u_project/Screens/WorkoutScreens/YogaList.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WorkOutLevel extends StatelessWidget {
   final Category category;
@@ -47,14 +49,23 @@ class LevelsBuilder extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => WorkoutList(
+            if (category.name == 'Yoga') {
+              Get.to(
+                () => YogaList(
                   level: chosenLevel[index],
                 ),
-              ),
-            );
+              );
+            } else if (category.name == 'Men') {
+              Get.to(
+                () => MensWorkoutList(
+                  level: chosenLevel[index],
+                ),
+              );
+            } else {
+              // Get.to(() => WomensWorkoutList(
+              //       level: chosenLevel[index],
+              //     ),);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(12.0),
