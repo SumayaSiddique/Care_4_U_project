@@ -13,12 +13,12 @@ class DiabetesDetailsView extends StatefulWidget {
 
 class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
   late List<DiabetesData> _chartData;
-  late TooltipBehavior _tooltipBehavior;
+  // late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState() {
     _chartData = getChartData();
-    _tooltipBehavior = TooltipBehavior(enable: true);
+    // _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
 
