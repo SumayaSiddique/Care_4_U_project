@@ -30,17 +30,18 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
     double? inputValue;
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'Blood Glucose',
-            style: TextStyle(),
-          ),
-          backgroundColor: Color.fromRGBO(155, 229, 224, 0.5),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )),
+        title: Text(
+          'Blood Glucose',
+          style: TextStyle(),
+        ),
+        backgroundColor: Color.fromRGBO(155, 229, 224, 0.5),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       backgroundColor: Color.fromRGBO(210, 246, 254, 1),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,7 +56,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                 position: LegendPosition.top,
               ),
               // tooltipBehavior: _tooltipBehavior,
-              enableAxisAnimation: true,
+              enableAxisAnimation: false,
               zoomPanBehavior: ZoomPanBehavior(
                 enablePanning: true,
               ),
@@ -70,7 +71,6 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                   xValueMapper: (DiabetesData diabetesData, _) =>
                       diabetesData.date,
                   dataLabelSettings: DataLabelSettings(isVisible: true),
-                  enableTooltip: true,
                   onPointTap: (ChartPointDetails details) {
                     int? index = details.pointIndex;
                     Get.defaultDialog(

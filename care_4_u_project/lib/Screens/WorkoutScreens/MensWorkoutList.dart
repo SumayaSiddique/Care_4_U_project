@@ -274,7 +274,7 @@ class WorkoutList extends StatelessWidget {
                             height: 8.0,
                           ),
                           Text(
-                            data[index].description!.substring(0, 50) + '....',
+                            data[index].description!.substring(0, 20) + '....',
                           ),
                         ],
                       ),
