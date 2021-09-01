@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:care_4_u_project/Screens/BMI-BMR/BMI.dart';
+import 'package:care_4_u_project/Screens/BMI-BMR/BMR.dart';
 import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
@@ -8,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -17,6 +21,7 @@ class HomeView extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      //backgroundColor: Colors.purpleAccent,
       appBar: AppBar(
         title: Text("Care 4U"),
         actions: [
@@ -36,16 +41,17 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => ExerciseScreen());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      HomeMediumCard(
+              Container(
+                height: 220,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => ExerciseScreen());
+                      },
+                      child: HomeMediumCard(
                         size: size,
                         theme: theme,
                         title: Text(
@@ -60,26 +66,110 @@ class HomeView extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        caption: null,
+                        bgImage: 'images/HomeBG/Pedometer.jpeg',
                       ),
-                      HomeMediumCard(
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => WaterIntake());
+                      },
+                      child: HomeMediumCard(
                         size: size,
                         theme: theme,
                         title: Text(
                           "2",
                           style: theme.headline3!.apply(color: Colors.white),
                         ),
-                        subtitle: "Distance",
+                        subtitle: "Water",
                         icon: Icon(
-                          FontAwesomeIcons.walking,
+                          FontAwesomeIcons.glassWhiskey,
                           color: Colors.white,
                         ),
-                        caption: 'Km',
+                        caption: 'Cups',
+                        bgImage: 'images/HomeBG/water.jpeg',
                       ),
-                    ],
-                  ),
+                    ),
+                    GestureDetector(
+                      onTap: () => Get.to(() => BMI()),
+                      child: HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: Text(
+                          "18",
+                          style: theme.headline3!.apply(color: Colors.white),
+                        ),
+                        subtitle: "BMI",
+                        icon: Icon(
+                          LineIcons.weight,
+                          color: Colors.white,
+                        ),
+                        bgImage: 'images/HomeBG/Pedometer.jpeg',
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => Get.to(() => BMR()),
+                      child: HomeMediumCard(
+                        size: size,
+                        theme: theme,
+                        title: Text(
+                          "46",
+                          style: theme.headline3!.apply(color: Colors.white),
+                        ),
+                        subtitle: "BMR",
+                        icon: Icon(
+                          LineIcons.poll,
+                          color: Colors.white,
+                        ),
+                        bgImage: 'images/HomeBG/Pedometer.jpeg',
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Get.to(() => ExerciseScreen());
+              //   },
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(vertical: 12.0),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //       children: [
+              //         HomeMediumCard(
+              //           size: size,
+              //           theme: theme,
+              //           title: Text(
+              //             "7390",
+              //             style: theme.headline3!.apply(color: Colors.white),
+              //           ),
+              //           subtitle: "Steps",
+              //           icon: RotatedBox(
+              //             quarterTurns: 3,
+              //             child: Icon(
+              //               FontAwesomeIcons.shoePrints,
+              //               color: Colors.white,
+              //             ),
+              //           ),
+              //           caption: null,
+              //         ),
+              //         HomeMediumCard(
+              //           size: size,
+              //           theme: theme,
+              //           title: Text(
+              //             "2",
+              //             style: theme.headline3!.apply(color: Colors.white),
+              //           ),
+              //           subtitle: "Distance",
+              //           icon: Icon(
+              //             FontAwesomeIcons.walking,
+              //             color: Colors.white,
+              //           ),
+              //           caption: 'Km',
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               MedicineView(size: size, theme: theme),
               GestureDetector(
                 onTap: () {
@@ -105,6 +195,7 @@ class HomeView extends StatelessWidget {
                           color: Colors.white,
                         ),
                         caption: "Cups",
+                        bgImage: 'images/HomeBG/Pedometer.jpeg',
                       ),
                       GestureDetector(
                         onTap: () => Navigator.pushNamed(
@@ -122,6 +213,7 @@ class HomeView extends StatelessWidget {
                             color: Colors.white,
                           ),
                           color: Colors.redAccent,
+                          bgImage: 'images/HomeBG/Pedometer.jpeg',
                         ),
                       ),
                     ],
@@ -153,6 +245,7 @@ class HomeView extends StatelessWidget {
                         ),
                         // caption: "Today's Cases",
                         color: Colors.redAccent,
+                        bgImage: 'images/HomeBG/Pedometer.jpeg',
                       ),
                     ),
                     Padding(
@@ -179,6 +272,7 @@ class HomeView extends StatelessWidget {
                                   color: Colors.white,
                                 ),
                               ),
+                              bgImage: 'images/HomeBG/Pedometer.jpeg',
                             ),
                           ),
                         ],
