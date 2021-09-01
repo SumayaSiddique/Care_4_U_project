@@ -1,4 +1,5 @@
 import 'package:care_4_u_project/Datamodel/DiabetesModel/DiabetesModel.dart';
+import 'package:care_4_u_project/Screens/Temp.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,13 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
     double? inputValue;
     return Scaffold(
       appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(() => TempScreen());
+                },
+                icon: Icon(Icons.check))
+          ],
           title: Text(
             'Blood Glucose',
             style: TextStyle(),
