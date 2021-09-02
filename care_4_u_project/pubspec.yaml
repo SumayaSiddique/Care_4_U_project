@@ -48,6 +48,8 @@ dev_dependencies:
   pdf: ^3.4.2
   pedometer: ^3.0.0
   permission_handler: ^8.1.4+2
+  open_file: ^3.1.0
+  printing: ^5.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

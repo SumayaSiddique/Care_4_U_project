@@ -1,5 +1,6 @@
 import 'package:care_4_u_project/Datamodel/DiabetesModel/DiabetesModel.dart';
-import 'package:care_4_u_project/Screens/Temp.dart';
+// import 'package:care_4_u_project/Screens/Temp.dart';
+import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
@@ -33,8 +34,10 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
       appBar: AppBar(
           actions: [
             IconButton(
-                onPressed: () {
-                  Get.to(() => TempScreen());
+                onPressed: () async {
+                  // Get.to(() => TempScreen());
+                  final pdfFile = await PdfApi.generateTable();
+                  PdfApi.openFile(pdfFile);
                 },
                 icon: Icon(Icons.check))
           ],

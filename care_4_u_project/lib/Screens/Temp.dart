@@ -16,7 +16,7 @@ class _TempScreenState extends State<TempScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sifu"),
+        title: Text("Create PDF"),
         actions: [
           IconButton(
             onPressed: () {
@@ -31,6 +31,10 @@ class _TempScreenState extends State<TempScreen> {
 }
 
 void getPermission() async {
+  var status = await Permission.camera.status;
+
+  print(status);
+
   var cameraPermission = await Permission.camera.isGranted;
   if (cameraPermission) {
     await Permission.camera.request();
