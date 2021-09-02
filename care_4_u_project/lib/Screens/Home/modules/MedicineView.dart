@@ -19,8 +19,8 @@ class MedicineView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 8,
+        horizontal: 4,
+        // vertical: 0,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,6 +45,7 @@ class MedicineView extends StatelessWidget {
                 title: "Medicine Reminder",
                 subtitle: 'Today',
                 icon: Icon(Icons.medication),
+                image: 'images/HomeBG/medicine.jpeg',
                 child: Column(
                   children: [
                     Row(

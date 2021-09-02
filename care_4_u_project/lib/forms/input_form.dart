@@ -38,16 +38,15 @@ class _InputFormState extends State<InputForm> {
             maxLength: 50,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.add),
-              hintText: 'Add your ${title} value here',
+              hintText: 'Add your $title value here',
               fillColor: Colors.white,
               filled: true,
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black54, width: 1.0),
               ),
             ),
-            validator: (value) => value!.isEmpty
-                ? 'Please enter a value' + ' for ${title}'
-                : null,
+            validator: (value) =>
+                value!.isEmpty ? 'Please enter a value' + ' for $title' : null,
             onChanged: (value) {
               setState(() {
                 inputValue = double.parse(value);
@@ -62,11 +61,12 @@ class _InputFormState extends State<InputForm> {
               }
             },
             child: Text(
-              'Add ${title}',
+              'Add $title',
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w100,
-                  color: Colors.black45),
+                fontSize: 18,
+                fontWeight: FontWeight.w100,
+                color: Colors.black45,
+              ),
             ),
           ),
         ],

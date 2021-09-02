@@ -13,6 +13,7 @@ class CoronaStatusCountryInfo {
 } 
 */
 
+  // ignore: non_constant_identifier_names
   int? Id;
   String? iso2;
   String? iso3;
@@ -21,6 +22,7 @@ class CoronaStatusCountryInfo {
   String? flag;
 
   CoronaStatusCountryInfo({
+    // ignore: non_constant_identifier_names
     this.Id,
     this.iso2,
     this.iso3,

@@ -9,6 +9,7 @@ class HomeLargeCard extends StatelessWidget {
     required this.subtitle,
     required this.child,
     required this.icon,
+    this.image,
   }) : super(key: key);
 
   final Size size;
@@ -17,6 +18,7 @@ class HomeLargeCard extends StatelessWidget {
   final String subtitle;
   final Widget child;
   final Widget icon;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,15 @@ class HomeLargeCard extends StatelessWidget {
       width: size.width * 0.25,
       decoration: BoxDecoration(
         color: Colors.white,
-        // gradient: LinearGradient(
+        // image: image != null
+        //     ? DecorationImage(
+        //       fit: BoxFit,
+        //         image: AssetImage(
+        //           image!,
+        //         ),
+        //       )
+        //     : null,
+        // // gradient: LinearGradient(
         //   begin: Alignment.topLeft,
         //   end: Alignment.bottomRight,
         //   colors: [

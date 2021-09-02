@@ -2,7 +2,6 @@ import 'package:care_4_u_project/Datamodel/WorkoutModels/Level.dart';
 import 'package:care_4_u_project/Datamodel/WorkoutModels/UniqueExercises/AllData.dart';
 import 'package:care_4_u_project/Datamodel/WorkoutModels/Yoga/YogaModel.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:get/get.dart';
 

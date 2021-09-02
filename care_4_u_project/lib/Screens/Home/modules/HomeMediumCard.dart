@@ -27,8 +27,8 @@ class HomeMediumCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 22.0),
       child: Container(
-        height: 140,
-        width: size.width / 2.25,
+        height: 180,
+        width: size.width / 2.15,
         decoration: BoxDecoration(
           // image: DecorationImage(
           //   fit: BoxFit.cover,
@@ -56,8 +56,8 @@ class HomeMediumCard extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 12.0,
-            horizontal: 18,
+            vertical: 16.0,
+            horizontal: 20,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

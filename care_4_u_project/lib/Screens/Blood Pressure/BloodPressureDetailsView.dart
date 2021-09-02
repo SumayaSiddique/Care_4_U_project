@@ -208,7 +208,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                             child: ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  print('${inputSysValue}/${inputDiaValue}');
+                                  print('$inputSysValue/$inputDiaValue');
                                 }
                               },
                               child: Text(
