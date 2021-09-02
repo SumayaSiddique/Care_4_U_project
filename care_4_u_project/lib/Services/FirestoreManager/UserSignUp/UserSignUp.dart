@@ -5,11 +5,13 @@ class UserSignUp {
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('users');
   addUserData(String name, double weight, double height) async {
-    await collectionReference.doc(FirebaseAuth.instance.currentUser!.uid).set({
-      'name': name,
-      'weight': weight,
-      'height': height,
-      'createdOn': Timestamp.now(),
-    });
+    await collectionReference.doc(FirebaseAuth.instance.currentUser!.uid).set(
+      {
+        'name': name,
+        'weight': weight,
+        'height': height,
+        'createdOn': Timestamp.now(),
+      },
+    );
   }
 }

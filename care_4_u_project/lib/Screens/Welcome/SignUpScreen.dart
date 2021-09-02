@@ -3,6 +3,7 @@ import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/UserSignUp/UserSignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
-  String email = "", password = "", name = "";
+  String email = "", password = "", name = "", gender = "";
   double height = 0, weight = 0;
   @override
   Widget build(BuildContext context) {
@@ -341,13 +342,69 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.075,
+                        left: size.width * 0.075,
+                        bottom: size.height * 0.015,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
+                          ),
+                          hintText: 'Enter your gender',
+                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                          filled: true,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: (FaIcon(FontAwesomeIcons.venusMars)),
+                          ),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                            borderSide: BorderSide(
+                              style: BorderStyle.none,
+                              width: 0.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please mention your gender';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          if (value == 'Male' ||
+                              value == 'male' ||
+                              value == 'Female' ||
+                              value == 'female') {
+                            gender = value;
+                          }
+                        },
+                      ),
+                    ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(219, 120, 140, 1.0),
                           fixedSize:
-                              Size(size.width * 0.75, size.height * 0.07),
+                              Size(size.width * 0.35, size.height * 0.035),
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                               style: BorderStyle.solid,
