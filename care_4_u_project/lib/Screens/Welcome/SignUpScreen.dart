@@ -427,11 +427,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               email.trim(),
                               password.trim(),
                             );
-                            await UserSignUp().addUserData(
-                              name,
-                              weight,
-                              height,
-                            );
+                            await UserSignUp()
+                                .addUserData(name, weight, height, gender);
                             Navigator.pop(context);
                           }
                           // Navigator.pushNamed(context, 'login');
