@@ -86,8 +86,15 @@ class UserEditableBottomSheet extends StatefulWidget {
 }
 
 class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
-  double height = 0.0;
-  double weight = 0.0;
+  late double height;
+  late double weight;
+  @override
+  void initState() {
+    super.initState();
+    height = widget.usermodel.height;
+    weight = widget.usermodel.weight;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -213,7 +220,10 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
                 // ],
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  print("Height : $height");
+                  print("Weight : $weight");
+                },
                 child: Text("Update Data"),
               ),
             ],
