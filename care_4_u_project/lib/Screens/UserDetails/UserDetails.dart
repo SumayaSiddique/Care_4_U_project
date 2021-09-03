@@ -10,9 +10,14 @@ import 'package:get/get.dart';
 class UserDetails extends StatelessWidget {
   final CollectionReference users =
       FirebaseFirestore.instance.collection('users');
-  double height = 0;
 
   late Usermodel usermodel;
+
+  final Stream<DocumentSnapshot<Map<String, dynamic>>> _userDocument =
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +44,9 @@ class UserDetails extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FutureBuilder<DocumentSnapshot>(
-              future: users.doc(FirebaseAuth.instance.currentUser!.uid).get(),
+            StreamBuilder<DocumentSnapshot>(
+              // stream: _userDocument,
+              stream: _userDocument,
               builder: (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if (snapshot.hasError) {
@@ -51,20 +57,20 @@ class UserDetails extends StatelessWidget {
                   return Text("Document does not exist");
                 }
 
-                if (snapshot.connectionState == ConnectionState.done) {
-                  Map<String, dynamic> data =
-                      snapshot.data!.data() as Map<String, dynamic>;
+                if (snapshot.connectionState == ConnectionState.active) {
                   Usermodel usermodel = Usermodel(
-                    fullName: data['name'],
-                    email: data['email'],
+                    fullName: snapshot.data!.get('name'),
+                    email: snapshot.data!.get('email'),
                     password: "",
-                    height: data['height'] / 1.0,
-                    weight: data['weight'] / 1.0,
-                    isMale: data['isMale'],
+                    height: snapshot.data!.get('height') / 1.0,
+                    weight: snapshot.data!.get('weight') / 1.0,
+                    isMale: snapshot.data!.get('isMale'),
                   );
                   this.usermodel = usermodel;
                   return BuildUserInfo(usermodel: usermodel);
                 }
+
+                // print(snapshot.data!.get('name'));
 
                 return Text("loading");
               },
@@ -87,8 +93,16 @@ class UserEditableBottomSheet extends StatefulWidget {
 }
 
 class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
-  double height = 0.0;
-  double weight = 0.0;
+  late double height;
+  late double weight;
+
+  @override
+  void initState() {
+    super.initState();
+    height = widget.usermodel.height;
+    weight = widget.usermodel.weight;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -108,7 +122,7 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
             topRight: Radius.circular(12),
           ),
         ),
-        height: Get.height / 2.5,
+        height: Get.height / 2.3,
         // color: Colors.greenAccent,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -213,9 +227,12 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
                 //   // FilteringTextInputFormatter.allow(".")
                 // ],
               ),
+              SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () async {
                   await UserDataUpdate.updateUserData(height, weight);
+
+                  Get.back();
                   Get.snackbar(
                     "Care 4 U",
                     "Data Updated",
@@ -226,6 +243,7 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
                 },
                 child: Text("Update Data"),
               ),
+              SizedBox(height: 30),
             ],
           ),
         ),
