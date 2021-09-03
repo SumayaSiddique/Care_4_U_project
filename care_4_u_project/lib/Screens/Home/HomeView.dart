@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:care_4_u_project/Screens/BMI-BMR/BMI.dart';
 import 'package:care_4_u_project/Screens/BMI-BMR/BMR.dart';
-import 'package:care_4_u_project/Screens/CoronaStatus/CoronaStatusPage.dart';
 import 'package:care_4_u_project/Screens/DetailedViews/BloodPressureDetailsView.dart';
+import 'package:care_4_u_project/Screens/DetailedViews/DiabetesDetailsView.dart';
 import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
@@ -45,11 +45,14 @@ class HomeView extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      "Welcome!",
-                      style: TextStyle(
-                        fontSize: theme.headline3!.fontSize,
-                        fontWeight: FontWeight.w500,
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        "Welcome!",
+                        style: TextStyle(
+                          fontSize: theme.headline3!.fontSize,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     Spacer(),
@@ -255,7 +258,7 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => Get.to(() => BloodPressureDetailsView()),
+                          onTap: () => Get.to(() => DiabetesDetailsView()),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4.0),
                             child: Container(

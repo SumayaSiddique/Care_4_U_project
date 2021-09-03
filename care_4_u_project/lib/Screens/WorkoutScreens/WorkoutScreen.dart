@@ -18,7 +18,8 @@ class WorkoutScreen extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
               child: Text(
                 "Choose your workout!",
                 style: TextStyle(
