@@ -87,7 +87,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                   lowValueMapper: (BloodPressureData bpData, _) =>
                       bpData.diaValue,
                   dataLabelSettings: DataLabelSettings(isVisible: true),
-                  enableTooltip: true,
+                  // enableTooltip: true,
                   // onRendererCreated: (ChartSeriesController controller) {
                   //   _chartSeriesController = controller;
                   // },

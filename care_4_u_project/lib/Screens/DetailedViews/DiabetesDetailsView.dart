@@ -15,12 +15,12 @@ class DiabetesDetailsView extends StatefulWidget {
 
 class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
   late List<DiabetesData> _chartData;
-  late TooltipBehavior _tooltipBehavior;
+  // late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState() {
     _chartData = getChartData();
-    _tooltipBehavior = TooltipBehavior(enable: true);
+    // _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
 
@@ -60,12 +60,13 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
           Expanded(
             child: SfCartesianChart(
               plotAreaBorderColor: Colors.transparent,
+              zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
               legend: Legend(
                 isVisible: true,
                 alignment: ChartAlignment.center,
                 position: LegendPosition.top,
               ),
-              tooltipBehavior: _tooltipBehavior,
+              // tooltipBehavior: _tooltipBehavior,
               enableAxisAnimation: true,
               series: <ChartSeries>[
                 SplineSeries<DiabetesData, DateTime>(
@@ -78,7 +79,27 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                   xValueMapper: (DiabetesData diabetesData, _) =>
                       diabetesData.date,
                   dataLabelSettings: DataLabelSettings(isVisible: true),
-                  enableTooltip: true,
+                  onPointTap: (ChartPointDetails details) {
+                    int? index = details.pointIndex;
+                    Get.defaultDialog(
+                      title: 'Diabetes Value',
+                      titleStyle: TextStyle(fontSize: 24),
+                      content: Column(
+                        children: [
+                          Text(
+                              'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Text(
+                            'Diabetes Value: ${details.dataPoints![index.toInt()].y}',
+                          ),
+                        ],
+                      ),
+                      barrierDismissible: true,
+                    );
+                  },
+                  // enableTooltip: true,
                   // onRendererCreated: (ChartSeriesController controller) {
                   //   _chartSeriesController = controller;
                   // },
@@ -89,7 +110,9 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                 dateFormat: DateFormat.Hm(),
                 intervalType: DateTimeIntervalType.hours,
                 majorGridLines: const MajorGridLines(width: 0),
-                desiredIntervals: 24,
+                desiredIntervals: 1,
+                visibleMinimum: _chartData[_chartData.length - 2].date,
+                visibleMaximum: _chartData[_chartData.length - 1].date,
               ),
               primaryYAxis: NumericAxis(
                 labelFormat: '{value}',
