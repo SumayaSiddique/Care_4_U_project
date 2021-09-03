@@ -1,6 +1,8 @@
 import 'dart:ui';
+import 'package:care_4_u_project/Datamodel/User/Usermodel.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/UserSignUp/UserSignUp.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   String email = "", password = "", name = "", gender = "";
   double height = 0, weight = 0;
+  bool isMale = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -398,13 +401,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.075,
+                        left: size.width * 0.075,
+                        bottom: size.height * 0.015,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Selected Gender : ${isMale ? "Male" : "Female"}",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              // color: isMale ? Colors.blue : Colors.pinkAccent,
+                            ),
+                          ),
+                          CupertinoSwitch(
+                            value: isMale,
+                            onChanged: (value) {
+                              setState(() {
+                                isMale = value;
+                              });
+                            },
+                          ),
+                          // Text("Female"),
+                        ],
+                      ),
+                    ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(219, 120, 140, 1.0),
                           fixedSize:
-                              Size(size.width * 0.35, size.height * 0.035),
+                              Size(size.width * 0.5, size.height * 0.045),
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
                               style: BorderStyle.solid,
@@ -427,8 +459,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               email.trim(),
                               password.trim(),
                             );
-                            await UserSignUp()
-                                .addUserData(name, weight, height, gender);
+                            final newUser = Usermodel(
+                                fullName: name,
+                                email: email,
+                                password: password,
+                                height: height,
+                                isMale: isMale,
+                                weight: weight);
+                            await UserSignUp().addUserData(newUser);
                             Navigator.pop(context);
                           }
                           // Navigator.pushNamed(context, 'login');
