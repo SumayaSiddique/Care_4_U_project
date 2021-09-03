@@ -5,6 +5,7 @@ import 'package:care_4_u_project/Screens/WorkoutScreens/WorkoutScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavigationWrapper extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       //   duration: Duration(milliseconds: 300),
       // ),
       navBarStyle:
-          NavBarStyle.style12, // Choose the nav bar style with this property.
+          NavBarStyle.style6, // Choose the nav bar style with this property.
     );
   }
 
@@ -66,19 +67,19 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
         title: ("Home"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.systemPurple,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.health_and_safety),
-        title: ("Corona Statistics"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        icon: Icon(FontAwesomeIcons.virus),
+        title: ("Covid-19 Statistics"),
+        activeColorPrimary: CupertinoColors.systemRed,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.work_outline),
+        icon: Icon(FontAwesomeIcons.dumbbell),
         title: ("Workouts"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.systemGreen,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
