@@ -1,4 +1,5 @@
 import 'package:care_4_u_project/Datamodel/User/Usermodel.dart';
+import 'package:care_4_u_project/Services/FirestoreManager/User/UserDataUpdate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,15 +87,8 @@ class UserEditableBottomSheet extends StatefulWidget {
 }
 
 class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
-  late double height;
-  late double weight;
-  @override
-  void initState() {
-    super.initState();
-    height = widget.usermodel.height;
-    weight = widget.usermodel.weight;
-  }
-
+  double height = 0.0;
+  double weight = 0.0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -220,9 +214,15 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
                 // ],
               ),
               ElevatedButton(
-                onPressed: () {
-                  print("Height : $height");
-                  print("Weight : $weight");
+                onPressed: () async {
+                  await UserDataUpdate.updateUserData(height, weight);
+                  Get.snackbar(
+                    "Care 4 U",
+                    "Data Updated",
+                    // icon: Icon(Icons.person, color: Colors.white),
+                    snackPosition: SnackPosition.BOTTOM,
+                    // backgroundColor: Colors.white,
+                  );
                 },
                 child: Text("Update Data"),
               ),

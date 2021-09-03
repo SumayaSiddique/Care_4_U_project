@@ -69,9 +69,9 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               // tooltipBehavior: _tooltipBehavior,
               enableAxisAnimation: true,
               series: <ChartSeries>[
-                SplineSeries<DiabetesData, DateTime>(
+                FastLineSeries<DiabetesData, DateTime>(
                   name: 'Diabetes chart',
-                  width: 5.0,
+                  // width: 5.0,
                   color: Colors.red,
                   dataSource: _chartData,
                   yValueMapper: (DiabetesData diabetesData, _) =>
@@ -79,6 +79,10 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                   xValueMapper: (DiabetesData diabetesData, _) =>
                       diabetesData.date,
                   dataLabelSettings: DataLabelSettings(isVisible: true),
+                  markerSettings: MarkerSettings(
+                    height: 20,
+                    width: 20,
+                  ),
                   onPointTap: (ChartPointDetails details) {
                     int? index = details.pointIndex;
                     Get.defaultDialog(
@@ -107,7 +111,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               ],
               primaryXAxis: DateTimeAxis(
                 edgeLabelPlacement: EdgeLabelPlacement.shift,
-                dateFormat: DateFormat.Hm(),
+                dateFormat: DateFormat.Md(),
                 intervalType: DateTimeIntervalType.hours,
                 majorGridLines: const MajorGridLines(width: 0),
                 desiredIntervals: 1,
@@ -252,12 +256,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
 
   List<DiabetesData> getChartData() {
     final List<DiabetesData> chartData = [
-      DiabetesData(DateTime(2021, 1, 1, 7, 30), 7.5),
-      DiabetesData(DateTime(2021, 1, 1, 10, 30), 7.2),
-      DiabetesData(DateTime(2021, 1, 1, 13, 30), 6.2),
-      DiabetesData(DateTime(2021, 1, 1, 16, 30), 6.5),
-      DiabetesData(DateTime(2021, 1, 1, 19, 30), 5.5),
-      DiabetesData(DateTime(2021, 1, 1, 22, 30), 9.5),
+      DiabetesData(DateTime(2021, 1, 2, 7, 30), 7.5),
+      DiabetesData(DateTime(2021, 1, 3, 10, 30), 7.2),
+      DiabetesData(DateTime(2021, 1, 4, 13, 30), 6.2),
+      DiabetesData(DateTime(2021, 1, 5, 16, 30), 6.5),
+      DiabetesData(DateTime(2021, 1, 6, 19, 30), 5.5),
+      DiabetesData(DateTime(2021, 1, 7, 22, 30), 9.5),
     ];
     return chartData;
   }
