@@ -9,6 +9,7 @@ class UserSignUp {
     await collectionReference.doc(FirebaseAuth.instance.currentUser!.uid).set(
       {
         'name': usermodel.fullName,
+        'email': usermodel.email,
         'weight': usermodel.weight,
         'height': usermodel.height,
         'isMale': usermodel.isMale,
