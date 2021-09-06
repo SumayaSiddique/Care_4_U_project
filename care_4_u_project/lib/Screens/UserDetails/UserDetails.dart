@@ -109,142 +109,144 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-            ),
-          ],
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12),
-            topRight: Radius.circular(12),
-          ),
-        ),
-        height: Get.height / 2.3,
-        // color: Colors.greenAccent,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(height: 30),
-              Text(
-                "Update User info",
-                style: TextStyle(
-                  fontSize: Get.textTheme.headline5!.fontSize,
-                ),
+      child: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
               ),
-              SizedBox(height: 30),
-              TextFormField(
-                initialValue: widget.usermodel.weight.toString(),
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Weight",
-                  hintText: 'Enter your weight in kg',
-                  fillColor: Color.fromRGBO(230, 230, 230, 1.0),
-                  filled: true,
-                  prefixIcon: (Icon(Icons.monitor_weight)),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                    borderSide: BorderSide(
-                      style: BorderStyle.none,
-                      width: 0.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                  ),
-                ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your weight';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  weight = double.parse(value);
-                },
-                // inputFormatters: [
-                //   FilteringTextInputFormatter.digitsOnly,
-                // ],
-              ),
-              SizedBox(height: 30),
-              TextFormField(
-                initialValue: widget.usermodel.height.toString(),
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Height",
-
-                  // contentPadding: EdgeInsets.symmetric(
-                  //   horizontal: size.width * 0.05,
-                  //   vertical: size.height * 0.015,
-                  // ),
-                  hintText: 'Enter your height in cm',
-                  fillColor: Color.fromRGBO(230, 230, 230, 1.0),
-                  filled: true,
-                  prefixIcon: (Icon(Icons.height_sharp)),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                    borderSide: BorderSide(
-                      style: BorderStyle.none,
-                      width: 0.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                  ),
-                ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your height';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  height = double.parse(value);
-                },
-                // inputFormatters: [
-                //   FilteringTextInputFormatter.digitsOnly,
-                //   // FilteringTextInputFormatter.allow(".")
-                // ],
-              ),
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () async {
-                  await UserDataUpdate.updateUserData(height, weight);
-
-                  Get.back();
-                  Get.snackbar(
-                    "Care 4 U",
-                    "Data Updated",
-                    // icon: Icon(Icons.person, color: Colors.white),
-                    snackPosition: SnackPosition.BOTTOM,
-                    // backgroundColor: Colors.white,
-                  );
-                },
-                child: Text("Update Data"),
-              ),
-              SizedBox(height: 30),
             ],
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          ),
+          height: Get.height / 2.1,
+          // color: Colors.greenAccent,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(height: 30),
+                Text(
+                  "Update User info",
+                  style: TextStyle(
+                    fontSize: Get.textTheme.headline5!.fontSize,
+                  ),
+                ),
+                SizedBox(height: 30),
+                TextFormField(
+                  initialValue: widget.usermodel.weight.toString(),
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: "Weight",
+                    hintText: 'Enter your weight in kg',
+                    fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                    filled: true,
+                    prefixIcon: (Icon(Icons.monitor_weight)),
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                      borderSide: BorderSide(
+                        style: BorderStyle.none,
+                        width: 0.0,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your weight';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    weight = double.parse(value);
+                  },
+                  // inputFormatters: [
+                  //   FilteringTextInputFormatter.digitsOnly,
+                  // ],
+                ),
+                SizedBox(height: 30),
+                TextFormField(
+                  initialValue: widget.usermodel.height.toString(),
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: "Height",
+
+                    // contentPadding: EdgeInsets.symmetric(
+                    //   horizontal: size.width * 0.05,
+                    //   vertical: size.height * 0.015,
+                    // ),
+                    hintText: 'Enter your height in cm',
+                    fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                    filled: true,
+                    prefixIcon: (Icon(Icons.height_sharp)),
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                      borderSide: BorderSide(
+                        style: BorderStyle.none,
+                        width: 0.0,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your height';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    height = double.parse(value);
+                  },
+                  // inputFormatters: [
+                  //   FilteringTextInputFormatter.digitsOnly,
+                  //   // FilteringTextInputFormatter.allow(".")
+                  // ],
+                ),
+                SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () async {
+                    await UserDataUpdate.updateUserData(height, weight);
+
+                    Get.back();
+                    Get.snackbar(
+                      "Care 4 U",
+                      "Data Updated",
+                      // icon: Icon(Icons.person, color: Colors.white),
+                      snackPosition: SnackPosition.BOTTOM,
+                      // backgroundColor: Colors.white,
+                    );
+                  },
+                  child: Text("Update Data"),
+                ),
+                SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ),
@@ -266,10 +268,10 @@ class BuildUserInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Full Name: " + usermodel.fullName),
-        Text("Email : " + usermodel.email),
-        Text("Height : " + usermodel.height.toString() + " cm"),
-        Text("Weight : " + usermodel.weight.toString() + " KG"),
-        Text(usermodel.isMale ? "Gender : Male" : "Gender : Female"),
+        Text("Email: " + usermodel.email),
+        Text("Height: " + usermodel.height.toString() + " cm"),
+        Text("Weight: " + usermodel.weight.toString() + " KG"),
+        Text(usermodel.isMale ? "Gender: Male" : "Gender: Female"),
       ],
     );
   }
