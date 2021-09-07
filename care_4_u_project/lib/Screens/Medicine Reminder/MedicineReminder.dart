@@ -1,5 +1,7 @@
 import 'package:care_4_u_project/Datamodel/MedicineDatamodel/MedicineDatamodel.dart';
+import 'package:care_4_u_project/Services/Notifications/NotificationAPI.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -63,7 +65,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
   }
 }
 
-class MedicineReminderCard extends StatelessWidget {
+class MedicineReminderCard extends StatefulWidget {
   const MedicineReminderCard({
     Key? key,
     required this.size,
@@ -77,6 +79,11 @@ class MedicineReminderCard extends StatelessWidget {
   final TextTheme textTheme;
   final String dateTime;
 
+  @override
+  _MedicineReminderCardState createState() => _MedicineReminderCardState();
+}
+
+class _MedicineReminderCardState extends State<MedicineReminderCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -101,15 +108,15 @@ class MedicineReminderCard extends StatelessWidget {
             children: [
               Lottie.asset(
                 'lottie/medicine.json',
-                width: size.width / 3,
+                width: widget.size.width / 3,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.medicineDatamodel.name,
+                    widget.widget.medicineDatamodel.name,
                     style: TextStyle(
-                      fontSize: textTheme.headline6!.fontSize,
+                      fontSize: widget.textTheme.headline6!.fontSize,
                     ),
                   ),
                   SizedBox(
@@ -124,7 +131,7 @@ class MedicineReminderCard extends StatelessWidget {
                       SizedBox(
                         width: 8,
                       ),
-                      Text("$dateTime"),
+                      Text("${widget.dateTime}"),
                     ],
                   ),
                   SizedBox(
@@ -159,11 +166,12 @@ class MedicineReminderCard extends StatelessWidget {
   }
 }
 
-class AddMedicineBottomSheet extends StatelessWidget {
-  const AddMedicineBottomSheet({
-    Key? key,
-  }) : super(key: key);
+class AddMedicineBottomSheet extends StatefulWidget {
+  @override
+  _AddMedicineBottomSheetState createState() => _AddMedicineBottomSheetState();
+}
 
+class _AddMedicineBottomSheetState extends State<AddMedicineBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -178,6 +186,24 @@ class AddMedicineBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
             ),
           ),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            final notificationManager = NotificationManager();
+            await notificationManager.displayNotification(
+              "Water Reminder",
+              "Feeling thirsty?",
+            );
+          },
+          child: Text("Instant Notification!"),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            // final notificationManager = NotificationManager();
+            // await notificationManager.scheduleNotification('Hmmmmm',
+            //     "Why should you wait 5 seconds if you can drink water now?");
+          },
+          child: Text("5 Second delay notification"),
         ),
       ],
     );
