@@ -14,37 +14,36 @@ class _WaterIntakeState extends State<WaterIntake> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Daily water Intake"),
-      ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    "Stay Hydrated",
-                    style: TextStyle(
-                      fontSize: Get.textTheme.headline5!.fontSize,
-                    ),
+            padding: EdgeInsets.symmetric(
+              horizontal: Get.width / 8.0,
+              vertical: Get.height / 20.0,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Stay Hydrated",
+                  style: TextStyle(
+                    fontSize: Get.textTheme.headline5!.fontSize,
                   ),
-                  SizedBox(
-                    height: 20.0,
+                ),
+                SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  "Track Your Water Intake",
+                  style: TextStyle(
+                    fontSize: Get.textTheme.headline6!.fontSize,
                   ),
-                  Text(
-                    "Track Your Water Intake",
-                    style: TextStyle(
-                      fontSize: Get.textTheme.headline6!.fontSize,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 12.0,
           ),
           Row(
             children: [
@@ -60,7 +59,7 @@ class _WaterIntakeState extends State<WaterIntake> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 12.0,
                   ),
                   Text(
                     "2500 ml",
@@ -82,7 +81,7 @@ class _WaterIntakeState extends State<WaterIntake> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 12.0,
                   ),
                   Text(
                     "50%",
@@ -95,18 +94,18 @@ class _WaterIntakeState extends State<WaterIntake> {
             ],
           ),
           SizedBox(
-            height: 30.0,
+            height: 12.0,
           ),
           CircularPercentIndicator(
-            radius: 100.0,
+            radius: 200.0,
             lineWidth: 10.0,
             percent: 0.8,
             animation: true,
             animationDuration: 1200,
             header: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
-                "Water Intake Progress",
+                "Add a glass of water",
                 style: TextStyle(
                   fontSize: Get.textTheme.headline6!.fontSize,
                 ),
