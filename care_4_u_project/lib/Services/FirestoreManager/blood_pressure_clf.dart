@@ -1,29 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:care_4_u_project/Datamodel/BloodPressureModel/BloodPressureModel.dart';
+// import 'package:care_4_u_project/Datamodel/BloodPressureModel/BloodPressureModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class BloodPressureService {
-  Future addBPData(DateTime dateAdded, int sysValue, int diaValue) async {
+  static Future getBpData(
+      // DateTime dateAdded,
+      // int sysValue,
+      // int diaValue,
+      ) async {
     final _collectionReference = FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('pressure')
+        .collection('pressures')
         .snapshots();
     StreamBuilder<QuerySnapshot>(
       stream: _collectionReference,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text('Something went wrong');
-        }
-
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
         }
 
-        snapshot.data!.docs.map((DocumentSnapshot documentSnapshot) {
-          print(documentSnapshot.data()['sysValue']);
-        });
+        if (snapshot.connectionState == ConnectionState.active) {
+          snapshot.data!.docs.map((DocumentSnapshot document) {
+            Map<String, dynamic> data =
+                document.data()! as Map<String, dynamic>;
+            print(data['sysValue']);
+            return Text(data['sysValue']);
+          });
+        }
+        return CircularProgressIndicator();
       },
     );
   }
