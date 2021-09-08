@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -14,12 +12,12 @@ class NotificationManager {
 
   void initiliazeSettings() async {
     final initializeAndroid = AndroidInitializationSettings('ic_launcher');
-    // final initializationSettingsIOS = IOSInitializationSettings(
-    //   onDidReceiveLocalNotification: _onDidReceiveLocalNotification,
-    // );
+    final initializationSettingsIOS = IOSInitializationSettings(
+        //   onDidReceiveLocalNotification: _onDidReceiveLocalNotification,
+        );
     final initilializeSetting = InitializationSettings(
       android: initializeAndroid,
-      // iOS: initializationSettingsIOS,
+      iOS: initializationSettingsIOS,
     );
     await _notificationsPlugin.initialize(initilializeSetting);
   }
@@ -68,16 +66,16 @@ class NotificationManager {
     );
   }
 
-  static Future _onDidReceiveLocalNotification(
-    int id,
-    String? title,
-    String? body,
-    String? payload,
-  ) async {
-    // display a dialog with the notification details, tap ok to go to another page
-    Get.defaultDialog(
-      title: title ?? "This is a title",
-      content: Text(body ?? "ad"),
-    );
-  }
+  //   onDidReceiveLocalNotification(
+  //   int id,
+  //   String? title,
+  //   String? body,
+  //   String? payload,
+  // ) async {
+  //   // display a dialog with the notification details, tap ok to go to another page
+  //   Get.defaultDialog(
+  //     title: title ?? "This is a title",
+  //     content: Text(body ?? "ad"),
+  //   );
+  // }
 }
