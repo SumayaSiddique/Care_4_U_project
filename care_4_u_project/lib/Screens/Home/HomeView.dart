@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:care_4_u_project/Screens/BMI-BMR/BMI.dart';
 import 'package:care_4_u_project/Screens/BMI-BMR/BMR.dart';
-import 'package:care_4_u_project/Screens/DetailedViews/BloodPressureDetailsView.dart';
+import 'package:care_4_u_project/Screens/Blood%20Pressure/BloodPressureDetailsView.dart';
 import 'package:care_4_u_project/Screens/DetailedViews/DiabetesDetailsView.dart';
 import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';

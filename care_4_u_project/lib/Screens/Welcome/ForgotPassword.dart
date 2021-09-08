@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -19,155 +19,125 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(99, 112, 176, 1.0),
+      // backgroundColor: Color.fromRGBO(99, 112, 176, 1.0),
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          child: Stack(
-            alignment: Alignment.topLeft,
-            children: [
-              Align(
-                child: SvgPicture.asset(
-                  'images/forgot_password.svg',
-                  fit: BoxFit.contain,
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Spacer(),
+                Text(
+                  "Reset Password",
+                  style: Get.textTheme.headline4,
                 ),
-              ),
-              ClipRRect(
-                // Clip it cleanly.
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                  child: Container(
-                    color: Colors.grey.withOpacity(0.05),
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: size.height * 0.175, bottom: size.height * 0.75),
-                      child: Text(
-                        "Forgot your password?",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.white,
-                          fontFamily: 'SF Pro Rounded',
-                          fontWeight: FontWeight.w500,
+                SizedBox(height: 8),
+                Opacity(
+                  opacity: 0.7,
+                  child: Text(
+                    "Enter the email associated with your account and we'll send an email with instructions to rest your password",
+                    style: Get.textTheme.headline6,
+                  ),
+                ),
+                // SizedBox(height: 24),
+                SizedBox(height: 60),
+                Container(
+                  height: 100,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: "Email Address",
+                      labelStyle: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 4,
+                      ),
+                      // fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 0.4,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 0.4,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 0.4,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.keyboard_backspace,
-                    size: size.height * 0.035,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: size.height * 0.5,
-                        right: size.width * 0.075,
-                        left: size.width * 0.075,
-                        bottom: size.height * 0.0625,
-                      ),
-                      child: TextFormField(
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20.0,
-                              vertical: 20.0,
-                            ),
-                            hintText: 'Email Address',
-                            fillColor: Color.fromRGBO(
-                              230,
-                              230,
-                              230,
-                              1.0,
-                            ),
-                            filled: true,
-                            prefixIcon: Icon(Icons.mail),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20.0),
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20.0),
-                              ),
-                              borderSide: BorderSide(
-                                  style: BorderStyle.none, width: 0.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20.0),
-                              ),
-                            ),
-                          ),
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            setState(() {
-                              email = value;
-                            });
-                          }),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(219, 120, 140, 1.0),
-                          fixedSize:
-                              Size(size.width * 0.75, size.height * 0.065),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                          textStyle: TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'SF Pro Rounded',
-                          ),
-                        ),
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            // await Provider.of<AuthService>(context,
-                            //         listen: false)
-                            //     .signIn(email.trim(), password.trim());
-                          }
-                          setState(() {
-                            Navigator.pop(context);
-                          });
-                          // print(email + password);
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          email = value;
                         },
-                        child: Text(
-                          'Reset Password',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'SF Pro Rounded',
-                          ),
+                      );
+                    },
+                  ),
+                ),
+                Container(
+                  // height: 60,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff7B39ED),
+                      fixedSize: Size(size.width * 0.75, size.height * 0.065),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12.0),
                         ),
                       ),
+                      textStyle: TextStyle(
+                        fontSize: 22,
+                        fontFamily: 'SF Pro Rounded',
+                      ),
                     ),
-                  ],
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        // await Provider.of<AuthService>(context,
+                        //         listen: false)
+                        //     .signIn(email.trim(), password.trim());
+                      }
+                      setState(() {
+                        Navigator.pop(context);
+                      });
+                      // print(email + password);
+                    },
+                    child: Text(
+                      'Reset Password',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'SF Pro Rounded',
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                Spacer(),
+              ],
+            ),
           ),
         ),
       ),

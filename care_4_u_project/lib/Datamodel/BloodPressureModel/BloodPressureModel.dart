@@ -1,5 +1,9 @@
 class BloodPressureData {
-  BloodPressureData(this.date, this.sysValue, this.diaValue);
+  BloodPressureData({
+    required this.date,
+    required this.sysValue,
+    required this.diaValue,
+  });
   final DateTime date;
   final int sysValue;
   final int diaValue;

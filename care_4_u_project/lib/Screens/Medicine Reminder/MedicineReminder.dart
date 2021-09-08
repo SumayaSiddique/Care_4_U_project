@@ -1,7 +1,7 @@
 import 'package:care_4_u_project/Datamodel/MedicineDatamodel/MedicineDatamodel.dart';
 import 'package:care_4_u_project/Services/Notifications/NotificationAPI.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -172,6 +172,12 @@ class AddMedicineBottomSheet extends StatefulWidget {
 }
 
 class _AddMedicineBottomSheetState extends State<AddMedicineBottomSheet> {
+  final _addMedicineKey = GlobalKey<FormState>();
+  String name = "";
+  bool beforeMeal = false;
+  DateTime dateTime = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay.now();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -187,24 +193,79 @@ class _AddMedicineBottomSheetState extends State<AddMedicineBottomSheet> {
             ),
           ),
         ),
-        ElevatedButton(
-          onPressed: () async {
-            final notificationManager = NotificationManager();
-            await notificationManager.displayNotification(
-              "Water Reminder",
-              "Feeling thirsty?",
-            );
-          },
-          child: Text("Instant Notification!"),
+        SizedBox(
+          height: 10,
         ),
-        ElevatedButton(
-          onPressed: () async {
-            // final notificationManager = NotificationManager();
-            // await notificationManager.scheduleNotification('Hmmmmm',
-            //     "Why should you wait 5 seconds if you can drink water now?");
-          },
-          child: Text("5 Second delay notification"),
+        Text(
+          "Add a Medicine",
+          style: Get.textTheme.headline5,
         ),
+        Form(
+          key: _addMedicineKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: TextField(
+                    onChanged: (value) => name = value,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                      ),
+                      border: InputBorder.none,
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                      hintText: "Medicine Name",
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Before meal?",
+                      style: Get.textTheme.headline6,
+                    ),
+                    CupertinoSwitch(
+                      value: beforeMeal,
+                      onChanged: (value) {},
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+              ],
+            ),
+          ),
+        )
+        // ElevatedButton(
+        //   onPressed: () async {
+        //     final notificationManager = NotificationManager();
+        //     await notificationManager.displayNotification(
+        //       "Water Reminder",
+        //       "Feeling thirsty?",
+        //     );
+        //   },
+        //   child: Text("Instant Notification!"),
+        // ),
+        // ElevatedButton(
+        //   onPressed: () async {
+        //     final notificationManager = NotificationManager();
+        //     await notificationManager.scheduleNotification(
+        //       'Hmmmmm',
+        //       "Why should you wait 5 seconds if you can drink water now?",
+        //       DateTime.now().add(
+        //         Duration(seconds: 5),
+        //       ),
+        //     );
+        //   },
+        //   child: Text("5 Second delay notification"),
+        // ),
       ],
     );
   }
