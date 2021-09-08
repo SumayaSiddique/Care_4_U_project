@@ -101,6 +101,8 @@ class _WaterIntakeState extends State<WaterIntake> {
             radius: 100.0,
             lineWidth: 10.0,
             percent: 0.8,
+            animation: true,
+            animationDuration: 1200,
             header: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(

@@ -99,13 +99,9 @@ class WaterIntakeChartState extends State<WaterIntakeChart> {
               Expanded(
                 child: BarChart(
                   BarChartData(
-                    maxY: 20,
-                    barTouchData: BarTouchData(
-                      touchTooltipData: BarTouchTooltipData(
-                        tooltipBgColor: Colors.grey,
-                        getTooltipItem: (_a, _b, _c, _d) => null,
-                      ),
-                    ),
+                    maxY: 2.0,
+                    minY: 0.0,
+                    groupsSpace: 12,
                     titlesData: FlTitlesData(
                       show: true,
                       rightTitles: SideTitles(showTitles: false),
@@ -144,20 +140,20 @@ class WaterIntakeChartState extends State<WaterIntakeChart> {
                             color: Color(0xff7589a2),
                             fontWeight: FontWeight.bold,
                             fontSize: 14),
-                        margin: 8,
-                        reservedSize: 28,
-                        interval: 5,
+                        margin: 5,
+                        reservedSize: 35,
+                        interval: 0.5,
                         getTitles: (value) {
                           if (value == 0) {
-                            return '0.0L';
-                          } else if (value == 5) {
-                            return '0.5L';
-                          } else if (value == 10) {
-                            return '1.0L';
-                          } else if (value == 15) {
-                            return '1.5L';
+                            return '0.0 L';
+                          } else if (value == 0.5) {
+                            return '0.5 L';
+                          } else if (value == 1.0) {
+                            return '1.0 L';
+                          } else if (value == 1.5) {
+                            return '1.5 L';
                           } else {
-                            return '2.0L';
+                            return '2.0 L';
                           }
                         },
                       ),
