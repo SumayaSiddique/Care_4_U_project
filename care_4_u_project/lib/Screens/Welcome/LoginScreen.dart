@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(99, 112, 176, 1.0),
+      backgroundColor: Color(0xffdbefe1),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
@@ -33,8 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   'images/login.svg',
                   fit: BoxFit.contain,
                 ),
-                left: size.width * 0.01,
-                top: size.height * 0.125,
+                //left: size.width * 0.01,
+                // top: size.height * 0.125,
               ),
               ClipRRect(
                 // Clip it cleanly.
@@ -54,9 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontSize: 40,
-                              color: Colors.white,
+                              color: Color(0xff1d617A),
                               fontFamily: 'SF Pro Rounded',
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
                           Padding(
@@ -68,9 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 32,
-                                color: Colors.white,
+                                color: Color(0xff1d617A),
                                 fontFamily: 'SF Pro Rounded',
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),

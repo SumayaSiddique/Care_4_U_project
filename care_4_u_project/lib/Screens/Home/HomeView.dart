@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      //backgroundColor: Colors.purpleAccent,
+      backgroundColor: Color(0xffdbefe1),
       // appBar: AppBar(
       //   title: Text("Care 4U"),
       //   actions: [
@@ -52,6 +52,7 @@ class HomeView extends StatelessWidget {
                         style: TextStyle(
                           fontSize: theme.headline3!.fontSize,
                           fontWeight: FontWeight.w500,
+                          color: Color(0xff1d617A),
                         ),
                       ),
                     ),
@@ -64,7 +65,7 @@ class HomeView extends StatelessWidget {
                         height: 70,
                         width: 70,
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: Color(0xff1d617A),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -80,13 +81,13 @@ class HomeView extends StatelessWidget {
                   height: 6,
                 ),
                 Opacity(
-                  opacity: 0.6,
+                  opacity: 0.7,
                   child: Text(
                     "Let's get healthy together",
                     style: TextStyle(
-                      fontSize: theme.headline6!.fontSize,
-                      fontWeight: FontWeight.w200,
-                    ),
+                        fontSize: theme.headline6!.fontSize,
+                        fontWeight: FontWeight.w200,
+                        color: Color(0xff1d617A)),
                   ),
                 ),
                 Container(
@@ -104,8 +105,8 @@ class HomeView extends StatelessWidget {
                             theme: theme,
                             title: Text(
                               "7390",
-                              style:
-                                  theme.headline3!.apply(color: Colors.white),
+                              style: theme.headline3!
+                                  .apply(color: Color(0xffdbefe1)),
                             ),
                             subtitle: "Steps",
                             icon: RotatedBox(
@@ -116,6 +117,8 @@ class HomeView extends StatelessWidget {
                               ),
                             ),
                             bgImage: 'images/HomeBG/Pedometer.jpeg',
+                            color: Color(0xff1d617A),
+                            //color: Colors.white,
                           ),
                         ),
                         GestureDetector(
@@ -127,8 +130,8 @@ class HomeView extends StatelessWidget {
                             theme: theme,
                             title: Text(
                               "2",
-                              style:
-                                  theme.headline3!.apply(color: Colors.white),
+                              style: theme.headline3!
+                                  .apply(color: Color(0xffdbefe1)),
                             ),
                             subtitle: "Water",
                             icon: Icon(
@@ -137,6 +140,7 @@ class HomeView extends StatelessWidget {
                             ),
                             caption: 'Cups',
                             bgImage: 'images/HomeBG/water.jpeg',
+                            color: Color(0xff1d617A),
                           ),
                         ),
                         GestureDetector(
@@ -146,8 +150,8 @@ class HomeView extends StatelessWidget {
                             theme: theme,
                             title: Text(
                               "18",
-                              style:
-                                  theme.headline3!.apply(color: Colors.white),
+                              style: theme.headline3!
+                                  .apply(color: Color(0xffdbefe1)),
                             ),
                             subtitle: "BMI",
                             icon: Icon(
@@ -155,6 +159,7 @@ class HomeView extends StatelessWidget {
                               color: Colors.white,
                             ),
                             bgImage: 'images/HomeBG/Pedometer.jpeg',
+                            color: Color(0xff1d617A),
                           ),
                         ),
                         GestureDetector(
@@ -164,8 +169,8 @@ class HomeView extends StatelessWidget {
                             theme: theme,
                             title: Text(
                               "46",
-                              style:
-                                  theme.headline3!.apply(color: Colors.white),
+                              style: theme.headline3!
+                                  .apply(color: Color(0xffdbefe1)),
                             ),
                             subtitle: "BMR",
                             icon: Icon(
@@ -173,6 +178,7 @@ class HomeView extends StatelessWidget {
                               color: Colors.white,
                             ),
                             bgImage: 'images/HomeBG/Pedometer.jpeg',
+                            color: Color(0xff1d617A),
                           ),
                         ),
                       ],
@@ -194,8 +200,15 @@ class HomeView extends StatelessWidget {
                           child: Container(
                             height: 80,
                             decoration: BoxDecoration(
-                              color: Colors.grey[300],
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(18),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  blurRadius: 20,
+                                  offset: Offset(8, 8),
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding:
@@ -206,7 +219,7 @@ class HomeView extends StatelessWidget {
                                     height: 45,
                                     width: 45,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Color(0xffdbefe1),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Icon(
@@ -222,7 +235,9 @@ class HomeView extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Pressure",
-                                        style: theme.headline5,
+                                        style: TextStyle(
+                                            fontSize: theme.headline5!.fontSize,
+                                            color: Color(0xff1d617A)),
                                       ),
                                       Opacity(
                                         opacity: 0.7,
@@ -238,7 +253,7 @@ class HomeView extends StatelessWidget {
                                     height: 45,
                                     width: 45,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Color(0xffdbefe1),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Icon(
@@ -259,8 +274,15 @@ class HomeView extends StatelessWidget {
                           child: Container(
                             height: 80,
                             decoration: BoxDecoration(
-                              color: Colors.grey[300],
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(18),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  blurRadius: 20,
+                                  offset: Offset(8, 8),
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding:
@@ -271,12 +293,12 @@ class HomeView extends StatelessWidget {
                                     height: 45,
                                     width: 45,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Color(0xffdbefe1),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Icon(
                                       FontAwesomeIcons.syringe,
-                                      color: Colors.red[400],
+                                      color: Colors.green[400],
                                     ),
                                   ),
                                   SizedBox(width: 20),
@@ -287,7 +309,9 @@ class HomeView extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Diabetes",
-                                        style: theme.headline5,
+                                        style: TextStyle(
+                                            fontSize: theme.headline5!.fontSize,
+                                            color: Color(0xff1d617A)),
                                       ),
                                       Opacity(
                                         opacity: 0.7,
@@ -303,7 +327,7 @@ class HomeView extends StatelessWidget {
                                     height: 45,
                                     width: 45,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Color(0xffdbefe1),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Icon(

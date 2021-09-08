@@ -24,20 +24,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(171, 176, 255, 1.0),
+      backgroundColor: Color(0xffdbefe1),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
             alignment: Alignment.topLeft,
             children: [
-              Positioned(
-                child: SvgPicture.asset(
-                  'images/sign-in.svg',
-                  fit: BoxFit.contain,
-                ),
-                left: size.width * 0.01,
-                top: size.height * 0.0005,
-              ),
+              // Positioned(
+              //   child: SvgPicture.asset(
+              //     'images/sign-in.svg',
+              //     fit: BoxFit.contain,
+              //   ),
+              //   left: size.width * 0.01,
+              //   top: size.height * 0.0005,
+              // ),
               ClipRRect(
                 // Clip it cleanly.
                 child: BackdropFilter(
@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: TextStyle(
                                 letterSpacing: 2.5,
                                 fontSize: 42,
-                                color: Colors.white,
+                                color: Color(0xff1d617A),
                                 fontFamily: 'SF Pro Rounded',
                                 fontWeight: FontWeight.w600,
                               ),
@@ -77,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: TextStyle(
                                 letterSpacing: 2.5,
                                 fontSize: 42,
-                                color: Colors.white,
+                                color: Color(0xff1d617A),
                                 fontFamily: 'SF Pro Rounded',
                                 fontWeight: FontWeight.w600,
                               ),
@@ -89,20 +89,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
-              Positioned(
-                top: size.height * 0.01,
-                left: size.width * 0.025,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.keyboard_backspace,
-                    size: size.height * 0.035,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              // Positioned(
+              //   top: size.height * 0.01,
+              //   left: size.width * 0.025,
+              //   child: IconButton(
+              //     onPressed: () {
+              //       Navigator.pop(context);
+              //     },
+              //     icon: Icon(
+              //       Icons.keyboard_backspace,
+              //       size: size.height * 0.035,
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              // ),
               Form(
                 key: _formKey,
                 child: Column(
@@ -124,22 +124,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'Enter your email',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                           filled: true,
-                          prefixIcon: Icon(Icons.mail),
+                          prefixIcon: Icon(
+                            Icons.mail,
+                            color: Color(0xff1d617A),
+                          ),
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                             borderSide:
                                 BorderSide(style: BorderStyle.none, width: 0.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                         ),
@@ -170,15 +173,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'Enter your password',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                           filled: true,
-                          prefixIcon: Icon(Icons.vpn_key),
+                          prefixIcon: Icon(
+                            Icons.vpn_key,
+                            color: Color(0xff1d617A),
+                          ),
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                             borderSide: BorderSide(
                               style: BorderStyle.none,
@@ -187,7 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                         ),
@@ -217,15 +223,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'Enter your name',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                           filled: true,
-                          prefixIcon: Icon(Icons.person),
+                          prefixIcon:
+                              Icon(Icons.person, color: Color(0xff1d617A)),
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                             borderSide: BorderSide(
                               style: BorderStyle.none,
@@ -234,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                         ),
@@ -262,18 +269,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             horizontal: size.width * 0.05,
                             vertical: size.height * 0.015,
                           ),
-                          hintText: 'Enter your weight in kg',
+                          hintText: 'Enter your Age',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                           filled: true,
-                          prefixIcon: (Icon(Icons.monitor_weight)),
+                          prefixIcon: Icon(FontAwesomeIcons.signal,
+                              color: Color(0xff1d617A)),
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                             borderSide: BorderSide(
                               style: BorderStyle.none,
@@ -282,7 +290,58 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your Age';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          weight = double.parse(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width * 0.075,
+                        left: size.width * 0.075,
+                        bottom: size.height * 0.025,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.015,
+                          ),
+                          hintText: 'Enter your weight in kg',
+                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                          filled: true,
+                          prefixIcon: (Icon(
+                            Icons.monitor_weight,
+                            color: Color(0xff1d617A),
+                          )),
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                            borderSide: BorderSide(
+                              style: BorderStyle.none,
+                              width: 0.0,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
                             ),
                           ),
                         ),
@@ -313,15 +372,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'Enter your height in cm',
                           fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                           filled: true,
-                          prefixIcon: (Icon(Icons.height_sharp)),
+                          prefixIcon: (Icon(
+                            Icons.height_sharp,
+                            color: Color(0xff1d617A),
+                          )),
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                             borderSide: BorderSide(
                               style: BorderStyle.none,
@@ -330,7 +392,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                         ),
@@ -345,62 +407,63 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: size.width * 0.075,
-                        left: size.width * 0.075,
-                        bottom: size.height * 0.015,
-                      ),
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.05,
-                            vertical: size.height * 0.015,
-                          ),
-                          hintText: 'Enter your gender',
-                          fillColor: Color.fromRGBO(230, 230, 230, 1.0),
-                          filled: true,
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: (FaIcon(FontAwesomeIcons.venusMars)),
-                          ),
-                          disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                            borderSide: BorderSide(
-                              style: BorderStyle.none,
-                              width: 0.0,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                          ),
-                        ),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please mention your gender';
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          if (value == 'Male' ||
-                              value == 'male' ||
-                              value == 'Female' ||
-                              value == 'female') {
-                            gender = value;
-                          }
-                        },
-                      ),
-                    ),
+
+                    // Padding(
+                    //   padding: EdgeInsets.only(
+                    //     right: size.width * 0.075,
+                    //     left: size.width * 0.075,
+                    //     bottom: size.height * 0.015,
+                    //   ),
+                    //   child: TextFormField(
+                    //     keyboardType: TextInputType.text,
+                    //     decoration: InputDecoration(
+                    //       contentPadding: EdgeInsets.symmetric(
+                    //         horizontal: size.width * 0.05,
+                    //         vertical: size.height * 0.015,
+                    //       ),
+                    //       hintText: 'Enter your gender',
+                    //       fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                    //       filled: true,
+                    //       prefixIcon: Padding(
+                    //         padding: const EdgeInsets.all(12.0),
+                    //         child: (FaIcon(FontAwesomeIcons.venusMars)),
+                    //       ),
+                    //       disabledBorder: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.all(
+                    //           Radius.circular(20.0),
+                    //         ),
+                    //       ),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.all(
+                    //           Radius.circular(20.0),
+                    //         ),
+                    //         borderSide: BorderSide(
+                    //           style: BorderStyle.none,
+                    //           width: 0.0,
+                    //         ),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderRadius: BorderRadius.all(
+                    //           Radius.circular(20.0),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     validator: (String? value) {
+                    //       if (value == null || value.isEmpty) {
+                    //         return 'Please mention your gender';
+                    //       }
+                    //       return null;
+                    //     },
+                    //     onChanged: (value) {
+                    //       if (value == 'Male' ||
+                    //           value == 'male' ||
+                    //           value == 'Female' ||
+                    //           value == 'female') {
+                    //         gender = value;
+                    //       }
+                    //     },
+                    //   ),
+                    // ),
                     Padding(
                       padding: EdgeInsets.only(
                         right: size.width * 0.075,
@@ -415,7 +478,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
-                              // color: isMale ? Colors.blue : Colors.pinkAccent,
+                              // color: Color(0xff1d617A),
+                              color: isMale
+                                  ? Color(0xff168aad)
+                                  : Color(0xff1d617A),
                             ),
                           ),
                           CupertinoSwitch(
@@ -434,7 +500,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(219, 120, 140, 1.0),
+                          primary: Color(0xff1d617A),
                           fixedSize:
                               Size(size.width * 0.5, size.height * 0.045),
                           shape: RoundedRectangleBorder(
@@ -443,7 +509,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               color: Color(0xFFFFFF),
                             ),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
+                              Radius.circular(12.0),
                             ),
                           ),
                           textStyle: TextStyle(

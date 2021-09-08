@@ -44,7 +44,7 @@ class HomeLargeCard extends StatelessWidget {
         //     // Color(0xffFF99AC),
         //   ],
         // ),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(18),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.3),
