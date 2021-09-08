@@ -27,7 +27,6 @@ dependencies:
   firebase_analytics: ^8.2.0
   firebase_auth: ^3.0.1
   firebase_core: ^1.4.0
-  fl_chart: ^0.36.3
   flutter:
     sdk: flutter
   flutter_local_notifications: ^8.1.1+2
@@ -40,6 +39,8 @@ dependencies:
   provider: ^5.0.0
   staggered_grid_view_flutter: ^0.0.4
   syncfusion_flutter_charts: ^19.2.49
+  percent_indicator: ^3.0.1
+  fl_chart: ^0.40.0
 
 dev_dependencies:
   flutter_test:
