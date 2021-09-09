@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 class MedicineDatamodel {
   final String name;
-  final DateTime time;
+  final TimeOfDay time;
   final bool beforeMeal;
   final bool notify;
 

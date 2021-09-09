@@ -32,7 +32,7 @@ class MedicineView extends StatelessWidget {
                   () => MedicineReminder(
                     medicineDatamodel: MedicineDatamodel(
                       name: 'Lexapro 150mg',
-                      time: DateTime.now(),
+                      time: TimeOfDay.now(),
                       beforeMeal: true,
                       notify: true,
                     ),

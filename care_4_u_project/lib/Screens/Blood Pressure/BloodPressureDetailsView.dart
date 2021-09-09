@@ -27,6 +27,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     Future addBPData(DateTime date, int sysValue, int diaValue) async {
       return FirebaseFirestore.instance
           .collection('users')
@@ -40,6 +41,8 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
     }
 
     final size = MediaQuery.of(context).size;
+=======
+>>>>>>> f4b3c8d09c67204b2aef4a41b15b8a8a04d139fd
     // ChartSeriesController? _chartSeriesController;
     final _formKey = GlobalKey<FormState>();
     int? inputSysValue;
