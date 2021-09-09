@@ -27,6 +27,18 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    Future addBPData(DateTime date, int sysValue, int diaValue) async {
+      return FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('pressures')
+          .add({
+        'date': date,
+        'sysValue': sysValue,
+        'diaValue': diaValue,
+      });
+    }
+
     final size = MediaQuery.of(context).size;
     // ChartSeriesController? _chartSeriesController;
     final _formKey = GlobalKey<FormState>();
@@ -55,7 +67,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
             return Text("Something went wrong");
           }
           if (!snapshot.hasData) {
-            return Text("No Record found!");
+            return CircularProgressIndicator();
           }
           if (snapshot.connectionState == ConnectionState.active) {
             bloodPressureData = snapshot.data!.docs.map(
@@ -91,8 +103,8 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
       series: <RangeColumnSeries>[
         RangeColumnSeries<BloodPressureData, DateTime>(
           color: Colors.red,
-          spacing: 0.5,
-          width: 0.9,
+          spacing: 0.4,
+          width: 0.8,
           name: 'Blood Pressure chart',
           dataSource: bloodPressureData,
           onPointTap: (ChartPointDetails details) {
