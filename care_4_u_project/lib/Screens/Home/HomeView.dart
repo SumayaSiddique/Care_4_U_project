@@ -178,21 +178,55 @@ class HomeView extends StatelessWidget {
                             color: Color(0xff1d617A),
                           ),
                         ),
-                        HomeMediumCard(
-                          size: size,
-                          theme: theme,
-                          title: Text(
-                            '46.0',
-                            style: theme.headline3!
-                                .apply(color: Color(0xffdbefe1)),
-                          ),
-                          subtitle: "BMR",
-                          icon: Icon(
-                            LineIcons.poll,
-                            color: Colors.white,
-                          ),
-                          bgImage: 'images/HomeBG/Pedometer.jpeg',
-                          color: Color(0xff1d617A),
+                        StreamBuilder<DocumentSnapshot>(
+                          // stream: _userDocument,
+                          stream: _userDocument,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<DocumentSnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return Text("Something went wrong");
+                            }
+
+                            if (snapshot.hasData && !snapshot.data!.exists) {
+                              return Text("Document does not exist");
+                            }
+
+                            if (snapshot.connectionState ==
+                                ConnectionState.active) {
+                              Usermodel usermodel = Usermodel(
+                                fullName: snapshot.data!.get('name'),
+                                age: snapshot.data!.get('age'),
+                                email: snapshot.data!.get('email'),
+                                password: "",
+                                height: snapshot.data!.get('height') / 1.0,
+                                weight: snapshot.data!.get('weight') / 1.0,
+                                isMale: snapshot.data!.get('isMale'),
+                              );
+                              final s = usermodel.isMale ? 5 : -161;
+                              final bmrValue = ((10 * usermodel.weight) +
+                                  (6.25 * usermodel.height) -
+                                  (5 * usermodel.age) +
+                                  s);
+                              this.usermodel = usermodel;
+                              return HomeMediumCard(
+                                size: size,
+                                theme: theme,
+                                title: Text(
+                                  bmrValue.toPrecision(2).toString(),
+                                  style: theme.headline4!
+                                      .apply(color: Color(0xffdbefe1)),
+                                ),
+                                subtitle: "BMR",
+                                icon: Icon(
+                                  LineIcons.poll,
+                                  color: Colors.white,
+                                ),
+                                bgImage: 'images/HomeBG/Pedometer.jpeg',
+                                color: Color(0xff1d617A),
+                              );
+                            }
+                            return CircularProgressIndicator();
+                          },
                         ),
                       ],
                     ),
