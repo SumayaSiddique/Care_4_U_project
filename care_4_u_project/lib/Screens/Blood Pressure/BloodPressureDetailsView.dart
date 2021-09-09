@@ -1,5 +1,4 @@
 import 'package:care_4_u_project/Datamodel/BloodPressureModel/BloodPressureModel.dart';
-import 'package:care_4_u_project/Services/FirestoreManager/blood_pressure_clf.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     // ChartSeriesController? _chartSeriesController;
     final _formKey = GlobalKey<FormState>();
     int? inputSysValue;
