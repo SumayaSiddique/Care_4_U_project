@@ -1,13 +1,16 @@
 import 'dart:ui';
+import 'package:care_4_u_project/Datamodel/User/Usermodel.dart';
 import 'package:care_4_u_project/Screens/BMI-BMR/BMI.dart';
-import 'package:care_4_u_project/Screens/BMI-BMR/BMR.dart';
 import 'package:care_4_u_project/Screens/Blood%20Pressure/BloodPressureDetailsView.dart';
 import 'package:care_4_u_project/Screens/DetailedViews/DiabetesDetailsView.dart';
 import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
+import 'package:care_4_u_project/Screens/UserDetails/UserDetails.dart';
 import 'package:care_4_u_project/Screens/Water%20Intake/WaterIntake.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +20,26 @@ import 'package:line_icons/line_icons.dart';
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
+  set usermodel(Usermodel usermodel) {}
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
+    late Usermodel usermodel;
+
+    final Stream<DocumentSnapshot<Map<String, dynamic>>> _userDocument =
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .snapshots();
+
+    // double bmrValue =
+    //     ? 66 +
+    //         (13.7 * UserDetails().usermodel.weight) +
+    //         (5 * UserDetails().usermodel.height) -
+    //         (6.8 * UserDetails().usermodel.age)
+    //     : 0.0;
     return Scaffold(
       backgroundColor: Color(0xffdbefe1),
       // appBar: AppBar(
@@ -159,24 +178,21 @@ class HomeView extends StatelessWidget {
                             color: Color(0xff1d617A),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () => Get.to(() => BMR()),
-                          child: HomeMediumCard(
-                            size: size,
-                            theme: theme,
-                            title: Text(
-                              "46",
-                              style: theme.headline3!
-                                  .apply(color: Color(0xffdbefe1)),
-                            ),
-                            subtitle: "BMR",
-                            icon: Icon(
-                              LineIcons.poll,
-                              color: Colors.white,
-                            ),
-                            bgImage: 'images/HomeBG/Pedometer.jpeg',
-                            color: Color(0xff1d617A),
+                        HomeMediumCard(
+                          size: size,
+                          theme: theme,
+                          title: Text(
+                            '46.0',
+                            style: theme.headline3!
+                                .apply(color: Color(0xffdbefe1)),
                           ),
+                          subtitle: "BMR",
+                          icon: Icon(
+                            LineIcons.poll,
+                            color: Colors.white,
+                          ),
+                          bgImage: 'images/HomeBG/Pedometer.jpeg',
+                          color: Color(0xff1d617A),
                         ),
                       ],
                     ),
