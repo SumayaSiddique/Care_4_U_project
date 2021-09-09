@@ -19,7 +19,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: Color.fromRGBO(99, 112, 176, 1.0),
+      backgroundColor: Color(0xff9fccc3),
       body: SafeArea(
         child: Form(
           key: _formKey,
@@ -32,32 +32,46 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Spacer(),
                 Text(
                   "Reset Password",
-                  style: Get.textTheme.headline4,
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Color(0xff1d617A),
+                    fontFamily: 'SF Pro Rounded',
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 SizedBox(height: 8),
                 Opacity(
                   opacity: 0.7,
                   child: Text(
-                    "Enter the email associated with your account and we'll send an email with instructions to rest your password",
-                    style: Get.textTheme.headline6,
+                    "Enter the email associated with your account and we'll send an email with instructions to rest your password.",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color(0xff1d617A),
+                      fontFamily: 'SF Pro Rounded',
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 ),
                 // SizedBox(height: 24),
                 SizedBox(height: 60),
                 Container(
-                  height: 100,
+                  height: 70,
                   child: TextFormField(
                     decoration: const InputDecoration(
-                      labelText: "Email Address",
-                      labelStyle: TextStyle(
+                      hintText: "Email Address",
+                      hintStyle: TextStyle(
                         color: Colors.grey,
                       ),
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 20.0,
                         vertical: 4,
                       ),
-                      // fillColor: Color.fromRGBO(230, 230, 230, 1.0),
+                      fillColor: Color.fromRGBO(230, 230, 230, 1.0),
                       filled: true,
+                      prefixIcon: Icon(
+                        Icons.mail,
+                        color: Color(0xff1d617A),
+                      ),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 0.4,
@@ -98,39 +112,42 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     },
                   ),
                 ),
-                Container(
-                  // height: 60,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xff7B39ED),
-                      fixedSize: Size(size.width * 0.75, size.height * 0.065),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(12.0),
+                // SizedBox(height: 5.0),
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 240,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff1d617A),
+                        // fixedSize: Size(size.width * 0.75, size.height * 0.065),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12.0),
+                          ),
+                        ),
+                        textStyle: TextStyle(
+                          fontSize: 22,
+                          fontFamily: 'SF Pro Rounded',
                         ),
                       ),
-                      textStyle: TextStyle(
-                        fontSize: 22,
-                        fontFamily: 'SF Pro Rounded',
-                      ),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        // await Provider.of<AuthService>(context,
-                        //         listen: false)
-                        //     .signIn(email.trim(), password.trim());
-                      }
-                      setState(() {
-                        Navigator.pop(context);
-                      });
-                      // print(email + password);
-                    },
-                    child: Text(
-                      'Reset Password',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'SF Pro Rounded',
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          // await Provider.of<AuthService>(context,
+                          //         listen: false)
+                          //     .signIn(email.trim(), password.trim());
+                        }
+                        setState(() {
+                          Navigator.pop(context);
+                        });
+                        // print(email + password);
+                      },
+                      child: Text(
+                        'Reset Password',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'SF Pro Rounded',
+                        ),
                       ),
                     ),
                   ),

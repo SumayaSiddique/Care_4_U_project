@@ -22,60 +22,67 @@ class UserDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("User Details"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.bottomSheet(
-                UserEditableBottomSheet(
-                  usermodel: usermodel,
+      backgroundColor: Color(0xffdbefe1),
+      // appBar: AppBar(
+      //   title: Text("User Details"),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         Get.bottomSheet(
+      //           UserEditableBottomSheet(
+      //             usermodel: usermodel,
+      //           ),
+      //           // barrierColor: Colors.red[50],
+      //           isDismissible: true,
+      //         );
+      //       },
+      //       icon: Icon(
+      //         Icons.edit,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              children: [
+                StreamBuilder<DocumentSnapshot>(
+                  // stream: _userDocument,
+                  stream: _userDocument,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text("Something went wrong");
+                    }
+
+                    if (snapshot.hasData && !snapshot.data!.exists) {
+                      return Text("Document does not exist");
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      Usermodel usermodel = Usermodel(
+                        fullName: snapshot.data!.get('name'),
+                        age: snapshot.data!.get('age'),
+                        email: snapshot.data!.get('email'),
+                        password: "",
+                        height: snapshot.data!.get('height') / 1.0,
+                        weight: snapshot.data!.get('weight') / 1.0,
+                        isMale: snapshot.data!.get('isMale'),
+                      );
+                      this.usermodel = usermodel;
+                      return BuildUserInfo(usermodel: usermodel);
+                    }
+
+                    // print(snapshot.data!.get('name'));
+
+                    return Text("loading");
+                  },
                 ),
-                // barrierColor: Colors.red[50],
-                isDismissible: true,
-              );
-            },
-            icon: Icon(
-              Icons.edit,
+              ],
             ),
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            StreamBuilder<DocumentSnapshot>(
-              // stream: _userDocument,
-              stream: _userDocument,
-              builder: (BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  return Text("Something went wrong");
-                }
-
-                if (snapshot.hasData && !snapshot.data!.exists) {
-                  return Text("Document does not exist");
-                }
-
-                if (snapshot.connectionState == ConnectionState.active) {
-                  Usermodel usermodel = Usermodel(
-                    fullName: snapshot.data!.get('name'),
-                    email: snapshot.data!.get('email'),
-                    password: "",
-                    height: snapshot.data!.get('height') / 1.0,
-                    weight: snapshot.data!.get('weight') / 1.0,
-                    isMale: snapshot.data!.get('isMale'),
-                  );
-                  this.usermodel = usermodel;
-                  return BuildUserInfo(usermodel: usermodel);
-                }
-
-                // print(snapshot.data!.get('name'));
-
-                return Text("loading");
-              },
-            ),
-          ],
         ),
       ),
     );
@@ -264,14 +271,105 @@ class BuildUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final img = usermodel.isMale ? "male" : "female";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Full Name: " + usermodel.fullName),
-        Text("Email: " + usermodel.email),
-        Text("Height: " + usermodel.height.toString() + " cm"),
-        Text("Weight: " + usermodel.weight.toString() + " KG"),
-        Text(usermodel.isMale ? "Gender: Male" : "Gender: Female"),
+        Row(
+          children: [
+            Text(
+              "Profile",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+                color: Color(0xff1d617A),
+              ),
+            ),
+            Spacer(),
+            IconButton(
+              onPressed: () {
+                Get.bottomSheet(
+                  UserEditableBottomSheet(
+                    usermodel: usermodel,
+                  ),
+                  // barrierColor: Colors.red[50],
+                  isDismissible: true,
+                );
+              },
+              icon: Icon(
+                Icons.edit,
+              ),
+            ),
+          ],
+        ),
+        Center(
+          child: Image(
+            image: AssetImage("images/" + img + ".png"),
+            height: 200,
+          ),
+        ),
+        SizedBox(height: 60),
+        Center(
+          child: Text(
+            "Name: " + usermodel.fullName,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w800,
+              color: Color(0xff1d617A),
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+        Center(
+          child: Text(
+            "Age :${usermodel.age}",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w800,
+              color: Color(0xff1d617A),
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+        Center(
+          child: Text(
+            "Email: " + usermodel.email,
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w800,
+              color: Color(0xff1d617A),
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+        Center(
+          child: Text(
+            "Height: " +
+                usermodel.height.toString() +
+                " cm" +
+                "|" +
+                "Weight: " +
+                usermodel.weight.toString() +
+                " KG",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w800,
+              color: Color(0xff1d617A),
+            ),
+          ),
+        ),
+        // Text("Weight: " + usermodel.weight.toString() + " KG"),
+        SizedBox(height: 20),
+        Center(
+          child: Text(
+            usermodel.isMale ? "Gender: Male" : "Gender: Female",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w800,
+              color: Color(0xff1d617A),
+            ),
+          ),
+        ),
       ],
     );
   }

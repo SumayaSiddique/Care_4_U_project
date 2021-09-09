@@ -18,13 +18,14 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   String email = "", password = "", name = "", gender = "";
+  int age = 0;
   double height = 0, weight = 0;
   bool isMale = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xffdbefe1),
+      backgroundColor: Color(0xff9fccc3),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
@@ -294,14 +295,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ),
-                        validator: (String? value) {
+                        validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your Age';
                           }
                           return null;
                         },
                         onChanged: (value) {
-                          weight = double.parse(value);
+                          age = int.parse(value);
                         },
                       ),
                     ),
@@ -527,6 +528,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             );
                             final newUser = Usermodel(
                                 fullName: name,
+                                age: age,
                                 email: email,
                                 password: password,
                                 height: height,

@@ -56,7 +56,7 @@ class HomeLargeCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 20.0,
-          horizontal: 18,
+          horizontal: 16,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,9 +74,9 @@ class HomeLargeCard extends StatelessWidget {
                     Text(
                       subtitle,
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.8),
+                        color: Color(0xff1d617A).withOpacity(0.8),
                         fontSize: theme.headline6!.fontSize,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -84,7 +84,11 @@ class HomeLargeCard extends StatelessWidget {
                 Flexible(
                   child: Text(
                     title,
-                    style: theme.headline5,
+                    style: TextStyle(
+                      color: Color(0xff1d617A).withOpacity(0.8),
+                      fontSize: theme.headline5!.fontSize,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],

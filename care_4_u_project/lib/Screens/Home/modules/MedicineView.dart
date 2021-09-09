@@ -19,7 +19,7 @@ class MedicineView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 4,
+        horizontal: 0,
         // vertical: 0,
       ),
       child: Row(
@@ -44,7 +44,18 @@ class MedicineView extends StatelessWidget {
                 theme: theme,
                 title: "Medicine Reminder",
                 subtitle: 'Today',
-                icon: Icon(Icons.medication),
+                icon: Container(
+                  height: 45,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    color: Color(0xffdbefe1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(
+                    Icons.medication,
+                    color: Colors.redAccent,
+                  ),
+                ),
                 image: 'images/HomeBG/medicine.jpeg',
                 child: Column(
                   children: [
@@ -54,7 +65,10 @@ class MedicineView extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            FaIcon(FontAwesomeIcons.pills),
+                            FaIcon(
+                              FontAwesomeIcons.pills,
+                              color: Color(0xff1d617A),
+                            ),
                             SizedBox(
                               width: 20,
                             ),
@@ -62,6 +76,7 @@ class MedicineView extends StatelessWidget {
                               'Ebasten',
                               style: TextStyle(
                                 fontSize: theme.headline6!.fontSize,
+                                color: Color(0xff1d617A),
                               ),
                               // style: theme.headline6!.apply(color: Colors.black),
                             ),
@@ -69,7 +84,9 @@ class MedicineView extends StatelessWidget {
                         ),
                         Text(
                           '9:00PM',
-                          style: theme.headline6!.apply(color: Colors.black),
+                          style: theme.headline6!.apply(
+                            color: Color(0xff1d617A),
+                          ),
                         ),
                       ],
                     ),
@@ -79,20 +96,26 @@ class MedicineView extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            FaIcon(FontAwesomeIcons.pills),
+                            FaIcon(
+                              FontAwesomeIcons.pills,
+                              color: Color(0xff1d617A),
+                            ),
                             SizedBox(
                               width: 20,
                             ),
                             Text(
                               'Reversair',
-                              style:
-                                  theme.headline6!.apply(color: Colors.black),
+                              style: theme.headline6!.apply(
+                                color: Color(0xff1d617A),
+                              ),
                             ),
                           ],
                         ),
                         Text(
                           '9:00PM',
-                          style: theme.headline6!.apply(color: Colors.black),
+                          style: theme.headline6!.apply(
+                            color: Color(0xff1d617A),
+                          ),
                         ),
                       ],
                     ),

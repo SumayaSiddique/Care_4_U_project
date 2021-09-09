@@ -45,15 +45,12 @@ class HomeView extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        "Welcome!",
-                        style: TextStyle(
-                          fontSize: theme.headline3!.fontSize,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff1d617A),
-                        ),
+                    Text(
+                      "Welcome!",
+                      style: TextStyle(
+                        fontSize: theme.headline3!.fontSize,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff1d617A),
                       ),
                     ),
                     Spacer(),
@@ -298,7 +295,7 @@ class HomeView extends StatelessWidget {
                                     ),
                                     child: Icon(
                                       FontAwesomeIcons.syringe,
-                                      color: Colors.green[400],
+                                      color: Color(0xff52817f),
                                     ),
                                   ),
                                   SizedBox(width: 20),
@@ -310,8 +307,9 @@ class HomeView extends StatelessWidget {
                                       Text(
                                         "Diabetes",
                                         style: TextStyle(
-                                            fontSize: theme.headline5!.fontSize,
-                                            color: Color(0xff1d617A)),
+                                          fontSize: theme.headline5!.fontSize,
+                                          color: Color(0xff1d617A),
+                                        ),
                                       ),
                                       Opacity(
                                         opacity: 0.7,

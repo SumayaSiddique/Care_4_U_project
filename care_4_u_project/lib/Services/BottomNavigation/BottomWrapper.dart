@@ -25,7 +25,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Color(0xffEFEFF3), // Default is Colors.white.
+      // backgroundColor: Colors.white, // Default is Colors.white.
       resizeToAvoidBottomInset:
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
 
@@ -33,7 +33,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(30.0),
-        colorBehindNavBar: Colors.grey[200]!,
+        colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
@@ -73,7 +73,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       PersistentBottomNavBarItem(
         icon: Icon(FontAwesomeIcons.virus),
         title: ("Covid-19 Statistics"),
-        activeColorPrimary: CupertinoColors.systemRed,
+        activeColorPrimary: Colors.redAccent,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
@@ -85,7 +85,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person),
         title: ("User"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: Color(0xff1d617A),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
