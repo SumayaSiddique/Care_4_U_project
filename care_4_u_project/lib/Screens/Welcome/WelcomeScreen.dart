@@ -10,14 +10,14 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromRGBO(47, 46, 65, 1.0),
+      backgroundColor: Color(0xffDBEFE1),
       floatingActionButton: FloatingActionButton(
         child: FaIcon(
           FontAwesomeIcons.userPlus,
           size: size.height * 0.025,
           color: Color(0xFFFEFEFE),
         ),
-        backgroundColor: Color.fromRGBO(255, 101, 132, 1.0),
+        backgroundColor: Color(0xff1D617A),
         onPressed: () {
           Navigator.pushNamed(context, '/sign-up');
         },
@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
               height: size.height * 0.07,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(219, 120, 140, 1.0),
+                  primary: Color(0xff1D617A),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20.0),

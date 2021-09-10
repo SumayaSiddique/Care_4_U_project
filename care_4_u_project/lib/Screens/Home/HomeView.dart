@@ -7,12 +7,14 @@ import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
 import 'package:care_4_u_project/Screens/Water%20Intake/WaterIntake.dart';
+import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -89,19 +91,9 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async {
                         //Todo: Implement notifications list
-                        Get.dialog(
-                          Scaffold(
-                            body: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Hello'),
-                              ],
-                            ),
-                          ),
-                          barrierDismissible: true,
-                        );
+                        await context.read<AuthService>().logOut();
                       },
                       icon: Container(
                         height: 70,

@@ -32,28 +32,6 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () async {
-                // // Get.to(() => TempScreen());
-                // final pdfFile = await PdfApi.generateTable();
-                // PdfApi.openFile(pdfFile);
-              },
-              icon: Icon(Icons.picture_as_pdf),
-            ),
-          ],
-          title: Text(
-            'Blood Glucose',
-            style: TextStyle(),
-          ),
-          backgroundColor: Color.fromRGBO(155, 229, 224, 0.5),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )),
       backgroundColor: Colors.white,
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: _collectionReference,
@@ -103,7 +81,20 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
     final _formKeyDiabetes = GlobalKey<FormState>();
     double? inputValue;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        SizedBox(height: 100),
+        Padding(
+          padding: EdgeInsets.only(right: Get.width / 8.5),
+          child: Text(
+            "Blood Glucose Chart",
+            style: TextStyle(
+                fontSize: Get.textTheme.headline4!.fontSize,
+                color: Color(0xff1d617A),
+                fontWeight: FontWeight.w700),
+          ),
+        ),
+        SizedBox(height: 100),
         SfCartesianChart(
           plotAreaBorderColor: Colors.transparent,
           zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
@@ -157,10 +148,9 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
           ],
           primaryXAxis: DateTimeAxis(
             edgeLabelPlacement: EdgeLabelPlacement.shift,
-            dateFormat: DateFormat.Hm(),
-            intervalType: DateTimeIntervalType.hours,
-            majorGridLines: const MajorGridLines(width: 0),
-            desiredIntervals: 24,
+            dateFormat: DateFormat.Md(),
+            intervalType: DateTimeIntervalType.days,
+            desiredIntervals: 7,
             visibleMinimum: diabetesData[diabetesData.length - 2].date,
             visibleMaximum: diabetesData[diabetesData.length - 1].date,
           ),
