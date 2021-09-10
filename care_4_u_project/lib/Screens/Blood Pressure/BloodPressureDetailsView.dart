@@ -73,6 +73,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   }
 
   makeChart() {
+<<<<<<< HEAD
     final size = MediaQuery.of(context).size;
     final _formKey = GlobalKey<FormState>();
     int? inputSysValue;
@@ -133,6 +134,41 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                 // onRendererCreated: (ChartSeriesController controller) {
                 //   _chartSeriesController = controller;
                 // },
+=======
+    return SfCartesianChart(
+      plotAreaBorderColor: Colors.transparent,
+      borderWidth: 0.1,
+      enableAxisAnimation: true,
+      zoomPanBehavior:
+          ZoomPanBehavior(enablePanning: true, enablePinching: true),
+      legend: Legend(
+        isVisible: true,
+        position: LegendPosition.top,
+        alignment: ChartAlignment.center,
+      ),
+      series: <RangeColumnSeries>[
+        RangeColumnSeries<BloodPressureData, DateTime>(
+          color: Colors.red,
+          // spacing: 0.4,
+          // width: 0.8,
+          name: 'Blood Pressure chart',
+          dataSource: bloodPressureData,
+          onPointTap: (ChartPointDetails details) {
+            int? index = details.pointIndex;
+            Get.defaultDialog(
+              title: 'BP Value',
+              titleStyle: TextStyle(fontSize: 24),
+              content: Column(
+                children: [
+                  Text('Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Text(
+                    'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
+                  ),
+                ],
+>>>>>>> f3aebe8950b76ae91a69594ab22f09bd5efa8ed9
               ),
             ],
             primaryXAxis: DateTimeAxis(
@@ -270,6 +306,23 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           ),
         ),
       ],
+<<<<<<< HEAD
+=======
+      primaryXAxis: DateTimeAxis(
+        edgeLabelPlacement: EdgeLabelPlacement.shift,
+        enableAutoIntervalOnZooming: true,
+        dateFormat: DateFormat.Hm(),
+        intervalType: DateTimeIntervalType.hours,
+        majorGridLines: const MajorGridLines(width: 0),
+        desiredIntervals: 24,
+        visibleMinimum: bloodPressureData[bloodPressureData.length - 2].date,
+        visibleMaximum: bloodPressureData[bloodPressureData.length - 1].date,
+      ),
+      primaryYAxis: NumericAxis(
+        labelFormat: '{value}',
+        majorGridLines: const MajorGridLines(width: 1),
+      ),
+>>>>>>> f3aebe8950b76ae91a69594ab22f09bd5efa8ed9
     );
   }
 }
