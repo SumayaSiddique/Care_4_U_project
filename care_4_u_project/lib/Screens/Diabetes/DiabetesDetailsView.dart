@@ -108,7 +108,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
           plotAreaBorderColor: Colors.transparent,
           zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
           legend: Legend(
-            isVisible: true,
+            isVisible: false,
             alignment: ChartAlignment.center,
             position: LegendPosition.top,
           ),
@@ -118,11 +118,11 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
             FastLineSeries<DiabetesData, DateTime>(
               name: 'Diabetes chart',
               width: 3.0,
-              color: Colors.orange,
-              // gradient: LinearGradient(
-              //     begin: Alignment.topLeft,
-              //     end: Alignment.bottomRight,
-              //     colors: [Color(0xff9FACE6), Color(0xff74EBD5)]),
+              // color: Colors.orange,
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.redAccent, Colors.blue]),
 
               dataSource: diabetesData,
               yValueMapper: (DiabetesData diabetesData, _) =>
@@ -178,7 +178,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
           ),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreenAccent[700],
+              primary: Color(0xff1d617A),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(20.0),
@@ -219,7 +219,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.add),
                                 hintText: 'Add your blood sugar value here',
-                                fillColor: Colors.white38,
+                                fillColor: Colors.white,
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -256,11 +256,12 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w100,
-                                    color: Colors.black54),
+                                    color: Colors.white),
                               ),
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateColor.resolveWith(
-                                    (states) => Colors.lightGreenAccent),
+                                  (states) => Color(0xff1d617A),
+                                ),
                               ),
                             ),
                           ),
@@ -269,7 +270,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                     ),
                   ),
                   barrierColor: Colors.transparent,
-                  backgroundColor: Colors.lightGreenAccent[100],
+                  backgroundColor: Color(0xffdbefe1),
                   isDismissible: true,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
