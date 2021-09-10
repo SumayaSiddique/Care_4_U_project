@@ -7,12 +7,10 @@ import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
 import 'package:care_4_u_project/Screens/Water%20Intake/WaterIntake.dart';
-import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -57,7 +55,6 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
-    late Usermodel usermodel;
     return Scaffold(
       backgroundColor: Color(0xffdbefe1),
       // appBar: AppBar(
@@ -110,11 +107,27 @@ class _HomeViewState extends State<HomeView> {
                         height: 70,
                         width: 70,
                         decoration: BoxDecoration(
-                          color: Color(0xff1d617A),
+                          color: Colors.redAccent,
                           shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                0.5,
+                              ),
+                              offset: Offset(0, 4),
+                              blurRadius: 12,
+                            ),
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                0.2,
+                              ),
+                              offset: Offset(4, -2),
+                              blurRadius: 12,
+                            ),
+                          ],
                         ),
                         child: Icon(
-                          FontAwesomeIcons.bell,
+                          FontAwesomeIcons.powerOff,
                           color: Colors.white,
                           size: 18,
                         ),
