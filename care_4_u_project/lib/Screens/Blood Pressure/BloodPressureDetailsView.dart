@@ -28,9 +28,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   @override
   Widget build(BuildContext context) {
     // ChartSeriesController? _chartSeriesController;
-    final _formKey = GlobalKey<FormState>();
-    int? inputSysValue;
-    int? inputDiaValue;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -45,7 +42,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           },
         ),
       ),
-      backgroundColor: Color.fromRGBO(210, 246, 254, 1),
+      backgroundColor: Color(0xffdbefe1),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: _collectionReference,
         builder: (BuildContext context,
@@ -76,67 +73,203 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   }
 
   makeChart() {
-    return SfCartesianChart(
-      plotAreaBorderColor: Colors.transparent,
-      borderWidth: 0.1,
-      enableAxisAnimation: true,
-      zoomPanBehavior:
-          ZoomPanBehavior(enablePanning: true, enablePinching: true),
-      legend: Legend(
-        isVisible: true,
-        position: LegendPosition.top,
-        alignment: ChartAlignment.center,
-      ),
-      series: <RangeColumnSeries>[
-        RangeColumnSeries<BloodPressureData, DateTime>(
-          color: Colors.red,
-          spacing: 0.4,
-          width: 0.8,
-          name: 'Blood Pressure chart',
-          dataSource: bloodPressureData,
-          onPointTap: (ChartPointDetails details) {
-            int? index = details.pointIndex;
-            Get.defaultDialog(
-              title: 'BP Value',
-              titleStyle: TextStyle(fontSize: 24),
-              content: Column(
-                children: [
-                  Text('Recorded On: ${details.dataPoints![index!.toInt()].x}'),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(
-                    'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
-                  ),
-                ],
+    final size = MediaQuery.of(context).size;
+    final _formKey = GlobalKey<FormState>();
+    int? inputSysValue;
+    int? inputDiaValue;
+    return Column(
+      children: [
+        Flexible(
+          flex: 2,
+          child: SfCartesianChart(
+            plotAreaBorderColor: Colors.transparent,
+            enableAxisAnimation: true,
+            zoomPanBehavior: ZoomPanBehavior(
+                enablePanning: true,
+                zoomMode: ZoomMode.xy,
+                enablePinching: true),
+            legend: Legend(
+              isVisible: true,
+              position: LegendPosition.top,
+              alignment: ChartAlignment.center,
+            ),
+            series: <RangeColumnSeries>[
+              RangeColumnSeries<BloodPressureData, DateTime>(
+                color: Colors.blue,
+                spacing: 0.2,
+                width: 0.8,
+                name: 'Blood Pressure chart',
+                dataSource: bloodPressureData,
+                // markerSettings: MarkerSettings(
+                //   isVisible: true,
+                //   shape: DataMarkerType.circle,
+                // ),
+                onPointTap: (ChartPointDetails details) {
+                  int? index = details.pointIndex;
+                  Get.defaultDialog(
+                    title: 'BP Value',
+                    titleStyle: TextStyle(fontSize: 24),
+                    content: Column(
+                      children: [
+                        Text(
+                            'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
+                        ),
+                      ],
+                    ),
+                    barrierDismissible: true,
+                  );
+                },
+                xValueMapper: (BloodPressureData bpData, _) => bpData.date,
+                highValueMapper: (BloodPressureData bpData, _) =>
+                    bpData.sysValue,
+                lowValueMapper: (BloodPressureData bpData, _) =>
+                    bpData.diaValue,
+                dataLabelSettings: DataLabelSettings(isVisible: true),
+                // onRendererCreated: (ChartSeriesController controller) {
+                //   _chartSeriesController = controller;
+                // },
               ),
-              barrierDismissible: true,
-            );
-          },
-          xValueMapper: (BloodPressureData bpData, _) => bpData.date,
-          highValueMapper: (BloodPressureData bpData, _) => bpData.sysValue,
-          lowValueMapper: (BloodPressureData bpData, _) => bpData.diaValue,
-          dataLabelSettings: DataLabelSettings(isVisible: true),
-          // enableTooltip: true,
-          // onRendererCreated: (ChartSeriesController controller) {
-          //   _chartSeriesController = controller;
-          // },
+            ],
+            primaryXAxis: DateTimeAxis(
+              edgeLabelPlacement: EdgeLabelPlacement.shift,
+              majorGridLines: const MajorGridLines(width: 0),
+              visibleMinimum:
+                  bloodPressureData[bloodPressureData.length - 3].date,
+              visibleMaximum:
+                  bloodPressureData[bloodPressureData.length - 1].date,
+            ),
+            primaryYAxis: NumericAxis(
+              edgeLabelPlacement: EdgeLabelPlacement.shift,
+              labelFormat: '{value}',
+              majorGridLines: const MajorGridLines(width: 0),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            right: size.width / 5,
+            left: size.width / 5,
+            top: size.height * 0.075,
+            bottom: size.height * 0.075,
+          ),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.lightGreenAccent[700],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+              ),
+            ),
+            onPressed: () {}
+            //   Get.bottomSheet(
+            //       Container(
+            //         height: size.height * 0.375,
+            //         child: Form(
+            //           key: _formKey,
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.stretch,
+            //             mainAxisSize: MainAxisSize.min,
+            //             mainAxisAlignment: MainAxisAlignment.start,
+            //             children: [
+            //               Padding(
+            //                 padding: EdgeInsets.symmetric(
+            //                     vertical: size.height * 0.025),
+            //                 child: Text(
+            //                   'Add Diabetes',
+            //                   textAlign: TextAlign.center,
+            //                   style: TextStyle(
+            //                       fontSize: 24.0,
+            //                       fontWeight: FontWeight.w900,
+            //                       color: Colors.black54),
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 height: size.height * 0.025,
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.all(12.0),
+            //                 child: TextFormField(
+            //                   keyboardType: TextInputType.number,
+            //                   maxLength: 5,
+            //                   decoration: InputDecoration(
+            //                     prefixIcon: Icon(Icons.add),
+            //                     hintText: 'Add your blood sugar value here',
+            //                     fillColor: Colors.white38,
+            //                     filled: true,
+            //                     enabledBorder: OutlineInputBorder(
+            //                         borderSide: BorderSide(
+            //                             color: Colors.black54, width: 1.0),
+            //                         borderRadius: BorderRadius.circular(25.0)),
+            //                   ),
+            //                   validator: (value) => value!.isEmpty
+            //                       ? 'Please enter a value' + ' for diabetes'
+            //                       : null,
+            //                   onChanged: (value) {
+            //                     setState(() {
+            //                       inputValue = double.parse(value);
+            //                     });
+            //                   },
+            //                 ),
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.all(25.0),
+            //                 child: ElevatedButton(
+            //                   onPressed: () async {
+            //                     if (_formKeyDiabetes.currentState!.validate()) {
+            //                       DiabetesFirestoreManager.addDiabetes(
+            //                         DiabetesData(
+            //                             date: DateTime.now(),
+            //                             value: inputValue!),
+            //                       );
+            //                       print(inputValue);
+            //                       // Navigator.of(context).pop();
+            //                     }
+            //                   },
+            //                   child: Text(
+            //                     'Add BP Value',
+            //                     style: TextStyle(
+            //                         fontSize: 18,
+            //                         fontWeight: FontWeight.w100,
+            //                         color: Colors.black54),
+            //                   ),
+            //                   style: ButtonStyle(
+            //                     backgroundColor: MaterialStateColor.resolveWith(
+            //                         (states) => Colors.lightGreenAccent),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       barrierColor: Colors.transparent,
+            //       backgroundColor: Colors.lightGreenAccent[100],
+            //       isDismissible: true,
+            //       shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(25.0),
+            //           side: BorderSide(
+            //               color: Colors.white,
+            //               style: BorderStyle.solid,
+            //               width: 2.0)));
+            //
+            // },
+            ,
+            child: Text(
+              'Add Blood Pressure Value',
+              style: TextStyle(
+                fontFamily: "SF Pro Rounded",
+                fontSize: 18.0,
+              ),
+            ),
+          ),
         ),
       ],
-      primaryXAxis: DateTimeAxis(
-        edgeLabelPlacement: EdgeLabelPlacement.shift,
-        enableAutoIntervalOnZooming: true,
-        dateFormat: DateFormat.Md(),
-        intervalType: DateTimeIntervalType.days,
-        majorGridLines: const MajorGridLines(width: 0),
-        // desiredIntervals: 31,
-        visibleMinimum: bloodPressureData[bloodPressureData.length - 2].date,
-        visibleMaximum: bloodPressureData[bloodPressureData.length - 1].date,
-      ),
-      primaryYAxis: NumericAxis(
-        labelFormat: '{value}',
-        majorGridLines: const MajorGridLines(width: 1),
-      ),
     );
   }
 }

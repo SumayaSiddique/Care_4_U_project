@@ -2,11 +2,10 @@ import 'dart:ui';
 import 'package:care_4_u_project/Datamodel/User/Usermodel.dart';
 import 'package:care_4_u_project/Screens/BMI-BMR/BMI.dart';
 import 'package:care_4_u_project/Screens/Blood%20Pressure/BloodPressureDetailsView.dart';
-import 'package:care_4_u_project/Screens/DetailedViews/DiabetesDetailsView.dart';
+import 'package:care_4_u_project/Screens/Diabetes/DiabetesDetailsView.dart';
 import 'package:care_4_u_project/Screens/Exercise/Exercise.dart';
 import 'package:care_4_u_project/Screens/Home/modules/HomeMediumCard.dart';
 import 'package:care_4_u_project/Screens/Home/modules/MedicineView.dart';
-import 'package:care_4_u_project/Screens/UserDetails/UserDetails.dart';
 import 'package:care_4_u_project/Screens/Water%20Intake/WaterIntake.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,6 +28,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     FirebaseFirestore.instance
@@ -40,20 +40,21 @@ class _HomeViewState extends State<HomeView> {
         Map<String, dynamic> data =
             documentSnapshot.data() as Map<String, dynamic>;
         print(data['height']);
-        var usermodel = Usermodel(
-            fullName: data['fullName'],
-            age: data['age'],
-            email: data['email'],
-            password: data['password'],
-            height: data['height'],
-            isMale: data['isMale'],
-            weight: data['weight'],);
-            // usermodel.
-            // final s = usermodel.isMale ? 5 : -161;
-            // final bmrValue = ((10 * usermodel.weight) +
-            //                       (6.25 * usermodel.height) -
-            //                       (5 * usermodel.age) +
-            //                       s);
+        usermodel = Usermodel(
+          fullName: data['fullName'],
+          age: data['age'],
+          email: data['email'],
+          password: data['password'],
+          height: data['height'],
+          isMale: data['isMale'],
+          weight: data['weight'],
+        );
+        // usermodel.
+        // final s = usermodel.isMale ? 5 : -161;
+        // final bmrValue = ((10 * usermodel.weight) +
+        //                       (6.25 * usermodel.height) -
+        //                       (5 * usermodel.age) +
+        //                       s);
       }
     });
   }
@@ -63,10 +64,6 @@ class _HomeViewState extends State<HomeView> {
     final theme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     late Usermodel usermodel;
-    double calcBMR () {
-      int s = usermodel.isMale ? 5 : -161;
-      return
-    }
     return Scaffold(
       backgroundColor: Color(0xffdbefe1),
       // appBar: AppBar(
@@ -238,21 +235,23 @@ class _HomeViewState extends State<HomeView> {
                         //           (5 * usermodel.age) +
                         //           s);
                         //       this.usermodel = usermodel;
-                              HomeMediumCard(
-                                size: size,
-                                theme: theme,
-                                title: Text(
-                                  style: theme.headline4!
-                                      .apply(color: Color(0xffdbefe1)),
-                                ),
-                                subtitle: "BMR",
-                                icon: Icon(
-                                  LineIcons.poll,
-                                  color: Colors.white,
-                                ),
-                                bgImage: 'images/HomeBG/Pedometer.jpeg',
-                                color: Color(0xff1d617A),
-                              ),
+                        HomeMediumCard(
+                          size: size,
+                          theme: theme,
+                          title: Text(
+                            '3412',
+                            style: theme.headline4!.apply(
+                              color: Color(0xffdbefe1),
+                            ),
+                          ),
+                          subtitle: "BMR",
+                          icon: Icon(
+                            LineIcons.poll,
+                            color: Colors.white,
+                          ),
+                          bgImage: 'images/HomeBG/Pedometer.jpeg',
+                          color: Color(0xff1d617A),
+                        ),
                         //     }
                         //     return CircularProgressIndicator();
                         //   },
