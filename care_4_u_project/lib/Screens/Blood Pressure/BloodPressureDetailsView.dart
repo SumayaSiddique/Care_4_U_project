@@ -30,20 +30,20 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   Widget build(BuildContext context) {
     // ChartSeriesController? _chartSeriesController;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Blood Pressure',
-          style: TextStyle(),
-        ),
-        backgroundColor: Color.fromRGBO(155, 229, 224, 0.5),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
-      backgroundColor: Color(0xffdbefe1),
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Blood Pressure',
+      //     style: TextStyle(),
+      //   ),
+      //   backgroundColor: Color.fromRGBO(155, 229, 224, 0.5),
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back_ios),
+      //     onPressed: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //   ),
+      // ),
+      backgroundColor: Colors.white,
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: _collectionReference,
         builder: (BuildContext context,
@@ -79,72 +79,87 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
     int? inputDia;
     int? inputSys;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Flexible(
-          flex: 2,
-          child: SfCartesianChart(
-            plotAreaBorderColor: Colors.transparent,
-            borderWidth: 0.1,
-            enableAxisAnimation: true,
-            zoomPanBehavior:
-                ZoomPanBehavior(enablePanning: true, enablePinching: true),
-            legend: Legend(
-              isVisible: true,
-              position: LegendPosition.top,
-              alignment: ChartAlignment.center,
-            ),
-            series: <RangeColumnSeries>[
-              RangeColumnSeries<BloodPressureData, DateTime>(
-                color: Colors.white,
-                name: 'Blood Pressure chart',
-                dataSource: bloodPressureData,
-                xValueMapper: (BloodPressureData bloodPressureData, _) =>
-                    bloodPressureData.date,
-                highValueMapper: (BloodPressureData bloodPressureData, _) =>
-                    bloodPressureData.sysValue,
-                lowValueMapper: (BloodPressureData bloodPressureData, _) =>
-                    bloodPressureData.diaValue,
-                dataLabelSettings: DataLabelSettings(
-                  isVisible: true,
-                  labelPosition: ChartDataLabelPosition.outside,
-                ),
-                onPointTap: (ChartPointDetails details) {
-                  int? index = details.pointIndex;
-                  Get.defaultDialog(
-                    title: 'BP Value',
-                    titleStyle: TextStyle(fontSize: 24),
-                    content: Column(
-                      children: [
-                        Text(
-                            'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
-                        ),
-                      ],
-                    ),
-                  );
-                },
+        SizedBox(height: 100),
+        Center(
+          child: Text(
+            "Blood Pressure Chart",
+            style: TextStyle(
+                fontSize: Get.textTheme.headline4!.fontSize,
+                color: Color(0xff1d617A),
+                fontWeight: FontWeight.w700),
+          ),
+        ),
+        Spacer(),
+        SfCartesianChart(
+          plotAreaBorderColor: Colors.transparent,
+          borderWidth: 0.1,
+          enableAxisAnimation: true,
+          zoomPanBehavior:
+              ZoomPanBehavior(enablePanning: true, enablePinching: true),
+          legend: Legend(
+            isVisible: false,
+            position: LegendPosition.top,
+            alignment: ChartAlignment.center,
+          ),
+          series: <RangeColumnSeries>[
+            RangeColumnSeries<BloodPressureData, DateTime>(
+              borderRadius: BorderRadius.circular(4),
+              // color: Color(0xff1d617A),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xff9FACE6), Color(0xff74EBD5)],
               ),
-            ],
-            primaryXAxis: DateTimeAxis(
-              edgeLabelPlacement: EdgeLabelPlacement.shift,
-              majorGridLines: const MajorGridLines(width: 0),
-              dateFormat: DateFormat.Md(),
-              intervalType: DateTimeIntervalType.days,
-              desiredIntervals: 7,
-              visibleMinimum:
-                  bloodPressureData[bloodPressureData.length - 3].date,
-              visibleMaximum:
-                  bloodPressureData[bloodPressureData.length - 1].date,
+              name: '',
+              dataSource: bloodPressureData,
+              xValueMapper: (BloodPressureData bloodPressureData, _) =>
+                  bloodPressureData.date,
+              highValueMapper: (BloodPressureData bloodPressureData, _) =>
+                  bloodPressureData.sysValue,
+              lowValueMapper: (BloodPressureData bloodPressureData, _) =>
+                  bloodPressureData.diaValue,
+              dataLabelSettings: DataLabelSettings(
+                isVisible: true,
+                labelPosition: ChartDataLabelPosition.outside,
+              ),
+              onPointTap: (ChartPointDetails details) {
+                int? index = details.pointIndex;
+                Get.defaultDialog(
+                  title: 'BP Value',
+                  titleStyle: TextStyle(fontSize: 24),
+                  content: Column(
+                    children: [
+                      Text(
+                          'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-            primaryYAxis: NumericAxis(
-              edgeLabelPlacement: EdgeLabelPlacement.shift,
-              labelFormat: '{value}',
-              majorGridLines: const MajorGridLines(width: 0),
-            ),
+          ],
+          primaryXAxis: DateTimeAxis(
+            edgeLabelPlacement: EdgeLabelPlacement.shift,
+            majorGridLines: const MajorGridLines(width: 0),
+            dateFormat: DateFormat.Md(),
+            intervalType: DateTimeIntervalType.days,
+            desiredIntervals: 7,
+            visibleMinimum:
+                bloodPressureData[bloodPressureData.length - 3].date,
+            visibleMaximum:
+                bloodPressureData[bloodPressureData.length - 1].date,
+          ),
+          primaryYAxis: NumericAxis(
+            edgeLabelPlacement: EdgeLabelPlacement.shift,
+            labelFormat: '{value}',
+            majorGridLines: const MajorGridLines(width: 1.0),
           ),
         ),
         Padding(
@@ -156,7 +171,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           ),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.lightGreenAccent[700],
+              primary: Color(0xff1d617A),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(20.0),
@@ -198,7 +213,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.add),
                                   hintText: 'Add your systolic value here',
-                                  fillColor: Colors.white38,
+                                  fillColor: Colors.white,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -227,7 +242,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.add),
                                   hintText: 'Add your diastolic value here',
-                                  fillColor: Colors.white38,
+                                  fillColor: Colors.white,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -265,13 +280,13 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                                   'Add BP Data',
                                   style: TextStyle(
                                       fontSize: 18,
-                                      fontWeight: FontWeight.w100,
-                                      color: Colors.black54),
+                                      fontWeight: FontWeight.w200,
+                                      color: Colors.white),
                                 ),
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateColor.resolveWith(
-                                          (states) => Colors.lightGreenAccent),
+                                          (states) => Color(0xff1d617A)),
                                 ),
                               ),
                             ),
@@ -281,12 +296,12 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                     ),
                   ),
                   barrierColor: Colors.transparent,
-                  backgroundColor: Colors.lightGreenAccent[100],
+                  backgroundColor: Color(0xffdbefe1),
                   isDismissible: true,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       side: BorderSide(
-                          color: Colors.white,
+                          color: Color(0xffdbefe1),
                           style: BorderStyle.solid,
                           width: 2.0)));
             },
@@ -299,6 +314,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
             ),
           ),
         ),
+        Spacer(),
       ],
     );
   }
