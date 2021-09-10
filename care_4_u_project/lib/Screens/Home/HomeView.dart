@@ -17,29 +17,56 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   set usermodel(Usermodel usermodel) {}
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        Map<String, dynamic> data =
+            documentSnapshot.data() as Map<String, dynamic>;
+        print(data['height']);
+        var usermodel = Usermodel(
+            fullName: data['fullName'],
+            age: data['age'],
+            email: data['email'],
+            password: data['password'],
+            height: data['height'],
+            isMale: data['isMale'],
+            weight: data['weight'],);
+            // usermodel.
+            // final s = usermodel.isMale ? 5 : -161;
+            // final bmrValue = ((10 * usermodel.weight) +
+            //                       (6.25 * usermodel.height) -
+            //                       (5 * usermodel.age) +
+            //                       s);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     late Usermodel usermodel;
-
-    final Stream<DocumentSnapshot<Map<String, dynamic>>> _userDocument =
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .snapshots();
-
-    // double bmrValue =
-    //     ? 66 +
-    //         (13.7 * UserDetails().usermodel.weight) +
-    //         (5 * UserDetails().usermodel.height) -
-    //         (6.8 * UserDetails().usermodel.age)
-    //     : 0.0;
+    double calcBMR () {
+      int s = usermodel.isMale ? 5 : -161;
+      return
+    }
     return Scaffold(
       backgroundColor: Color(0xffdbefe1),
       // appBar: AppBar(
@@ -160,14 +187,17 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => Get.to(() => BMI()),
+                          onTap: () async {
+                            Get.to(() => BMI());
+                          },
                           child: HomeMediumCard(
                             size: size,
                             theme: theme,
                             title: Text(
-                              "18",
-                              style: theme.headline3!
-                                  .apply(color: Color(0xffdbefe1)),
+                              '41.0',
+                              style: theme.headline3!.apply(
+                                color: Color(0xffdbefe1),
+                              ),
                             ),
                             subtitle: "BMI",
                             icon: Icon(
@@ -178,22 +208,55 @@ class HomeView extends StatelessWidget {
                             color: Color(0xff1d617A),
                           ),
                         ),
-                        HomeMediumCard(
-                          size: size,
-                          theme: theme,
-                          title: Text(
-                            '46.0',
-                            style: theme.headline3!
-                                .apply(color: Color(0xffdbefe1)),
-                          ),
-                          subtitle: "BMR",
-                          icon: Icon(
-                            LineIcons.poll,
-                            color: Colors.white,
-                          ),
-                          bgImage: 'images/HomeBG/Pedometer.jpeg',
-                          color: Color(0xff1d617A),
-                        ),
+                        // StreamBuilder<DocumentSnapshot>(
+                        //   // stream: _userDocument,
+                        //   stream: _userDocument,
+                        //   builder: (BuildContext context,
+                        //       AsyncSnapshot<DocumentSnapshot> snapshot) {
+                        //     if (snapshot.hasError) {
+                        //       return Text("Something went wrong");
+                        //     }
+
+                        //     if (snapshot.hasData && !snapshot.data!.exists) {
+                        //       return Text("Document does not exist");
+                        //     }
+
+                        //     if (snapshot.connectionState ==
+                        //         ConnectionState.active) {
+                        //       Usermodel usermodel = Usermodel(
+                        //         fullName: snapshot.data!.get('name'),
+                        //         age: snapshot.data!.get('age'),
+                        //         email: snapshot.data!.get('email'),
+                        //         password: "",
+                        //         height: snapshot.data!.get('height') / 1.0,
+                        //         weight: snapshot.data!.get('weight') / 1.0,
+                        //         isMale: snapshot.data!.get('isMale'),
+                        //       );
+                        //       final s = usermodel.isMale ? 5 : -161;
+                        //       final bmrValue = ((10 * usermodel.weight) +
+                        //           (6.25 * usermodel.height) -
+                        //           (5 * usermodel.age) +
+                        //           s);
+                        //       this.usermodel = usermodel;
+                              HomeMediumCard(
+                                size: size,
+                                theme: theme,
+                                title: Text(
+                                  style: theme.headline4!
+                                      .apply(color: Color(0xffdbefe1)),
+                                ),
+                                subtitle: "BMR",
+                                icon: Icon(
+                                  LineIcons.poll,
+                                  color: Colors.white,
+                                ),
+                                bgImage: 'images/HomeBG/Pedometer.jpeg',
+                                color: Color(0xff1d617A),
+                              ),
+                        //     }
+                        //     return CircularProgressIndicator();
+                        //   },
+                        // ),
                       ],
                     ),
                   ),
