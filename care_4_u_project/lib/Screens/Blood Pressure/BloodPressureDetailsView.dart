@@ -73,68 +73,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   }
 
   makeChart() {
-<<<<<<< HEAD
-    final size = MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
-    int? inputSysValue;
-    int? inputDiaValue;
-    return Column(
-      children: [
-        Flexible(
-          flex: 2,
-          child: SfCartesianChart(
-            plotAreaBorderColor: Colors.transparent,
-            enableAxisAnimation: true,
-            zoomPanBehavior: ZoomPanBehavior(
-                enablePanning: true,
-                zoomMode: ZoomMode.xy,
-                enablePinching: true),
-            legend: Legend(
-              isVisible: true,
-              position: LegendPosition.top,
-              alignment: ChartAlignment.center,
-            ),
-            series: <RangeColumnSeries>[
-              RangeColumnSeries<BloodPressureData, DateTime>(
-                color: Colors.blue,
-                spacing: 0.2,
-                width: 0.8,
-                name: 'Blood Pressure chart',
-                dataSource: bloodPressureData,
-                // markerSettings: MarkerSettings(
-                //   isVisible: true,
-                //   shape: DataMarkerType.circle,
-                // ),
-                onPointTap: (ChartPointDetails details) {
-                  int? index = details.pointIndex;
-                  Get.defaultDialog(
-                    title: 'BP Value',
-                    titleStyle: TextStyle(fontSize: 24),
-                    content: Column(
-                      children: [
-                        Text(
-                            'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
-                        ),
-                      ],
-                    ),
-                    barrierDismissible: true,
-                  );
-                },
-                xValueMapper: (BloodPressureData bpData, _) => bpData.date,
-                highValueMapper: (BloodPressureData bpData, _) =>
-                    bpData.sysValue,
-                lowValueMapper: (BloodPressureData bpData, _) =>
-                    bpData.diaValue,
-                dataLabelSettings: DataLabelSettings(isVisible: true),
-                // onRendererCreated: (ChartSeriesController controller) {
-                //   _chartSeriesController = controller;
-                // },
-=======
     return SfCartesianChart(
       plotAreaBorderColor: Colors.transparent,
       borderWidth: 0.1,
@@ -168,7 +106,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                     'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
                   ),
                 ],
->>>>>>> f3aebe8950b76ae91a69594ab22f09bd5efa8ed9
               ),
             ],
             primaryXAxis: DateTimeAxis(
@@ -306,8 +243,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           ),
         ),
       ],
-<<<<<<< HEAD
-=======
       primaryXAxis: DateTimeAxis(
         edgeLabelPlacement: EdgeLabelPlacement.shift,
         enableAutoIntervalOnZooming: true,
@@ -322,7 +257,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
         labelFormat: '{value}',
         majorGridLines: const MajorGridLines(width: 1),
       ),
->>>>>>> f3aebe8950b76ae91a69594ab22f09bd5efa8ed9
     );
   }
 }
