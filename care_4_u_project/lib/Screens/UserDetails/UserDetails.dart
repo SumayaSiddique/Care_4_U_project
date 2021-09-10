@@ -309,14 +309,24 @@ class BuildUserInfo extends StatelessWidget {
           ),
         ),
         SizedBox(height: 60),
-        Center(
-          child: Text(
-            "Name: " + usermodel.fullName,
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w800,
-              color: Color(0xff1d617A),
-            ),
+        Container(
+          color: Colors.white,
+          height: 40,
+          child: Row(
+            children: [
+              Icon(
+                Icons.person,
+                color: Color(0xff1d617A),
+              ),
+              Text(
+                usermodel.fullName,
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xff1d617A),
+                ),
+              ),
+            ],
           ),
         ),
         SizedBox(height: 20),
