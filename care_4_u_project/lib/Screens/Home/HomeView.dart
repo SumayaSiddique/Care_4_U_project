@@ -41,20 +41,14 @@ class _HomeViewState extends State<HomeView> {
             documentSnapshot.data() as Map<String, dynamic>;
         print(data['height']);
         usermodel = Usermodel(
-          fullName: data['fullName'],
+          fullName: data['name'],
           age: data['age'],
           email: data['email'],
-          password: data['password'],
+          password: '',
           height: data['height'],
           isMale: data['isMale'],
           weight: data['weight'],
         );
-        // usermodel.
-        // final s = usermodel.isMale ? 5 : -161;
-        // final bmrValue = ((10 * usermodel.weight) +
-        //                       (6.25 * usermodel.height) -
-        //                       (5 * usermodel.age) +
-        //                       s);
       }
     });
   }
@@ -98,8 +92,19 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: () async {
-                        await context.read<AuthService>().logOut();
+                      onPressed: () {
+                        //Todo: Implement notifications list
+                        Get.dialog(
+                          Scaffold(
+                            body: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Hello'),
+                              ],
+                            ),
+                          ),
+                          barrierDismissible: true,
+                        );
                       },
                       icon: Container(
                         height: 70,
@@ -239,7 +244,7 @@ class _HomeViewState extends State<HomeView> {
                           size: size,
                           theme: theme,
                           title: Text(
-                            '3412',
+                            '3124',
                             style: theme.headline4!.apply(
                               color: Color(0xffdbefe1),
                             ),

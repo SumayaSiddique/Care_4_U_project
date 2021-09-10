@@ -12,7 +12,16 @@ class WaterIntake extends StatefulWidget {
 
 class _WaterIntakeState extends State<WaterIntake> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final _addGoal = GlobalKey<FormState>();
+    int glassesDrank = 0;
+    int goal = 0;
+    double percentage = ((glassesDrank * 250) / goal) * 100;
     return Scaffold(
       backgroundColor: Color(0xffdbefe1),
       body: Column(
@@ -40,6 +49,102 @@ class _WaterIntakeState extends State<WaterIntake> {
                     fontSize: Get.textTheme.headline6!.fontSize,
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 2.0),
+                  child: TextButton(
+                    onPressed: () {
+                      Get.bottomSheet(
+                        SingleChildScrollView(
+                          child: Container(
+                            color: Colors.white,
+                            height: Get.height * 0.325,
+                            child: Form(
+                              key: _addGoal,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0),
+                                    child: Container(
+                                      height: 6,
+                                      width: 45,
+                                      decoration: BoxDecoration(
+                                        color: Colors.black38,
+                                        borderRadius: BorderRadius.circular(18),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Add a goal to drink water",
+                                    style: Get.textTheme.headline5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 5,
+                                      decoration: InputDecoration(
+                                        prefixIcon: Icon(Icons.add),
+                                        hintText:
+                                            'Add your daily water goal here',
+                                        fillColor: Colors.white38,
+                                        filled: true,
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black54,
+                                              width: 1.0),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                      ),
+                                      validator: (value) => value!.isEmpty
+                                          ? 'Please enter a value' +
+                                              ' for daily water goal'
+                                          : null,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          goal = int.parse(value);
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      if (_addGoal.currentState!.validate()) {
+                                        setState(() {
+                                          percentage = (glassesDrank * 250) /
+                                              (goal) *
+                                              100;
+                                        });
+                                      }
+                                    },
+                                    child: Text(
+                                      'Add Daily Water Goal',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w100,
+                                          color: Colors.white70),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        isDismissible: true,
+                      );
+                    },
+                    child: Text(
+                      'Set goal',
+                      style: TextStyle(
+                        fontSize: Get.textTheme.headline6!.fontSize,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -63,7 +168,7 @@ class _WaterIntakeState extends State<WaterIntake> {
                     height: 12.0,
                   ),
                   Text(
-                    "2500 ml",
+                    goal.toString(),
                     style: TextStyle(
                       fontSize: Get.textTheme.headline6!.fontSize,
                     ),
@@ -100,7 +205,7 @@ class _WaterIntakeState extends State<WaterIntake> {
           CircularPercentIndicator(
             radius: 200.0,
             lineWidth: 10.0,
-            percent: 0.8,
+            percent: percentage,
             animation: true,
             animationDuration: 1200,
             header: Padding(
@@ -118,7 +223,11 @@ class _WaterIntakeState extends State<WaterIntake> {
                 size: 25.0,
               ),
               color: Colors.blue,
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  print(glassesDrank);
+                });
+              },
             ),
             backgroundColor: Colors.grey,
             progressColor: Colors.blue,
