@@ -14,6 +14,9 @@ class UserSignUp {
         'height': usermodel.height,
         'isMale': usermodel.isMale,
         'createdOn': Timestamp.now(),
+        'drankOn': Timestamp.now(),
+        'goal': 8,
+        'drank': 1,
       },
     );
   }

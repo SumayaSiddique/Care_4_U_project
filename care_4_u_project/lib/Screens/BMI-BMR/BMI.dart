@@ -56,18 +56,10 @@ class _BMIState extends State<BMI> {
                     top: 12.0,
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
-                            onPressed: () {
-                              Get.back();
-                            },
-                          ),
-                        ],
-                      ),
+                      SizedBox(height: 50),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 8.0),
@@ -78,9 +70,7 @@ class _BMIState extends State<BMI> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 200,
-                      ),
+                      Spacer(),
                       Center(
                         child: Container(
                           color: Colors.white70,
@@ -180,6 +170,7 @@ class _BMIState extends State<BMI> {
                           ),
                         ),
                       ),
+                      Spacer(),
                     ],
                   ),
                 ),
