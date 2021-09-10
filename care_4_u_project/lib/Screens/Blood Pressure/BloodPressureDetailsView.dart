@@ -27,22 +27,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    Future addBPData(DateTime date, int sysValue, int diaValue) async {
-      return FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection('pressures')
-          .add({
-        'date': date,
-        'sysValue': sysValue,
-        'diaValue': diaValue,
-      });
-    }
-
-    final size = MediaQuery.of(context).size;
-=======
->>>>>>> f4b3c8d09c67204b2aef4a41b15b8a8a04d139fd
     // ChartSeriesController? _chartSeriesController;
     final _formKey = GlobalKey<FormState>();
     int? inputSysValue;
@@ -61,7 +45,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           },
         ),
       ),
-      backgroundColor: Color.fromRGBO(210, 246, 254, 1),
+      backgroundColor: Color(0xffdbefe1),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: _collectionReference,
         builder: (BuildContext context,
@@ -106,8 +90,8 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
       series: <RangeColumnSeries>[
         RangeColumnSeries<BloodPressureData, DateTime>(
           color: Colors.red,
-          spacing: 0.4,
-          width: 0.8,
+          // spacing: 0.4,
+          // width: 0.8,
           name: 'Blood Pressure chart',
           dataSource: bloodPressureData,
           onPointTap: (ChartPointDetails details) {
@@ -142,10 +126,10 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
       primaryXAxis: DateTimeAxis(
         edgeLabelPlacement: EdgeLabelPlacement.shift,
         enableAutoIntervalOnZooming: true,
-        dateFormat: DateFormat.Md(),
-        intervalType: DateTimeIntervalType.days,
+        dateFormat: DateFormat.Hm(),
+        intervalType: DateTimeIntervalType.hours,
         majorGridLines: const MajorGridLines(width: 0),
-        // desiredIntervals: 31,
+        desiredIntervals: 24,
         visibleMinimum: bloodPressureData[bloodPressureData.length - 2].date,
         visibleMaximum: bloodPressureData[bloodPressureData.length - 1].date,
       ),

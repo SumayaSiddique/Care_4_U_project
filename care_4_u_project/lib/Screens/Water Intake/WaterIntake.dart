@@ -14,6 +14,7 @@ class _WaterIntakeState extends State<WaterIntake> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffdbefe1),
       body: Column(
         children: [
           Padding(
