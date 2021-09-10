@@ -35,6 +35,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
         .snapshots();
 
     return Scaffold(
+        backgroundColor: Color(0xffdbefe1),
         appBar: AppBar(
           title: Text("Medicine Reminder"),
           actions: [
@@ -125,89 +126,129 @@ class _MedicineReminderCardState extends State<MedicineReminderCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Container(
-        height: 160,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              offset: Offset(4, 4),
-              blurRadius: 40,
-            )
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Row(
-            children: [
-              Lottie.asset(
-                'lottie/medicine.json',
-                width: Get.width / 3,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.medicineDatamodel.name,
-                    style: TextStyle(
-                      fontSize: Get.textTheme.headline6!.fontSize,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.clock,
-                        color: Colors.black54,
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "${formatTimeOfDay(widget.medicineDatamodel.time)}",
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Row(
-                    children: [
-                      if (widget.medicineDatamodel.beforeMeal)
-                        Container(
-                          height: 15,
-                          width: 15,
-                          decoration: BoxDecoration(
-                            color: Colors.green[400],
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Icon(
-                          FontAwesomeIcons.utensils,
-                          color: Colors.black54,
-                        ),
-                      ),
-                      if (!widget.medicineDatamodel.beforeMeal)
-                        Container(
-                          height: 15,
-                          width: 15,
-                          decoration: BoxDecoration(
-                            color: Colors.green[400],
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                    ],
-                  )
-                ],
-              ),
+      child: SafeArea(
+        child: Container(
+          height: 140,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                offset: Offset(4, 4),
+                blurRadius: 40,
+              )
             ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              children: [
+                // ClipRRect(
+                //   // borderRadius: BorderRadius.circular(200),
+                //   child: Image(
+                //     image: AssetImage("images/medicine.jpg"),
+                //     width: Get.width / 2,
+                //   ),
+                // ),
+
+                // Lottie.asset(
+                //   'lottie/medicine.json',
+                //   width: Get.width / 3,
+                // ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 8,
+                        ),
+                        FaIcon(
+                          FontAwesomeIcons.pills,
+                          color: Color(0xff52b69a),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          widget.medicineDatamodel.name,
+                          style: TextStyle(
+                            fontSize: Get.textTheme.headline6!.fontSize,
+                            color: Color(0xff1d617A),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Icon(
+                          FontAwesomeIcons.clock,
+                          color: Color(0xff1d617A),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "${formatTimeOfDay(widget.medicineDatamodel.time)}",
+                          style: TextStyle(
+                            fontSize: Get.textTheme.headline6!.fontSize,
+                            color: Color(0xff1d617A),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 8,
+                        ),
+                        if (widget.medicineDatamodel.beforeMeal)
+                          Container(
+                            height: 15,
+                            width: 15,
+                            decoration: BoxDecoration(
+                              color: Colors.green[400],
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Icon(
+                            FontAwesomeIcons.utensils,
+                            color: Color(0xff1d617A),
+                          ),
+                        ),
+                        // SizedBox(
+                        //   width: 8,
+                        // ),
+                        if (!widget.medicineDatamodel.beforeMeal)
+                          Container(
+                            height: 15,
+                            width: 15,
+                            decoration: BoxDecoration(
+                              color: Colors.green[400],
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
