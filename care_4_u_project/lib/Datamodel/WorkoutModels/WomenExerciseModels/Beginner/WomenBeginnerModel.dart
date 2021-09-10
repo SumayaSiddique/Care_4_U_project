@@ -13,13 +13,13 @@ List<Program> womenBeginnerPrograms = [
         exercises: [
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -27,13 +27,13 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: 'triceps dips ',
-            description: '   Find a stable chair, bench, or step.   ' +
-                '   1.	Sit on the edge of the chair and grip the edge next to your hips. Your fingers should be pointed at your feet. Your legs are extended and your feet should be about hip-width apart with the heels touching the ground. Look straight ahead with your chin up.  ' +
-                '   2.	Press into your palms to lift your body and slide forward just far enough that your behind clears the edge of the chair.  ' +
-                '   3.	Lower yourself until your elbows are bent between 45 and 90 degrees.  ' +
-                '   4.	Slowly push yourself back up to the start position and repeat. Control the movement throughout the range of motion.  ' +
-                '   5.	Begin with 3 sets of 10 repetitions and increase your sets and reps over several weeks as you build muscle and strength in your triceps.  ' +
-                '    ',
+            description: 'Find a stable chair, bench, or step.   ' +
+                '1.	Sit on the edge of the chair and grip the edge next to your hips. Your fingers should be pointed at your feet. Your legs are extended and your feet should be about hip-width apart with the heels touching the ground. Look straight ahead with your chin up.  ' +
+                '2.	Press into your palms to lift your body and slide forward just far enough that your behind clears the edge of the chair.  ' +
+                '3.	Lower yourself until your elbows are bent between 45 and 90 degrees.  ' +
+                '4.	Slowly push yourself back up to the start position and repeat. Control the movement throughout the range of motion.  ' +
+                '5.	Begin with 3 sets of 10 repetitions and increase your sets and reps over several weeks as you build muscle and strength in your triceps.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/tricepsDips.jpg',
             gif: 'https://i.ibb.co/tQJYrTd/triceps-Dips.gif',
@@ -41,12 +41,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: 'Lunges',
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/lunges.jpg',
             gif: 'https://i.ibb.co/XjqhY1x/lunges.gif',
@@ -55,11 +55,11 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'sit ups ',
             description:
-                '   Lie faceup on the floor with your knees bent and feet flat.  ' +
-                    '   Stack your forearms in front of your chest.  ' +
-                    '   Now raise your torso to a sitting position in one fluid movement.  ' +
-                    '   Slowly lower your torso back to the starting position.  ' +
-                    '    ',
+                'Lie faceup on the floor with your knees bent and feet flat.  ' +
+                    'Stack your forearms in front of your chest.  ' +
+                    'Now raise your torso to a sitting position in one fluid movement.  ' +
+                    'Slowly lower your torso back to the starting position.  ' +
+                    ' ',
             time: '1 min',
             image: 'img/AllImageData/sitUps.jpg',
             gif: 'https://i.ibb.co/87VYG9s/sit-ups.gif',
@@ -76,10 +76,10 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'Burpees ',
             description:
-                '   1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
-                    '   2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
-                    '   3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
-                    '    ',
+                '1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
+                    '2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
+                    '3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
+                    ' ',
             time: '5',
             image: 'img/AllImageData/burpees.jpg',
             gif: 'img/gifs/burpees.gif',
@@ -99,13 +99,13 @@ List<Program> womenBeginnerPrograms = [
         exercises: [
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '20',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -149,10 +149,10 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'Burpees ',
             description:
-                '   1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
-                    '   2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
-                    '   3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
-                    '    ',
+                '1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
+                    '2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
+                    '3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
+                    ' ',
             time: '5',
             image: 'img/AllImageData/burpees.jpg',
             gif: 'img/gifs/burpees.gif',
@@ -181,13 +181,13 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '20',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -203,12 +203,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "15",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
@@ -253,13 +253,13 @@ List<Program> womenBeginnerPrograms = [
         exercises: [
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -277,10 +277,10 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'Burpees ',
             description:
-                '   1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
-                    '   2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
-                    '   3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
-                    '    ',
+                '1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
+                    '2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
+                    '3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
+                    ' ',
             time: '5',
             image: 'img/AllImageData/burpees.jpg',
             gif: 'img/gifs/burpees.gif',
@@ -288,11 +288,11 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'sit ups ',
             description:
-                '   Lie faceup on the floor with your knees bent and feet flat.  ' +
-                    '   Stack your forearms in front of your chest.  ' +
-                    '   Now raise your torso to a sitting position in one fluid movement.  ' +
-                    '   Slowly lower your torso back to the starting position.  ' +
-                    '    ',
+                'Lie faceup on the floor with your knees bent and feet flat.  ' +
+                    'Stack your forearms in front of your chest.  ' +
+                    'Now raise your torso to a sitting position in one fluid movement.  ' +
+                    'Slowly lower your torso back to the starting position.  ' +
+                    ' ',
             time: '1 min',
             image: 'img/AllImageData/sitUps.jpg',
             gif: 'https://i.ibb.co/87VYG9s/sit-ups.gif',
@@ -300,12 +300,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "6",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
@@ -314,10 +314,10 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'Burpees ',
             description:
-                '   1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
-                    '   2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
-                    '   3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
-                    '    ',
+                '1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
+                    '2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
+                    '3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
+                    ' ',
             time: '5',
             image: 'img/AllImageData/burpees.jpg',
             gif: 'img/gifs/burpees.gif',
@@ -353,13 +353,13 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -376,12 +376,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "6",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
@@ -389,12 +389,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: 'mountain climber ',
-            description: '   1.	Get into a plank position, making sure to distribute your weight evenly between your hands and your toes.  ' +
-                '   2.	Check your form—your hands should be about shoulder-width apart, back flat, abs engaged, and head in alignment.  ' +
-                '   3.	Pull your right knee into your chest as far as you can.  ' +
-                '   4.	Switch legs, pulling one knee out and bringing the other knee in.  ' +
-                '   5.	Keep your hips down, run your knees in and out as far and as fast as you can. Alternate inhaling and exhaling with each leg change.  ' +
-                '    ',
+            description: '1.	Get into a plank position, making sure to distribute your weight evenly between your hands and your toes.  ' +
+                '2.	Check your form—your hands should be about shoulder-width apart, back flat, abs engaged, and head in alignment.  ' +
+                '3.	Pull your right knee into your chest as far as you can.  ' +
+                '4.	Switch legs, pulling one knee out and bringing the other knee in.  ' +
+                '5.	Keep your hips down, run your knees in and out as far and as fast as you can. Alternate inhaling and exhaling with each leg change.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/mountainClimber.jpg',
             gif: 'https://i.ibb.co/QjwgZdz/mountain-Climber.gif',
@@ -442,22 +442,22 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'Burpees ',
             description:
-                '   1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
-                    '   2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
-                    '   3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
-                    '    ',
+                '1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
+                    '2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
+                    '3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
+                    ' ',
             time: '5',
             image: 'img/AllImageData/burpees.jpg',
             gif: 'img/gifs/burpees.gif',
           ),
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "6",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
@@ -465,13 +465,13 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -498,13 +498,13 @@ List<Program> womenBeginnerPrograms = [
         exercises: [
           ExerciseModel(
             title: 'Squats',
-            description: '   Here\'s a primer on how exactly to do the perfect squat.  ' +
-                '   1.	Stand facing forward with your chest up.  ' +
-                '   2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
-                '   3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
-                '   4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
-                '   5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
-                '    ',
+            description: 'Here\'s a primer on how exactly to do the perfect squat.  ' +
+                '1.	Stand facing forward with your chest up.  ' +
+                '2.	Place your feet shoulder-width apart or slightly wider. Extend your hands straight out in front of you to help keep your balance. You can also hold your hands at chest level or place them behind your head.  ' +
+                '3.	Bend at your knees and hips, sticking your butt out like you\'re sitting into an imaginary chair. Keep your chest lifted and your spine neutral, and do not let your lower back round.  ' +
+                '4.	Squat down as low as you can, keeping your head and chest lifted. Keep your knees over your ankles and press your weight back into your heels.  ' +
+                '5.	Keep your body tight, and push through your heels to bring yourself back to the starting position. This is one rep.  ' +
+                ' ',
             time: '1 min',
             image: 'img/AllImageData/squats.jpg',
             gif: 'https://i.ibb.co/BKZWPQz/squats.gif',
@@ -529,12 +529,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "10",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
@@ -552,10 +552,10 @@ List<Program> womenBeginnerPrograms = [
           ExerciseModel(
             title: 'Burpees ',
             description:
-                '   1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
-                    '   2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
-                    '   3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
-                    '    ',
+                '1.	Start laying flat with your chest on the floor, your legs straight behind you and your hands palms down outside of your shoulders in a press up stance.  ' +
+                    '2.	From there, push yourself up and tuck your feet underneath your body. Immediately jump up and touch your hands over your head.  ' +
+                    '3.	As soon as you land, return to the first position with your chest on the ground and your legs straight. And repeat.  ' +
+                    ' ',
             time: '5',
             image: 'img/AllImageData/burpees.jpg',
             gif: 'img/gifs/burpees.gif',
@@ -641,12 +641,12 @@ List<Program> womenBeginnerPrograms = [
         exercises: [
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "10",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
@@ -672,12 +672,12 @@ List<Program> womenBeginnerPrograms = [
           ),
           ExerciseModel(
             title: "Lunges",
-            description: '   To correctly do a lunge:  ' +
-                '   1.	Start by standing up tall.  ' +
-                '   2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
-                '   3.	Lift your front lunging leg to return to the starting position.  ' +
-                '   4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
-                '    ',
+            description: 'To correctly do a lunge:  ' +
+                '1.	Start by standing up tall.  ' +
+                '2.	Step forward with one foot until your leg reaches a 90-degree angle. Your rear knee should remain parallel to the ground and your front knee shouldn’t go beyond your toes.  ' +
+                '3.	Lift your front lunging leg to return to the starting position.  ' +
+                '4.	Repeat 10 to 12 reps on one leg, or switch off between legs until you’ve totaled 10 to 12 reps per leg.   ' +
+                ' ',
             time: "10",
             image: "img/AllImageData/lunges.jpg",
             gif: "https://i.ibb.co/XjqhY1x/lunges.gif",
