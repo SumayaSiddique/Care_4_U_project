@@ -308,21 +308,97 @@ class BuildUserInfo extends StatelessWidget {
             height: 200,
           ),
         ),
-        SizedBox(height: 60),
+        SizedBox(height: 20),
+        Text(
+          "Name",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
+            color: Color(0xff1d617A),
+          ),
+        ),
+        SizedBox(height: 6),
         Container(
-          color: Colors.white,
-          height: 40,
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Center(
+            child: Row(
+              children: [
+                SizedBox(width: 7),
+                Text(
+                  usermodel.fullName,
+                  style: TextStyle(
+                    fontSize: 22,
+                    // fontWeight: FontWeight.w700,
+                    color: Color(0xff1d617A),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+        Text(
+          "Age",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
+            color: Color(0xff1d617A),
+          ),
+        ),
+        SizedBox(height: 6),
+        Container(
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Center(
+            child: Row(
+              children: [
+                SizedBox(width: 7),
+                Text(
+                  "${usermodel.age}",
+                  style: TextStyle(
+                    fontSize: 22,
+                    // fontWeight: FontWeight.w700,
+                    color: Color(0xff1d617A),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+        Text(
+          "Email",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
+            color: Color(0xff1d617A),
+          ),
+        ),
+        SizedBox(height: 6),
+        Container(
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6),
+          ),
           child: Row(
             children: [
-              Icon(
-                Icons.person,
-                color: Color(0xff1d617A),
-              ),
+              SizedBox(width: 7),
               Text(
-                usermodel.fullName,
+                usermodel.email,
                 style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 22,
+                  // fontWeight: FontWeight.w700,
                   color: Color(0xff1d617A),
                 ),
               ),
@@ -330,56 +406,84 @@ class BuildUserInfo extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20),
-        Center(
-          child: Text(
-            "Age :${usermodel.age}",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w800,
-              color: Color(0xff1d617A),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Height",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                    color: Color(0xff1d617A),
+                  ),
+                ),
+                SizedBox(height: 6),
+                Container(
+                  height: 60,
+                  width: (Get.width / 2) - 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Center(
+                    child: Text(
+                      usermodel.height.toString() + " cm",
+                      style: TextStyle(
+                        fontSize: 22,
+                        // fontWeight: FontWeight.w700,
+                        color: Color(0xff1d617A),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Weight",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                    color: Color(0xff1d617A),
+                  ),
+                ),
+                SizedBox(height: 6),
+                Container(
+                  height: 60,
+                  width: (Get.width / 2) - 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Center(
+                    child: Text(
+                      usermodel.weight.toString() + " KG",
+                      style: TextStyle(
+                        fontSize: 22,
+                        // fontWeight: FontWeight.w700,
+                        color: Color(0xff1d617A),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         SizedBox(height: 20),
-        Center(
-          child: Text(
-            "Email: " + usermodel.email,
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w800,
-              color: Color(0xff1d617A),
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-        Center(
-          child: Text(
-            "Height: " +
-                usermodel.height.toString() +
-                " cm" +
-                "|" +
-                "Weight: " +
-                usermodel.weight.toString() +
-                " KG",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w800,
-              color: Color(0xff1d617A),
-            ),
-          ),
-        ),
-        // Text("Weight: " + usermodel.weight.toString() + " KG"),
-        SizedBox(height: 20),
-        Center(
-          child: Text(
-            usermodel.isMale ? "Gender: Male" : "Gender: Female",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w800,
-              color: Color(0xff1d617A),
-            ),
-          ),
-        ),
+        // Text(
+        //   usermodel.isMale ? "Gender: Male" : "Gender: Female",
+        //   style: TextStyle(
+        //     fontSize: 25,
+        //     fontWeight: FontWeight.w800,
+        //     color: Color(0xff1d617A),
+        //   ),
+        // ),
       ],
     );
   }
