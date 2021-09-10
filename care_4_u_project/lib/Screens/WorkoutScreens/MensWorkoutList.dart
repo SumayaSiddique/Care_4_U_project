@@ -153,70 +153,63 @@ class WorkoutDetailBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: Get.height / 2.5,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: Colors.white,
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(18.0),
-                topRight: Radius.circular(18.0),
-              ),
-              child: Image(
-                image: AssetImage(workout.image!),
-              ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(18.0),
+              topRight: Radius.circular(18.0),
             ),
-            SizedBox(
-              height: 20.0,
+            child: Image(
+              image: AssetImage(workout.image!),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Center(
-                child: Text(
-                  workout.title!.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: Get.textTheme.headline5!.fontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Center(
               child: Text(
-                'Duration: ' + workout.time!,
+                workout.title!.toUpperCase(),
                 style: TextStyle(
-                  fontSize: Get.textTheme.headline6!.fontSize,
+                  fontSize: Get.textTheme.headline5!.fontSize,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(
-              height: 12.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                workout.description!,
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: Get.textTheme.headline6!.fontSize,
-                ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Duration: ' + workout.time!,
+              style: TextStyle(
+                fontSize: Get.textTheme.headline6!.fontSize,
               ),
             ),
-            SizedBox(
-              height: 20,
+          ),
+          SizedBox(
+            height: 12.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              workout.description!,
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                fontSize: Get.textTheme.headline6!.fontSize,
+              ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+        ],
       ),
     );
   }
@@ -228,75 +221,68 @@ class WorkoutList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: Colors.white,
-      ),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: data.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                Get.bottomSheet(
-                  WorkoutDetailBottomSheet(
-                    workout: data[index],
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: data.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+          child: GestureDetector(
+            onTap: () {
+              Get.bottomSheet(
+                WorkoutDetailBottomSheet(
+                  workout: data[index],
+                ),
+                isScrollControlled: true,
+              );
+            },
+            child: Container(
+              height: 160,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Lottie.asset(
+                      'lottie/men-exercise.json',
+                      width: Get.width / 5,
+                    ),
                   ),
-                  isScrollControlled: true,
-                );
-              },
-              child: Container(
-                height: 160,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Lottie.asset(
-                        'lottie/men-exercise.json',
-                        width: Get.width / 5,
-                      ),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          data[index].title!.toUpperCase(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 18),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(
+                          data[index].description!.substring(0, 20) + '....',
+                        ),
+                      ],
                     ),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            data[index].title!.toUpperCase(),
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Text(
-                            data[index].description!.substring(0, 20) + '....',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18.0),
-                  color: Colors.grey[100],
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
-                      offset: Offset(4, 4),
-                      blurRadius: 8.0,
-                    )
-                  ],
-                ),
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18.0),
+                color: Colors.grey[100],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.4),
+                    offset: Offset(4, 4),
+                    blurRadius: 8.0,
+                  )
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
