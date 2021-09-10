@@ -120,7 +120,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               FastLineSeries<DiabetesData, DateTime>(
                 name: 'Diabetes chart',
                 // width: 5.0,
-                color: Colors.red,
+                color: Colors.orange,
                 dataSource: diabetesData,
                 yValueMapper: (DiabetesData diabetesData, _) =>
                     diabetesData.value,
@@ -221,9 +221,10 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                                 fillColor: Colors.white38,
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black54, width: 1.0),
-                                    borderRadius: BorderRadius.circular(25.0)),
+                                  borderSide: BorderSide(
+                                      color: Colors.black54, width: 1.0),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
                               ),
                               validator: (value) => value!.isEmpty
                                   ? 'Please enter a value' + ' for diabetes'
