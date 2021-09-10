@@ -54,7 +54,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
               Navigator.of(context).pop();
             },
           )),
-      backgroundColor: Color(0xffdbefe1),
+      backgroundColor: Colors.white,
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: _collectionReference,
         builder: (BuildContext context,
@@ -104,68 +104,69 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
     double? inputValue;
     return Column(
       children: [
-        Flexible(
-          flex: 2,
-          child: SfCartesianChart(
-            plotAreaBorderColor: Colors.transparent,
-            zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
-            legend: Legend(
-              isVisible: true,
-              alignment: ChartAlignment.center,
-              position: LegendPosition.top,
+        SfCartesianChart(
+          plotAreaBorderColor: Colors.transparent,
+          zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+          legend: Legend(
+            isVisible: true,
+            alignment: ChartAlignment.center,
+            position: LegendPosition.top,
+          ),
+          // tooltipBehavior: _tooltipBehavior,
+          enableAxisAnimation: true,
+          series: <ChartSeries>[
+            FastLineSeries<DiabetesData, DateTime>(
+              name: 'Diabetes chart',
+              width: 3.0,
+              color: Colors.orange,
+              // gradient: LinearGradient(
+              //     begin: Alignment.topLeft,
+              //     end: Alignment.bottomRight,
+              //     colors: [Color(0xff9FACE6), Color(0xff74EBD5)]),
+
+              dataSource: diabetesData,
+              yValueMapper: (DiabetesData diabetesData, _) =>
+                  diabetesData.value,
+              xValueMapper: (DiabetesData diabetesData, _) => diabetesData.date,
+              dataLabelSettings: DataLabelSettings(isVisible: true),
+              onPointTap: (ChartPointDetails details) {
+                int? index = details.pointIndex;
+                Get.defaultDialog(
+                  title: 'Diabetes Value',
+                  titleStyle: TextStyle(fontSize: 24),
+                  content: Column(
+                    children: [
+                      Text(
+                          'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        'Diabetes Value: ${details.dataPoints![index.toInt()].y}',
+                      ),
+                    ],
+                  ),
+                  barrierDismissible: true,
+                );
+              },
+              // enableTooltip: true,
+              // onRendererCreated: (ChartSeriesController controller) {
+              //   _chartSeriesController = controller;
+              // },
             ),
-            // tooltipBehavior: _tooltipBehavior,
-            enableAxisAnimation: true,
-            series: <ChartSeries>[
-              FastLineSeries<DiabetesData, DateTime>(
-                name: 'Diabetes chart',
-                // width: 5.0,
-                color: Colors.orange,
-                dataSource: diabetesData,
-                yValueMapper: (DiabetesData diabetesData, _) =>
-                    diabetesData.value,
-                xValueMapper: (DiabetesData diabetesData, _) =>
-                    diabetesData.date,
-                dataLabelSettings: DataLabelSettings(isVisible: true),
-                onPointTap: (ChartPointDetails details) {
-                  int? index = details.pointIndex;
-                  Get.defaultDialog(
-                    title: 'Diabetes Value',
-                    titleStyle: TextStyle(fontSize: 24),
-                    content: Column(
-                      children: [
-                        Text(
-                            'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(
-                          'Diabetes Value: ${details.dataPoints![index.toInt()].y}',
-                        ),
-                      ],
-                    ),
-                    barrierDismissible: true,
-                  );
-                },
-                // enableTooltip: true,
-                // onRendererCreated: (ChartSeriesController controller) {
-                //   _chartSeriesController = controller;
-                // },
-              ),
-            ],
-            primaryXAxis: DateTimeAxis(
-              edgeLabelPlacement: EdgeLabelPlacement.shift,
-              dateFormat: DateFormat.Hm(),
-              intervalType: DateTimeIntervalType.hours,
-              majorGridLines: const MajorGridLines(width: 0),
-              desiredIntervals: 24,
-              visibleMinimum: diabetesData[diabetesData.length - 2].date,
-              visibleMaximum: diabetesData[diabetesData.length - 1].date,
-            ),
-            primaryYAxis: NumericAxis(
-              labelFormat: '{value}',
-              majorGridLines: const MajorGridLines(width: 0),
-            ),
+          ],
+          primaryXAxis: DateTimeAxis(
+            edgeLabelPlacement: EdgeLabelPlacement.shift,
+            dateFormat: DateFormat.Hm(),
+            intervalType: DateTimeIntervalType.hours,
+            majorGridLines: const MajorGridLines(width: 0),
+            desiredIntervals: 24,
+            visibleMinimum: diabetesData[diabetesData.length - 2].date,
+            visibleMaximum: diabetesData[diabetesData.length - 1].date,
+          ),
+          primaryYAxis: NumericAxis(
+            labelFormat: '{value}',
+            majorGridLines: const MajorGridLines(width: 1.0),
           ),
         ),
         Padding(
