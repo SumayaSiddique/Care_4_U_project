@@ -6,10 +6,6 @@ String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
 }
 
-void main() {
-  runApp(ExerciseScreen());
-}
-
 class ExerciseScreen extends StatefulWidget {
   @override
   _ExerciseScreenState createState() => _ExerciseScreenState();

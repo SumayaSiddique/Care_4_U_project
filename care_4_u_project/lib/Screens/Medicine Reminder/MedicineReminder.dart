@@ -1,13 +1,11 @@
 import 'package:care_4_u_project/Datamodel/MedicineDatamodel/MedicineDatamodel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/MedicineReminder/MedicineReminderFirestoreManager.dart';
-import 'package:care_4_u_project/Services/Notifications/NotificationAPI.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
 
 class MedicineReminder extends StatefulWidget {
@@ -25,7 +23,6 @@ class _MedicineReminderState extends State<MedicineReminder> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final textTheme = Theme.of(context).textTheme;
 
     final Stream<QuerySnapshot> _medicineCollections = FirebaseFirestore
         .instance
