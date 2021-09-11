@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:care_4_u_project/Datamodel/BloodPressureModel/BloodPressureModel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/Pressure/PressureFirestoreManager.dart';
 // import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
@@ -8,6 +10,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class BloodPressureDetailsView extends StatefulWidget {
   const BloodPressureDetailsView({Key? key}) : super(key: key);
@@ -92,102 +96,105 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
             ),
             Padding(
               padding: EdgeInsets.only(right: Get.width / 35),
-              child: Screenshot(
-                controller: screenshotController,
-                child: Text(
-                  "Blood Pressure Chart",
-                  style: TextStyle(
-                      fontSize: Get.textTheme.headline4!.fontSize,
-                      color: Color(0xff1d617A),
-                      fontWeight: FontWeight.w700),
-                ),
+              child: Text(
+                "Blood Pressure Chart",
+                style: TextStyle(
+                    fontSize: Get.textTheme.headline4!.fontSize,
+                    color: Color(0xff1d617A),
+                    fontWeight: FontWeight.w700),
               ),
             ),
+            Spacer(),
             IconButton(
               onPressed: () {
-                // screenshotController.capture().then((Uint8List? image) {
-                //   saveImage(image!);
-                // }).catchError(
-                //   (onError) {
-                //     print(onError);
-                //   },
-                // );
+                screenshotController.capture().then((Uint8List? image) {
+                  saveImage(image!);
+                  Get.snackbar("Chart Image", "Captured Successful",
+                      snackPosition: SnackPosition.BOTTOM);
+                }).catchError(
+                  (onError) {
+                    print(onError);
+                  },
+                );
               },
               icon: Icon(
-                Icons.picture_as_pdf,
+                Icons.camera,
                 color: Color(0xff1d617A),
               ),
             ),
           ],
         ),
         Spacer(),
-        SfCartesianChart(
-          plotAreaBorderColor: Colors.transparent,
-          borderWidth: 0.1,
-          enableAxisAnimation: true,
-          zoomPanBehavior:
-              ZoomPanBehavior(enablePanning: true, enablePinching: true),
-          legend: Legend(
-            isVisible: false,
-            position: LegendPosition.top,
-            alignment: ChartAlignment.center,
-          ),
-          series: <RangeColumnSeries>[
-            RangeColumnSeries<BloodPressureData, DateTime>(
-              borderRadius: BorderRadius.circular(4),
-              // color: Color(0xff1d617A),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Color(0xff9FACE6), Color(0xff74EBD5)],
-              ),
-              name: '',
-              dataSource: bloodPressureData,
-              xValueMapper: (BloodPressureData bloodPressureData, _) =>
-                  bloodPressureData.date,
-              highValueMapper: (BloodPressureData bloodPressureData, _) =>
-                  bloodPressureData.sysValue,
-              lowValueMapper: (BloodPressureData bloodPressureData, _) =>
-                  bloodPressureData.diaValue,
-              dataLabelSettings: DataLabelSettings(
-                isVisible: true,
-                labelPosition: ChartDataLabelPosition.outside,
-              ),
-              onPointTap: (ChartPointDetails details) {
-                int? index = details.pointIndex;
-                Get.defaultDialog(
-                  title: 'BP Value',
-                  titleStyle: TextStyle(fontSize: 24),
-                  content: Column(
-                    children: [
-                      Text(
-                          'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Text(
-                        'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
-                      ),
-                    ],
-                  ),
-                );
-              },
+        Screenshot(
+          controller: screenshotController,
+          child: SfCartesianChart(
+            plotAreaBorderColor: Colors.transparent,
+            borderWidth: 0.1,
+            enableAxisAnimation: true,
+            zoomPanBehavior:
+                ZoomPanBehavior(enablePanning: true, enablePinching: true),
+            legend: Legend(
+              isVisible: false,
+              position: LegendPosition.top,
+              alignment: ChartAlignment.center,
             ),
-          ],
-          primaryXAxis: DateTimeAxis(
-            edgeLabelPlacement: EdgeLabelPlacement.shift,
-            majorGridLines: const MajorGridLines(width: 0),
-            dateFormat: DateFormat.Md(),
-            intervalType: DateTimeIntervalType.days,
-            desiredIntervals: 7,
-            visibleMinimum: bloodPressureData[0].date,
-            visibleMaximum:
-                bloodPressureData[bloodPressureData.length - 1].date,
-          ),
-          primaryYAxis: NumericAxis(
-            edgeLabelPlacement: EdgeLabelPlacement.shift,
-            labelFormat: '{value}',
-            majorGridLines: const MajorGridLines(width: 1.0),
+            series: <RangeColumnSeries>[
+              RangeColumnSeries<BloodPressureData, DateTime>(
+                borderRadius: BorderRadius.circular(4),
+                // color: Color(0xff1d617A),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xff9FACE6), Color(0xff74EBD5)],
+                ),
+                name: '',
+                dataSource: bloodPressureData,
+                xValueMapper: (BloodPressureData bloodPressureData, _) =>
+                    bloodPressureData.date,
+                highValueMapper: (BloodPressureData bloodPressureData, _) =>
+                    bloodPressureData.sysValue,
+                lowValueMapper: (BloodPressureData bloodPressureData, _) =>
+                    bloodPressureData.diaValue,
+                dataLabelSettings: DataLabelSettings(
+                  isVisible: true,
+                  labelPosition: ChartDataLabelPosition.outside,
+                ),
+                onPointTap: (ChartPointDetails details) {
+                  int? index = details.pointIndex;
+                  Get.defaultDialog(
+                    title: 'BP Value',
+                    titleStyle: TextStyle(fontSize: 24),
+                    content: Column(
+                      children: [
+                        Text(
+                            'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          'Systolic/Diastolic: ${details.dataPoints![index.toInt()].high}/${details.dataPoints![index.toInt()].low}',
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
+            primaryXAxis: DateTimeAxis(
+              edgeLabelPlacement: EdgeLabelPlacement.shift,
+              majorGridLines: const MajorGridLines(width: 0),
+              dateFormat: DateFormat.Md(),
+              intervalType: DateTimeIntervalType.days,
+              desiredIntervals: 7,
+              visibleMinimum: bloodPressureData[0].date,
+              visibleMaximum:
+                  bloodPressureData[bloodPressureData.length - 1].date,
+            ),
+            primaryYAxis: NumericAxis(
+              edgeLabelPlacement: EdgeLabelPlacement.shift,
+              labelFormat: '{value}',
+              majorGridLines: const MajorGridLines(width: 1.0),
+            ),
           ),
         ),
         Padding(
@@ -344,4 +351,15 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
       ],
     );
   }
+}
+
+Future<String?> saveImage(Uint8List bytes) async {
+  await [Permission.storage].request();
+  final time = DateTime.now()
+      .toIso8601String()
+      .replaceAll('.', '_')
+      .replaceAll(':', '_');
+  final String name = 'chartScreenshot_$time';
+  final result = await ImageGallerySaver.saveImage(bytes, name: name);
+  return result['filePath'];
 }

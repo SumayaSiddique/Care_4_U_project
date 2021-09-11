@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:care_4_u_project/Datamodel/DiabetesModel/DiabetesModel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/Diabetes/DiabetesFirestoreManager.dart';
+import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
 // import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -84,21 +85,21 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
             ),
             Padding(
               padding: EdgeInsets.only(right: Get.width / 20),
-              child: Screenshot(
-                controller: screenshotController,
-                child: Text(
-                  "Blood Glucose Chart",
-                  style: TextStyle(
-                      fontSize: Get.textTheme.headline4!.fontSize,
-                      color: Color(0xff1d617A),
-                      fontWeight: FontWeight.w700),
-                ),
+              child: Text(
+                "Blood Glucose Chart",
+                style: TextStyle(
+                    fontSize: Get.textTheme.headline4!.fontSize,
+                    color: Color(0xff1d617A),
+                    fontWeight: FontWeight.w700),
               ),
             ),
+            Spacer(),
             IconButton(
               onPressed: () {
                 screenshotController.capture().then((Uint8List? image) {
                   saveImage(image!);
+                  Get.snackbar("Chart Image", "Captured Successful",
+                      snackPosition: SnackPosition.BOTTOM);
                 }).catchError(
                   (onError) {
                     print(onError);
@@ -106,69 +107,73 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                 );
               },
               icon: Icon(
-                Icons.picture_as_pdf,
+                Icons.camera,
                 color: Color(0xff1d617A),
               ),
             ),
           ],
         ),
         SizedBox(height: 100),
-        SfCartesianChart(
-          plotAreaBorderColor: Colors.transparent,
-          zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
-          legend: Legend(
-            isVisible: false,
-            alignment: ChartAlignment.center,
-            position: LegendPosition.top,
-          ),
-          enableAxisAnimation: true,
-          series: <ChartSeries>[
-            FastLineSeries<DiabetesData, DateTime>(
-              name: 'Diabetes chart',
-              width: 3.0,
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Colors.redAccent, Colors.blue]),
-              dataSource: diabetesData,
-              yValueMapper: (DiabetesData diabetesData, _) =>
-                  diabetesData.value,
-              xValueMapper: (DiabetesData diabetesData, _) => diabetesData.date,
-              dataLabelSettings: DataLabelSettings(isVisible: true),
-              onPointTap: (ChartPointDetails details) {
-                int? index = details.pointIndex;
-                Get.defaultDialog(
-                  title: 'Diabetes Value',
-                  titleStyle: TextStyle(fontSize: 24),
-                  content: Column(
-                    children: [
-                      Text(
-                          'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Text(
-                        'Diabetes Value: ${details.dataPoints![index.toInt()].y}',
-                      ),
-                    ],
-                  ),
-                  barrierDismissible: true,
-                );
-              },
+        Screenshot(
+          controller: screenshotController,
+          child: SfCartesianChart(
+            plotAreaBorderColor: Colors.transparent,
+            zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+            legend: Legend(
+              isVisible: false,
+              alignment: ChartAlignment.center,
+              position: LegendPosition.top,
             ),
-          ],
-          primaryXAxis: DateTimeAxis(
-            edgeLabelPlacement: EdgeLabelPlacement.shift,
-            majorGridLines: const MajorGridLines(width: 0),
-            dateFormat: DateFormat.Md(),
-            intervalType: DateTimeIntervalType.days,
-            desiredIntervals: 7,
-            visibleMinimum: diabetesData[0].date,
-            visibleMaximum: diabetesData[diabetesData.length - 1].date,
-          ),
-          primaryYAxis: NumericAxis(
-            // labelFormat: '{value}',
-            majorGridLines: const MajorGridLines(width: 1.0),
+            enableAxisAnimation: true,
+            series: <ChartSeries>[
+              FastLineSeries<DiabetesData, DateTime>(
+                name: 'Diabetes chart',
+                width: 3.0,
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.redAccent, Colors.blue]),
+                dataSource: diabetesData,
+                yValueMapper: (DiabetesData diabetesData, _) =>
+                    diabetesData.value,
+                xValueMapper: (DiabetesData diabetesData, _) =>
+                    diabetesData.date,
+                dataLabelSettings: DataLabelSettings(isVisible: true),
+                onPointTap: (ChartPointDetails details) {
+                  int? index = details.pointIndex;
+                  Get.defaultDialog(
+                    title: 'Diabetes Value',
+                    titleStyle: TextStyle(fontSize: 24),
+                    content: Column(
+                      children: [
+                        Text(
+                            'Recorded On: ${details.dataPoints![index!.toInt()].x}'),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          'Diabetes Value: ${details.dataPoints![index.toInt()].y}',
+                        ),
+                      ],
+                    ),
+                    barrierDismissible: true,
+                  );
+                },
+              ),
+            ],
+            primaryXAxis: DateTimeAxis(
+              edgeLabelPlacement: EdgeLabelPlacement.shift,
+              majorGridLines: const MajorGridLines(width: 0),
+              dateFormat: DateFormat.Md(),
+              intervalType: DateTimeIntervalType.days,
+              desiredIntervals: 7,
+              visibleMinimum: diabetesData[0].date,
+              visibleMaximum: diabetesData[diabetesData.length - 1].date,
+            ),
+            primaryYAxis: NumericAxis(
+              // labelFormat: '{value}',
+              majorGridLines: const MajorGridLines(width: 1.0),
+            ),
           ),
         ),
         Padding(
