@@ -8,8 +8,10 @@ import 'package:pdf/widgets.dart';
 
 class PdfApi {
   final List<DiabetesData> data;
+  final Future<String?> path;
   PdfApi({
     required this.data,
+    required this.path,
   });
 
   Future<File> generateTable() async {
@@ -29,12 +31,12 @@ class PdfApi {
     return saveDocument(name: 'my_example.pdf', pdf: pdf);
   }
 
-  static Future<File> generateImage() async {
+  Future<File> generateImage() async {
     final pdf = Document();
 
-    final imageSvg = await rootBundle.loadString('assets/fruit.svg');
+    // final imageSvg = await rootBundle.loadString('assets/fruit.svg');
     final imageJpg =
-        (await rootBundle.load('assets/person.jpg')).buffer.asUint8List();
+        (await rootBundle.load(path as String)).buffer.asUint8List();
 
     final pageTheme = PageTheme(
       pageFormat: PdfPageFormat.a4,
@@ -63,7 +65,7 @@ class PdfApi {
               ),
             ),
           ),
-          SvgImage(svg: imageSvg),
+          // SvgImage(svg: imageSvg),
           Image(MemoryImage(imageJpg)),
           Center(
             child: ClipRRect(
@@ -75,18 +77,18 @@ class PdfApi {
               ),
             ),
           ),
-          GridView(
-            crossAxisCount: 3,
-            childAspectRatio: 1,
-            children: [
-              SvgImage(svg: imageSvg),
-              SvgImage(svg: imageSvg),
-              SvgImage(svg: imageSvg),
-              SvgImage(svg: imageSvg),
-              SvgImage(svg: imageSvg),
-              SvgImage(svg: imageSvg),
-            ],
-          )
+          // GridView(
+          //   crossAxisCount: 3,
+          //   childAspectRatio: 1,
+          //   children: [
+          //     SvgImage(svg: imageSvg),
+          //     SvgImage(svg: imageSvg),
+          //     SvgImage(svg: imageSvg),
+          //     SvgImage(svg: imageSvg),
+          //     SvgImage(svg: imageSvg),
+          //     SvgImage(svg: imageSvg),
+          //   ],
+          // )
         ],
       ),
     );
@@ -99,7 +101,7 @@ class PdfApi {
     required Document pdf,
   }) async {
     final bytes = await pdf.save();
-    final dir = await getExternalStorageDirectory();
+    final dir = await getApplicationDocumentsDirectory();
     final file = File('${dir!.path}/$name');
     await file.writeAsBytes(bytes);
     return file;
