@@ -1,6 +1,5 @@
 import 'package:care_4_u_project/Datamodel/BloodPressureModel/BloodPressureModel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/Pressure/PressureFirestoreManager.dart';
-import 'dart:typed_data';
 // import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
