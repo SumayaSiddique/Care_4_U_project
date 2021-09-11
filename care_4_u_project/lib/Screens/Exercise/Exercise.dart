@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:intl/intl.dart';
 
 String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
@@ -17,7 +18,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?', _steps = '?';
-  late double percent;
+  double percent = 1.0;
 
   @override
   void initState() {
@@ -29,6 +30,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
     print(event);
     setState(() {
       _steps = event.steps.toString();
+      percent = event.steps == 10000 ? 1.0 : event.steps / 10000;
     });
   }
 
@@ -69,25 +71,50 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pedometer'),
-      ),
-      body: Center(
+      backgroundColor: Color(0xffdbefe1),
+      // appBar: AppBar(
+      //   title: const Text('Pedometer'),
+      // ),
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               child: Column(
                 children: [
+                  Text(
+                    "Step Counter",
+                    style: TextStyle(
+                        fontSize: Get.textTheme.headline4!.fontSize,
+                        color: Color(0xff1d617A),
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Today, " +
+                            formatDate(
+                              DateTime.now(),
+                            ),
+                        style: TextStyle(
+                            fontSize: Get.textTheme.headline6!.fontSize,
+                            color: Color(0xff1d617A),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 120),
                   CircularPercentIndicator(
                     radius: 200.0,
                     lineWidth: 10.0,
-                    percent: int.parse(_steps) == 10000
-                        ? 1.0
-                        : int.parse(_steps) / 10000,
+                    percent: 1.0,
+
                     animation: true,
                     animationDuration: 1200,
                     center: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           'Steps taken:',
@@ -99,17 +126,17 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                         ),
                       ],
                     ),
-                    header: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text(
-                        "Add a glass of water",
-                        style: TextStyle(
-                          fontSize: Get.textTheme.headline6!.fontSize,
-                        ),
-                      ),
-                    ),
+                    // header: Padding(
+                    //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    //   child: Text(
+                    //     "Add a glass of water",
+                    //     style: TextStyle(
+                    //       fontSize: Get.textTheme.headline6!.fontSize,
+                    //     ),
+                    //   ),
+                    // ),
                     backgroundColor: Colors.grey,
-                    progressColor: Colors.blue,
+                    progressColor: Color(0xff1d617A),
                   ),
                 ],
               ),
@@ -122,11 +149,12 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             //   _steps,
             //   style: TextStyle(fontSize: 60),
             // ),
-            Divider(
-              height: 100,
-              thickness: 0,
-              color: Colors.white,
-            ),
+            // Divider(
+            //   height: 100,
+            //   thickness: 0,
+            //   color: Colors.white,
+            // ),
+            SizedBox(height: 60),
             Text(
               'Pedestrian status:',
               style: TextStyle(fontSize: 30),
