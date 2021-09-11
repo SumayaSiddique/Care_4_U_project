@@ -30,40 +30,204 @@ class _WaterIntakeState extends State<WaterIntake> {
             double percentage =
                 (waterData.numberOfGlasses / waterData.dailyGoal);
             return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: Get.width / 8.0,
-                      vertical: Get.height / 20.0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 100.0,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                    Text(
+                      "Stay Hydrated",
+                      style: TextStyle(
+                        fontSize: Get.textTheme.headline4!.fontSize,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff1d617A),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      "Track Your Water Intake",
+                      style: TextStyle(
+                        fontSize: Get.textTheme.headline6!.fontSize,
+                        color: Color(0xff1d617A).withOpacity(0.7),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 48.0,
+                    ),
+                    Row(
                       children: [
-                        Text(
-                          "Stay Hydrated",
-                          style: TextStyle(
-                            fontSize: Get.textTheme.headline5!.fontSize,
+                        Flexible(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: Container(
+                              height: 110,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Color(0xff4AD879),
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.2),
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12.0,
+                                  horizontal: 8,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Goal",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      waterData.dailyGoal.toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          height: 12.0,
-                        ),
-                        Text(
-                          "Track Your Water Intake",
-                          style: TextStyle(
-                            fontSize: Get.textTheme.headline6!.fontSize,
+                        Flexible(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: Container(
+                              height: 110,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Color(0xff4BB5FE),
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 8,
+                                    color: Colors.black.withOpacity(0.2),
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12.0,
+                                  horizontal: 8,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Completed",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      "${percentage.toPrecision(1) * 100}%",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    CircularPercentIndicator(
+                      radius: 200.0,
+                      lineWidth: 10.0,
+                      percent: percentage,
+
+                      animation: true,
+                      animationDuration: 1200,
+                      // arcBackgroundColor: Colors.green,
+                      // arcType: ArcType.FULL,
+                      header: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: Center(
+                          child: Text(
+                            "Add a glass of water",
+                            style: TextStyle(
+                              fontSize: Get.textTheme.headline5!.fontSize,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff1d617A),
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2.0),
-                          child: TextButton(
+                      ),
+                      center: IconButton(
+                        icon: Icon(
+                          Icons.add,
+                          size: 25.0,
+                        ),
+                        color: Colors.blue,
+                        onPressed: () {
+                          if (waterData.timestamp.toDate().day ==
+                              DateTime.now().day) {
+                            if (waterData.numberOfGlasses <
+                                waterData.dailyGoal) {
+                              setState(() {
+                                WaterIntakeManager.addWater();
+                              });
+                            } else {
+                              percentage = 1.0;
+                              Get.snackbar('Water Intake Goal',
+                                  'Congratulations on finishing your goal',
+                                  snackPosition: SnackPosition.BOTTOM);
+                            }
+                          } else {
+                            WaterIntakeManager.resetWater();
+                          }
+                        },
+                      ),
+                      backgroundColor: Color(0xff4AD879),
+                      progressColor: Color(0xff4BB5FE),
+                    ),
+                    SizedBox(height: 60.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: Center(
+                        child: Container(
+                          width: double.infinity,
+                          child: ElevatedButton(
                             onPressed: () {
                               Get.bottomSheet(
                                 SingleChildScrollView(
                                   child: Container(
-                                    color: Colors.white,
-                                    height: Get.height * 0.325,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                    height: 220,
                                     child: Form(
                                       key: _addGoal,
                                       child: Column(
@@ -96,9 +260,9 @@ class _WaterIntakeState extends State<WaterIntake> {
                                               maxLength: 2,
                                               decoration: InputDecoration(
                                                 prefixIcon: Icon(Icons.add),
-                                                hintText:
-                                                    'How many glasses would you like to drink a day?',
+                                                hintText: 'Glasses per day',
                                                 fillColor: Colors.white38,
+                                                counterText: "",
                                                 filled: true,
                                                 enabledBorder:
                                                     OutlineInputBorder(
@@ -107,7 +271,8 @@ class _WaterIntakeState extends State<WaterIntake> {
                                                       width: 1.0),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          25.0),
+                                                    12.0,
+                                                  ),
                                                 ),
                                               ),
                                               validator: (value) => value!
@@ -156,109 +321,10 @@ class _WaterIntakeState extends State<WaterIntake> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: Get.width / 5.35,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Goal",
-                            style: TextStyle(
-                              fontSize: Get.textTheme.headline6!.fontSize,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 12.0,
-                          ),
-                          Text(
-                            waterData.dailyGoal.toString(),
-                            style: TextStyle(
-                              fontSize: Get.textTheme.headline6!.fontSize,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: Get.width / 4.95,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Completed",
-                            style: TextStyle(
-                              fontSize: Get.textTheme.headline6!.fontSize,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 12.0,
-                          ),
-                          Text(
-                            "${percentage.toPrecision(1) * 100}%",
-                            style: TextStyle(
-                              fontSize: Get.textTheme.headline6!.fontSize,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  CircularPercentIndicator(
-                    radius: 200.0,
-                    lineWidth: 10.0,
-                    percent: percentage,
-                    animation: true,
-                    animationDuration: 1200,
-                    header: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text(
-                        "Add a glass of water",
-                        style: TextStyle(
-                          fontSize: Get.textTheme.headline6!.fontSize,
-                        ),
                       ),
                     ),
-                    center: IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        size: 25.0,
-                      ),
-                      color: Colors.blue,
-                      onPressed: () {
-                        if (waterData.timestamp.toDate().day ==
-                            DateTime.now().day) {
-                          if (waterData.numberOfGlasses < waterData.dailyGoal) {
-                            setState(() {
-                              WaterIntakeManager.addWater();
-                            });
-                          } else {
-                            percentage = 1.0;
-                            Get.snackbar('Water Intake Goal',
-                                'Congratulations on finishing your goal',
-                                snackPosition: SnackPosition.BOTTOM);
-                          }
-                        } else {
-                          WaterIntakeManager.resetWater();
-                        }
-                      },
-                    ),
-                    backgroundColor: Colors.grey,
-                    progressColor: Colors.blue,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           } else {
