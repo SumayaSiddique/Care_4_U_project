@@ -1,5 +1,4 @@
 import 'package:care_4_u_project/Datamodel/WaterIntake/WaterIntakeModel.dart';
-import 'package:care_4_u_project/Screens/Water%20Intake/WaterIntake.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -19,6 +18,14 @@ class WaterIntakeManager {
     _collectionReference
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({'drankOn': Timestamp.now(), 'drank': FieldValue.increment(1)});
+  }
+
+  static void resetWater() async {
+    final CollectionReference _collectionReference =
+        FirebaseFirestore.instance.collection('users');
+    _collectionReference
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({'drankOn': Timestamp.now(), 'drank': 1, 'goal': 1});
   }
 
   static Future<WaterIntakeModel> getWaterDrankData() async {
