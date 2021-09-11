@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                 child: Text(
                   'Track Your Health \n like never before',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xff1D617A),
                     fontSize: 32,
                     fontFamily: 'SF Pro Rounded',
                   ),
