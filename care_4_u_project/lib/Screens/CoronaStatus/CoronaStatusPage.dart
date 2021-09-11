@@ -33,6 +33,7 @@ class _CoronaStatusPageState extends State<CoronaStatusPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffdbefe1),
       // appBar: AppBar(
       //   title: Text("Covid-19 Statistics"),
       //   actions: [
@@ -76,6 +77,38 @@ class ResultView extends StatelessWidget {
 
     return ListView(
       children: [
+        // SizedBox(height: 30),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Be Aware",
+                style: TextStyle(
+                  fontSize: Get.textTheme.headline5!.fontSize,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xff1d617A),
+                ),
+              ),
+              Text(
+                "From Covid-19",
+                style: TextStyle(
+                  fontSize: Get.textTheme.headline5!.fontSize,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xff1d617A),
+                ),
+              ),
+              Text(
+                "Keep yourself Home Quarantined",
+                style: TextStyle(
+                    fontSize: Get.textTheme.headline6!.fontSize,
+                    fontWeight: FontWeight.w200,
+                    color: Color(0xff1d617A)),
+              ),
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Center(

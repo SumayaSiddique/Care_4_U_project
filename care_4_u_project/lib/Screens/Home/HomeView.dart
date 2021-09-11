@@ -148,9 +148,10 @@ class _HomeViewState extends State<HomeView> {
                         child: Text(
                           "Let's get healthy together",
                           style: TextStyle(
-                              fontSize: theme.headline6!.fontSize,
-                              fontWeight: FontWeight.w200,
-                              color: Color(0xff1d617A)),
+                            fontSize: theme.headline6!.fontSize,
+                            fontWeight: FontWeight.w200,
+                            color: Color(0xff1d617A),
+                          ),
                         ),
                       ),
                       Container(
@@ -308,13 +309,6 @@ class _HomeViewState extends State<HomeView> {
                                                       theme.headline5!.fontSize,
                                                   color: Color(0xff1d617A)),
                                             ),
-                                            Opacity(
-                                              opacity: 0.7,
-                                              child: Text(
-                                                "120/80",
-                                                style: theme.headline6,
-                                              ),
-                                            ),
                                           ],
                                         ),
                                         Spacer(),
@@ -386,13 +380,6 @@ class _HomeViewState extends State<HomeView> {
                                                 fontSize:
                                                     theme.headline5!.fontSize,
                                                 color: Color(0xff1d617A),
-                                              ),
-                                            ),
-                                            Opacity(
-                                              opacity: 0.7,
-                                              child: Text(
-                                                "7.5",
-                                                style: theme.headline6,
                                               ),
                                             ),
                                           ],
