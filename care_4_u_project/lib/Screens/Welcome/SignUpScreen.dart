@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:care_4_u_project/Datamodel/User/Usermodel.dart';
 import 'package:care_4_u_project/Services/FirebaseAuth/auth_service.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/UserSignUp/UserSignUp.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -526,13 +527,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               password.trim(),
                             );
                             final newUser = Usermodel(
-                                fullName: name,
-                                age: age,
-                                email: email,
-                                password: password,
-                                height: height,
-                                isMale: isMale,
-                                weight: weight);
+                              fullName: name,
+                              age: age,
+                              email: email,
+                              password: password,
+                              height: height,
+                              isMale: isMale,
+                              weight: weight,
+                              goal: 8,
+                              drank: 1,
+                              drankOn: Timestamp.now(),
+                            );
                             await UserSignUp().addUserData(newUser);
                             Navigator.pop(context);
                           }
