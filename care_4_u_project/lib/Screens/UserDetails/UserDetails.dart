@@ -247,7 +247,7 @@ class _UserEditableBottomSheetState extends State<UserEditableBottomSheet> {
                       "Data Updated",
                       // icon: Icon(Icons.person, color: Colors.white),
                       snackPosition: SnackPosition.BOTTOM,
-                      // backgroundColor: Colors.white,
+                      //backgroundColor: Colors.white,
                     );
                   },
                   child: Text("Update Data"),
