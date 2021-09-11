@@ -1,5 +1,6 @@
 import 'package:care_4_u_project/Datamodel/MedicineDatamodel/MedicineDatamodel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/MedicineReminder/MedicineReminderFirestoreManager.dart';
+import 'package:care_4_u_project/Services/Notifications/NotificationAPI.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -404,6 +405,17 @@ class _AddMedicineBottomSheetState extends State<AddMedicineBottomSheet> {
                             medicineDatamodel.beforeMeal.toString() +
                             medicineDatamodel.notify.toString() +
                             medicineDatamodel.time.toString());
+                        NotificationManager().scheduleNotification(
+                          'Medicine Reminder',
+                          'It is time for your medicine ${mdcController.name.value}',
+                          DateTime(
+                            DateTime.now().year,
+                            DateTime.now().month,
+                            DateTime.now().day,
+                            mdcController.selectedTime.value.hour,
+                            mdcController.selectedTime.value.minute,
+                          ),
+                        );
 
                         MedicineReminderFirestoreManager.addMedicine(
                             medicineDatamodel);

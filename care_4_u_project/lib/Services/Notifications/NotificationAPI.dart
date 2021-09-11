@@ -56,8 +56,8 @@ class NotificationManager {
       NotificationDetails(
         android: AndroidNotificationDetails(
           '1',
-          'Water Reminder',
-          'This handles the notifications for the water reminders throughout the day.',
+          'Medicine Reminder',
+          'This handles the notifications for the medicine reminders throughout the day.',
         ),
       ),
       uiLocalNotificationDateInterpretation:
