@@ -144,42 +144,31 @@ class ResultView extends StatelessWidget {
             ),
           ),
         ),
-        GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+        CoronaCard(
+          color: Color(0xff4BB5FE),
+          title: "Today\'s Cases",
+          number: datamodel.todayCases.toString(),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
           children: [
-            MediumCard(
-              textTheme: textTheme,
-              containerColor: Colors.deepPurple[300]!,
-              number: datamodel.todayCases!,
-              numberColor: Colors.white,
-              title: 'Today\'s Cases',
-              titleColor: Colors.white,
+            Flexible(
+              flex: 1,
+              child: CoronaCard(
+                color: Color(0xff4AD879),
+                title: "Recovered",
+                number: datamodel.todayRecovered.toString(),
+              ),
             ),
-            MediumCard(
-              textTheme: textTheme,
-              containerColor: Colors.green,
-              number: datamodel.todayRecovered!,
-              numberColor: Colors.white,
-              title: 'Today Recovered',
-              titleColor: Colors.white,
-            ),
-            MediumCard(
-              textTheme: textTheme,
-              containerColor: Colors.redAccent,
-              number: datamodel.todayDeaths!,
-              numberColor: Colors.white,
-              title: 'Today\'s Deaths',
-              titleColor: Colors.white,
-            ),
-            MediumCard(
-              textTheme: textTheme,
-              containerColor: Colors.redAccent,
-              number: datamodel.critical!,
-              numberColor: Colors.white,
-              title: 'Critical',
-              titleColor: Colors.white,
+            Flexible(
+              flex: 1,
+              child: CoronaCard(
+                color: Color(0xffFC5959),
+                title: "Deaths",
+                number: datamodel.todayDeaths.toString(),
+              ),
             ),
           ],
         ),
@@ -204,7 +193,7 @@ class CoronaCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Container(
-        height: 110,
+        height: 90,
         width: double.infinity,
         decoration: BoxDecoration(
           color: color,
@@ -222,7 +211,7 @@ class CoronaCard extends StatelessWidget {
             horizontal: 8,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
