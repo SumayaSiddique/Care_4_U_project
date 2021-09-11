@@ -153,63 +153,67 @@ class WorkoutDetailBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(18.0),
-              topRight: Radius.circular(18.0),
+    return Container(
+      color: Colors.white,
+      height: Get.height / 2,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(18.0),
+                topRight: Radius.circular(18.0),
+              ),
+              child: Image(
+                image: AssetImage(workout.image!),
+              ),
             ),
-            child: Image(
-              image: AssetImage(workout.image!),
+            SizedBox(
+              height: 20.0,
             ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Center(
-              child: Text(
-                workout.title!.toUpperCase(),
-                style: TextStyle(
-                  fontSize: Get.textTheme.headline5!.fontSize,
-                  fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Center(
+                child: Text(
+                  workout.title!.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: Get.textTheme.headline5!.fontSize,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Duration: ' + workout.time!,
-              style: TextStyle(
-                fontSize: Get.textTheme.headline6!.fontSize,
+            SizedBox(
+              height: 20.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Duration: ' + workout.time!,
+                style: TextStyle(
+                  fontSize: Get.textTheme.headline6!.fontSize,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 12.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              workout.description!,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: Get.textTheme.headline6!.fontSize,
+            SizedBox(
+              height: 12.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                workout.description!,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: Get.textTheme.headline6!.fontSize,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-        ],
+            SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
