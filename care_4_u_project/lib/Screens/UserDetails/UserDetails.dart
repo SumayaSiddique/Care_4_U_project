@@ -71,6 +71,9 @@ class UserDetails extends StatelessWidget {
                         height: snapshot.data!.get('height') / 1.0,
                         weight: snapshot.data!.get('weight') / 1.0,
                         isMale: snapshot.data!.get('isMale'),
+                        goal: snapshot.data!.get('goal'),
+                        drank: snapshot.data!.get('drank'),
+                        drankOn: snapshot.data!.get('drankOn'),
                       );
                       this.usermodel = usermodel;
                       return BuildUserInfo(usermodel: usermodel);
