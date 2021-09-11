@@ -140,21 +140,9 @@ class _MedicineReminderCardState extends State<MedicineReminderCard> {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12),
             child: Row(
               children: [
-                // ClipRRect(
-                //   // borderRadius: BorderRadius.circular(200),
-                //   child: Image(
-                //     image: AssetImage("images/medicine.jpg"),
-                //     width: Get.width / 2,
-                //   ),
-                // ),
-
-                // Lottie.asset(
-                //   'lottie/medicine.json',
-                //   width: Get.width / 3,
-                // ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -168,7 +156,7 @@ class _MedicineReminderCardState extends State<MedicineReminderCard> {
                           color: Color(0xff52b69a),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 20,
                         ),
                         Text(
                           widget.medicineDatamodel.name,
@@ -193,7 +181,7 @@ class _MedicineReminderCardState extends State<MedicineReminderCard> {
                           color: Color(0xff1d617A),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 20,
                         ),
                         Text(
                           "${formatTimeOfDay(widget.medicineDatamodel.time)}",
@@ -210,9 +198,10 @@ class _MedicineReminderCardState extends State<MedicineReminderCard> {
                     ),
                     Row(
                       children: [
-                        SizedBox(
-                          width: 8,
-                        ),
+                        if (widget.medicineDatamodel.beforeMeal)
+                          SizedBox(
+                            width: 8,
+                          ),
                         if (widget.medicineDatamodel.beforeMeal)
                           Container(
                             height: 15,
