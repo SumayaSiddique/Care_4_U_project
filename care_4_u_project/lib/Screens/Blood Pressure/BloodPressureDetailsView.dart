@@ -1,11 +1,14 @@
 import 'package:care_4_u_project/Datamodel/BloodPressureModel/BloodPressureModel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/Pressure/PressureFirestoreManager.dart';
+import 'dart:typed_data';
+// import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:screenshot/screenshot.dart';
 
 class BloodPressureDetailsView extends StatefulWidget {
   const BloodPressureDetailsView({Key? key}) : super(key: key);
@@ -17,6 +20,7 @@ class BloodPressureDetailsView extends StatefulWidget {
 
 class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   // late List<BloodPressureData> _chartData;
+  ScreenshotController screenshotController = ScreenshotController();
   final Stream<QuerySnapshot<Map<String, dynamic>>> _collectionReference =
       FirebaseFirestore.instance
           .collection('users')
@@ -82,14 +86,40 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: 100),
-        Center(
-          child: Text(
-            "Blood Pressure Chart",
-            style: TextStyle(
-                fontSize: Get.textTheme.headline4!.fontSize,
+        Row(
+          children: [
+            SizedBox(
+              width: 16.0,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: Get.width / 35),
+              child: Screenshot(
+                controller: screenshotController,
+                child: Text(
+                  "Blood Pressure Chart",
+                  style: TextStyle(
+                      fontSize: Get.textTheme.headline4!.fontSize,
+                      color: Color(0xff1d617A),
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                // screenshotController.capture().then((Uint8List? image) {
+                //   saveImage(image!);
+                // }).catchError(
+                //   (onError) {
+                //     print(onError);
+                //   },
+                // );
+              },
+              icon: Icon(
+                Icons.picture_as_pdf,
                 color: Color(0xff1d617A),
-                fontWeight: FontWeight.w700),
-          ),
+              ),
+            ),
+          ],
         ),
         Spacer(),
         SfCartesianChart(
@@ -151,8 +181,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
             dateFormat: DateFormat.Md(),
             intervalType: DateTimeIntervalType.days,
             desiredIntervals: 7,
-            visibleMinimum:
-                bloodPressureData[bloodPressureData.length - 3].date,
+            visibleMinimum: bloodPressureData[0].date,
             visibleMaximum:
                 bloodPressureData[bloodPressureData.length - 1].date,
           ),
@@ -180,130 +209,128 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
             ),
             onPressed: () {
               Get.bottomSheet(
-                  SingleChildScrollView(
-                    child: Container(
-                      height: size.height * 0.575,
-                      child: Form(
-                        key: _formKeyPressure,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: size.height * 0.025),
+                SingleChildScrollView(
+                  child: Container(
+                    height: size.height * 0.575,
+                    child: Form(
+                      key: _formKeyPressure,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: size.height * 0.025),
+                            child: Text(
+                              'Blood Pressure',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black54),
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.025,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              maxLength: 3,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.add),
+                                hintText: 'Add your systolic value here',
+                                fillColor: Colors.white,
+                                filled: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black54, width: 1.0),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                              ),
+                              validator: (value) => value!.isEmpty
+                                  ? 'Please enter a value' + ' for systolic'
+                                  : null,
+                              onChanged: (value) {
+                                setState(() {
+                                  inputSys = int.parse(value);
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              maxLength: 3,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.add),
+                                hintText: 'Add your diastolic value here',
+                                fillColor: Colors.white,
+                                filled: true,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.black54, width: 1.0),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                              ),
+                              validator: (value) => value!.isEmpty
+                                  ? 'Please enter a value' + ' for diastolic'
+                                  : null,
+                              onChanged: (value) {
+                                setState(() {
+                                  inputDia = int.parse(value);
+                                });
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(25.0),
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                if (_formKeyPressure.currentState!.validate()) {
+                                  PressureFirestoreManager.addDiabetes(
+                                    BloodPressureData(
+                                        date: DateTime.now(),
+                                        sysValue: inputSys!,
+                                        diaValue: inputDia!),
+                                  );
+                                }
+                              },
                               child: Text(
-                                'Blood Pressure',
-                                textAlign: TextAlign.center,
+                                'Add BP Data',
                                 style: TextStyle(
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.black54),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w200,
+                                    color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) => Color(0xff1d617A)),
                               ),
                             ),
-                            SizedBox(
-                              height: size.height * 0.025,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                maxLength: 3,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.add),
-                                  hintText: 'Add your systolic value here',
-                                  fillColor: Colors.white,
-                                  filled: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black54, width: 1.0),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                ),
-                                validator: (value) => value!.isEmpty
-                                    ? 'Please enter a value' + ' for systolic'
-                                    : null,
-                                onChanged: (value) {
-                                  setState(() {
-                                    inputSys = int.parse(value);
-                                  });
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height: 12.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                maxLength: 3,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.add),
-                                  hintText: 'Add your diastolic value here',
-                                  fillColor: Colors.white,
-                                  filled: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black54, width: 1.0),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                ),
-                                validator: (value) => value!.isEmpty
-                                    ? 'Please enter a value' + ' for diastolic'
-                                    : null,
-                                onChanged: (value) {
-                                  setState(() {
-                                    inputDia = int.parse(value);
-                                  });
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(25.0),
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  if (_formKeyPressure.currentState!
-                                      .validate()) {
-                                    PressureFirestoreManager.addDiabetes(
-                                      BloodPressureData(
-                                          date: DateTime.now(),
-                                          sysValue: inputSys!,
-                                          diaValue: inputDia!),
-                                    );
-                                    // print(inputValue);
-                                    // Navigator.of(context).pop();
-                                  }
-                                },
-                                child: Text(
-                                  'Add BP Data',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w200,
-                                      color: Colors.white),
-                                ),
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateColor.resolveWith(
-                                          (states) => Color(0xff1d617A)),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  barrierColor: Colors.transparent,
-                  backgroundColor: Color(0xffdbefe1),
-                  isDismissible: true,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      side: BorderSide(
-                          color: Color(0xffdbefe1),
-                          style: BorderStyle.solid,
-                          width: 2.0)));
+                ),
+                barrierColor: Colors.transparent,
+                backgroundColor: Color(0xffdbefe1),
+                isDismissible: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  side: BorderSide(
+                      color: Color(0xffdbefe1),
+                      style: BorderStyle.solid,
+                      width: 2.0),
+                ),
+              );
             },
             child: Text(
               'Add Blood Pressure Value',
