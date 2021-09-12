@@ -33,6 +33,10 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           .snapshots();
   List<BloodPressureData> bloodPressureData = [];
 
+  final _formKeyPressure = GlobalKey<FormState>();
+  int? inputDia;
+  int? inputSys;
+
   @override
   Widget build(BuildContext context) {
     // ChartSeriesController? _chartSeriesController;
@@ -61,6 +65,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
           if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
+
           if (snapshot.connectionState == ConnectionState.active) {
             bloodPressureData = snapshot.data!.docs.map(
               (QueryDocumentSnapshot<Map<String, dynamic>>
@@ -72,8 +77,190 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                 );
               },
             ).toList();
+            if (bloodPressureData.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Text(
+                        "Please add data",
+                        style: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: Get.width / 5,
+                        left: Get.width / 5,
+                        top: Get.height * 0.075,
+                        bottom: Get.height * 0.075,
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xff1d617A),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Get.bottomSheet(
+                            SingleChildScrollView(
+                              child: Container(
+                                height: Get.height * 0.575,
+                                child: Form(
+                                  key: _formKeyPressure,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: Get.height * 0.025),
+                                        child: Text(
+                                          'Blood Pressure',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 24.0,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.black54),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: Get.height * 0.025,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          maxLength: 3,
+                                          decoration: InputDecoration(
+                                            prefixIcon: Icon(Icons.add),
+                                            hintText:
+                                                'Add your systolic value here',
+                                            fillColor: Colors.white,
+                                            filled: true,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black54,
+                                                  width: 1.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                          ),
+                                          validator: (value) => value!.isEmpty
+                                              ? 'Please enter a value' +
+                                                  ' for systolic'
+                                              : null,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              inputSys = int.parse(value);
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 12.0,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          maxLength: 3,
+                                          decoration: InputDecoration(
+                                            prefixIcon: Icon(Icons.add),
+                                            hintText:
+                                                'Add your diastolic value here',
+                                            fillColor: Colors.white,
+                                            filled: true,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black54,
+                                                  width: 1.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                          ),
+                                          validator: (value) => value!.isEmpty
+                                              ? 'Please enter a value' +
+                                                  ' for diastolic'
+                                              : null,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              inputDia = int.parse(value);
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(25.0),
+                                        child: ElevatedButton(
+                                          onPressed: () async {
+                                            if (_formKeyPressure.currentState!
+                                                .validate()) {
+                                              PressureFirestoreManager
+                                                  .addDiabetes(
+                                                BloodPressureData(
+                                                    date: DateTime.now(),
+                                                    sysValue: inputSys!,
+                                                    diaValue: inputDia!),
+                                              );
+                                            }
+                                          },
+                                          child: Text(
+                                            'Add BP Data',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w200,
+                                                color: Colors.white),
+                                          ),
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateColor.resolveWith(
+                                                    (states) =>
+                                                        Color(0xff1d617A)),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            barrierColor: Colors.transparent,
+                            backgroundColor: Color(0xffdbefe1),
+                            isDismissible: true,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              side: BorderSide(
+                                  color: Color(0xffdbefe1),
+                                  style: BorderStyle.solid,
+                                  width: 2.0),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Add Blood Pressure Value',
+                          style: TextStyle(
+                            fontFamily: "SF Pro Rounded",
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
             return makeChart();
           }
+
           return CircularProgressIndicator();
         },
       ),
@@ -81,10 +268,6 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
   }
 
   makeChart() {
-    final size = MediaQuery.of(context).size;
-    final _formKeyPressure = GlobalKey<FormState>();
-    int? inputDia;
-    int? inputSys;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -199,10 +382,10 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
         ),
         Padding(
           padding: EdgeInsets.only(
-            right: size.width / 5,
-            left: size.width / 5,
-            top: size.height * 0.075,
-            bottom: size.height * 0.075,
+            right: Get.width / 5,
+            left: Get.width / 5,
+            top: Get.height * 0.075,
+            bottom: Get.height * 0.075,
           ),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -217,7 +400,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
               Get.bottomSheet(
                 SingleChildScrollView(
                   child: Container(
-                    height: size.height * 0.575,
+                    height: Get.height * 0.575,
                     child: Form(
                       key: _formKeyPressure,
                       child: Column(
@@ -227,7 +410,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: size.height * 0.025),
+                                vertical: Get.height * 0.025),
                             child: Text(
                               'Blood Pressure',
                               textAlign: TextAlign.center,
@@ -238,7 +421,7 @@ class _BloodPressureDetailsViewState extends State<BloodPressureDetailsView> {
                             ),
                           ),
                           SizedBox(
-                            height: size.height * 0.025,
+                            height: Get.height * 0.025,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),

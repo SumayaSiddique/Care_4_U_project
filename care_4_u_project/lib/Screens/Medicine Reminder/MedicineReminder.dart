@@ -69,6 +69,16 @@ class _MedicineReminderState extends State<MedicineReminder> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
+            if (snapshot.data!.docs.length == 0) {
+              return Center(
+                child: Container(
+                  child: Text(
+                    "Please add a medicine",
+                    style: Get.textTheme.headline4,
+                  ),
+                ),
+              );
+            }
 
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {

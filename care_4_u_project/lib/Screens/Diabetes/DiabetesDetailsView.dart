@@ -1,8 +1,6 @@
 import 'dart:typed_data';
 import 'package:care_4_u_project/Datamodel/DiabetesModel/DiabetesModel.dart';
 import 'package:care_4_u_project/Services/FirestoreManager/Diabetes/DiabetesFirestoreManager.dart';
-import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
-// import 'package:care_4_u_project/Services/PdfApi/pdf_api.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +32,11 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
           .orderBy('date')
           .snapshots();
   List<DiabetesData> diabetesData = [];
+  final _formKeyDiabetes = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final size = Get.size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -61,6 +61,155 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
                 );
               },
             ).toList();
+
+            if (diabetesData.isEmpty) {
+              double? inputValue;
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Text(
+                        "Please add data",
+                        style: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: size.width / 5,
+                        left: size.width / 5,
+                        top: size.height * 0.075,
+                        bottom: size.height * 0.075,
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xff1d617A),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Get.bottomSheet(
+                            Container(
+                              height: size.height * 0.375,
+                              child: Form(
+                                key: _formKeyDiabetes,
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: size.height * 0.025),
+                                      child: Text(
+                                        'Add Diabetes',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.w900,
+                                            color: Colors.black54),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.025,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.number,
+                                        maxLength: 5,
+                                        decoration: InputDecoration(
+                                          prefixIcon: Icon(Icons.add),
+                                          hintText:
+                                              'Add your blood sugar value here',
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black54,
+                                                width: 1.0),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ),
+                                        ),
+                                        validator: (value) => value!.isEmpty
+                                            ? 'Please enter a value' +
+                                                ' for diabetes'
+                                            : null,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            inputValue = double.parse(value);
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(25.0),
+                                      child: ElevatedButton(
+                                        onPressed: () async {
+                                          if (_formKeyDiabetes.currentState!
+                                              .validate()) {
+                                            DiabetesFirestoreManager
+                                                .addDiabetes(
+                                              DiabetesData(
+                                                  date: DateTime.now(),
+                                                  value: inputValue!),
+                                            );
+                                            print(inputValue);
+                                            // Navigator.of(context).pop();
+                                          }
+                                        },
+                                        child: Text(
+                                          'Add diabetes',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w100,
+                                              color: Colors.white),
+                                        ),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateColor.resolveWith(
+                                            (states) => Color(0xff1d617A),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            barrierColor: Colors.transparent,
+                            backgroundColor: Color(0xffdbefe1),
+                            isDismissible: true,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              side: BorderSide(
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                  width: 2.0),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Add Blood Sugar Value',
+                          style: TextStyle(
+                            fontFamily: "SF Pro Rounded",
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
             return makeChart();
           }
           return CircularProgressIndicator();
@@ -72,7 +221,7 @@ class _DiabetesDetailsViewState extends State<DiabetesDetailsView> {
   makeChart() {
     final size = MediaQuery.of(context).size;
     // ChartSeriesController? _chartSeriesController;
-    final _formKeyDiabetes = GlobalKey<FormState>();
+
     double? inputValue;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
