@@ -177,9 +177,10 @@ class _HomeViewState extends State<HomeView> {
                                   size: size,
                                   theme: theme,
                                   title: Text(
-                                    "7390",
-                                    style: theme.headline3!
-                                        .apply(color: Color(0xffdbefe1)),
+                                    "Goal: 10000",
+                                    style: theme.headline4!.apply(
+                                      color: Color(0xffdbefe1),
+                                    ),
                                   ),
                                   subtitle: "Steps",
                                   icon: RotatedBox(
