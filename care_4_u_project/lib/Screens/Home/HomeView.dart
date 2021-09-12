@@ -24,37 +24,40 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late Future<Usermodel> usermodel;
-  // late Future<int> waterGoal;
+  // late Future<Usermodel> usermodel;
+  // // late Future<int> waterGoal;
 
-  @override
-  void initState() {
-    super.initState();
-    usermodel = getUserData();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   usermodel = getUserData();
+  // }
 
-  Future<Usermodel> getUserData() async => FirebaseFirestore.instance
-          .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .get()
-          .then(
-        (DocumentSnapshot documentSnapshot) {
-          Map<String, dynamic> data =
-              documentSnapshot.data() as Map<String, dynamic>;
-          return Usermodel(
-            fullName: data['name'],
-            age: data['age'],
-            email: data['email'],
-            password: '',
-            height: data['height'],
-            isMale: data['isMale'],
-            weight: data['weight'],
-            goal: data['goal'],
-            drank: data['drank'],
-            drankOn: data['drankOn'],
-          );
-        },
-      );
+  // Future<Usermodel> getUserData() {
+  //   FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .get()
+  //       .then(
+  //     (DocumentSnapshot documentSnapshot) async {
+  //       Map<String, dynamic> data =
+  //           documentSnapshot.data() as Map<String, dynamic>;
+
+  //       return Usermodel(
+  //         fullName: data['name'],
+  //         age: data['age'],
+  //         email: data['email'],
+  //         password: '',
+  //         height: data['height'],
+  //         isMale: data['isMale'],
+  //         weight: data['weight'],
+  //         goal: data['goal'],
+  //         drank: data['drank'],
+  //         drankOn: data['drankOn'],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,25 +66,31 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       backgroundColor: Color(0xffdbefe1),
-      body: FutureBuilder(
-        future: usermodel,
-        builder: (BuildContext context, AsyncSnapshot<Usermodel> snapshot) {
+      body: FutureBuilder<DocumentSnapshot>(
+        future: FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            final bmiValue = (snapshot.data!.weight /
-                    snapshot.data!.height /
-                    snapshot.data!.height) *
-                10000;
-            final int waterGoal = snapshot.data!.goal;
+            Map<String, dynamic> data =
+                snapshot.data!.data() as Map<String, dynamic>;
+            print(data['age']);
+
+            final double bmiValue =
+                (data['weight'] / data['height'] / data['height']) * 10000;
+            final int waterGoal = data['goal'];
             double bmrValue = 0;
-            if (snapshot.data!.isMale) {
-              bmrValue = 10 * snapshot.data!.weight +
-                  6.25 * snapshot.data!.height -
-                  5 * snapshot.data!.age +
+
+            if (data['isMale']) {
+              bmrValue = 10 * data['weight'] +
+                  6.25 * data['height'] -
+                  5 * data['age'] +
                   5;
             } else {
-              bmrValue = 10 * snapshot.data!.weight +
-                  6.25 * snapshot.data!.height -
-                  5 * snapshot.data!.age -
+              bmrValue = 10 * data['weight'] +
+                  6.25 * data['height'] -
+                  5 * data['age'] -
                   161;
             }
 
@@ -416,7 +425,9 @@ class _HomeViewState extends State<HomeView> {
               ),
             );
           } else
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
         },
       ),
     );
