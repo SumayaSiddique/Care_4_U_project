@@ -17,6 +17,7 @@ class UserSignUp {
         'drankOn': Timestamp.now(),
         'goal': 8,
         'drank': 1,
+        'age': usermodel.age,
       },
     );
   }
