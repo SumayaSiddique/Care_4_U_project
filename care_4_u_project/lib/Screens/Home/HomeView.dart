@@ -416,7 +416,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             );
           } else
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
         },
       ),
     );
